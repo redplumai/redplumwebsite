@@ -372,10 +372,10 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 .res-tab.active{color:#fff;border-bottom-color:var(--plum-pale)}
 
 /* DOCS */
-.doc-nav-item{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:7px;font-size:13px;color:var(--gray);cursor:pointer;transition:all var(--ease);font-weight:400;text-align:left;border:none;background:transparent;width:100%}
-.doc-nav-item:hover{background:var(--plum-cream);color:var(--plum)}
-.doc-nav-item.active{background:var(--plum-cream);color:var(--plum);font-weight:500}
-.doc-nav-section{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-light);padding:14px 12px 6px;margin-top:4px}
+.doc-nav-item{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:0 7px 7px 0;font-size:13px;color:var(--gray);cursor:pointer;transition:all var(--ease);font-weight:400;text-align:left;border:none;border-left:3px solid transparent;background:transparent;width:100%}
+.doc-nav-item:hover{background:var(--white);color:var(--plum)}
+.doc-nav-item.active{background:var(--white);color:var(--plum);font-weight:600;border-left:3px solid var(--plum);border-radius:0 7px 7px 0;padding-left:9px}
+.doc-nav-section{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--plum);padding:16px 14px 5px;margin-top:6px}
 .doc-content h1{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:400;color:var(--black);margin-bottom:8px;letter-spacing:-0.02em;line-height:1.15}
 .doc-content .doc-updated{font-size:12px;color:var(--gray-light);margin-bottom:32px;display:flex;align-items:center;gap:12px}
 .doc-content h2{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--black);margin:36px 0 12px;padding-bottom:10px;border-bottom:var(--border)}
@@ -517,8 +517,8 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 
 <!-- ANN BAR -->
 <div id="ann-bar">
-  <span>New: AI SRE Buyer&rsquo;s Guide 2025 &mdash; learn how to evaluate AI SRE for production environments.</span>
-  <a href="#" onclick="openEbook('AI SRE Buyer\'s Guide','The definitive guide to evaluating and deploying AI SRE.')">Download free &#8594;</a>
+  <span>New: Production Reliability Handbook 2025 &mdash; the definitive framework for AI-powered incident response.</span>
+  <a href="#" onclick="openEbook('Production Reliability Handbook','The definitive framework for AI-powered incident response.')">Download free &#8594;</a>
   <button onclick="document.getElementById('ann-bar').style.display='none'">&#x2715;</button>
 </div>
 
@@ -542,17 +542,17 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
     <li class="nav-item">
       <a class="nav-link" href="#">Resources <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l4 4 4-4"/></svg></a>
       <div class="mega-drop">
-        <div class="mega-section-title">Ebooks</div>
+        <div class="mega-section-title">Guides &amp; Playbooks</div>
         <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:16px">
-          <div class="mega-item" onclick="openEbook('AI SRE Buyer\'s Guide','6 criteria for evaluating AI SRE.')"><div class="mega-icon">&#128216;</div><div class="mega-text"><h4>AI SRE Buyer&rsquo;s Guide</h4><p>6 criteria for evaluating AI SRE</p></div></div>
-          <div class="mega-item" onclick="openEbook('AI ROI Playbook','Measure ROI of AI in engineering orgs.')"><div class="mega-icon">&#128202;</div><div class="mega-text"><h4>AI ROI Playbook</h4><p>Measure ROI in engineering orgs</p></div></div>
-          <div class="mega-item" onclick="openEbook('AI Agents Beyond Code','4 workflows for agentic AI.')"><div class="mega-icon">&#128640;</div><div class="mega-text"><h4>AI Agents Beyond Code</h4><p>4 workflows for agentic AI</p></div></div>
+          <div class="mega-item" onclick="openEbook('Production Reliability Handbook','6 criteria for evaluating AI SRE platforms.')"><div class="mega-icon">&#128216;</div><div class="mega-text"><h4>Production Reliability Handbook</h4><p>Evaluate AI for your on-call stack</p></div></div>
+          <div class="mega-item" onclick="openEbook('Engineering ROI Framework','Measure ROI of AI in engineering orgs.')"><div class="mega-icon">&#128202;</div><div class="mega-text"><h4>Engineering ROI Framework</h4><p>Make the business case for AI investment</p></div></div>
+          <div class="mega-item" onclick="openEbook('Beyond the Terminal','4 workflows for agentic AI in production.')"><div class="mega-icon">&#128640;</div><div class="mega-text"><h4>Beyond the Terminal</h4><p>Agentic AI for production teams</p></div></div>
         </div>
         <div class="mega-section-title">Other</div>
         <div class="mega-grid">
-          <div class="mega-item" onclick="showPage('prompt-library')"><div class="mega-icon">&#9997;&#65039;</div><div class="mega-text"><h4>Prompt Library</h4><p>Pre-built production prompts</p></div></div>
+          <div class="mega-item" onclick="showPage('prompt-library')"><div class="mega-icon">&#9997;&#65039;</div><div class="mega-text"><h4>Runbook Accelerator</h4><p>Ready-to-use investigation prompts</p></div></div>
           <div class="mega-item" onclick="showPage('blog')"><div class="mega-icon">&#128240;</div><div class="mega-text"><h4>Blog</h4><p>Engineering insights</p></div></div>
-          <div class="mega-item" onclick="showPage('glossary')"><div class="mega-icon">&#128218;</div><div class="mega-text"><h4>Glossary</h4><p>Production engineering terms</p></div></div>
+          <div class="mega-item" onclick="showPage('glossary')"><div class="mega-icon">&#128218;</div><div class="mega-text"><h4>Operations Lexicon</h4><p>Production engineering reference</p></div></div>
           <div class="mega-item" onclick="showPage('docs')"><div class="mega-icon">&#128218;</div><div class="mega-text"><h4>Docs</h4><p>Technical documentation</p></div></div>
         </div>
       </div>
@@ -1225,13 +1225,13 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
     <div id="res-featured" style="margin:44px 0 0">
       <div style="display:grid;grid-template-columns:3fr 2fr;gap:24px;margin-bottom:24px">
         <!-- FEATURED LARGE -->
-        <div style="background:var(--white);border:var(--border);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:all var(--ease)" onmouseover="this.style.boxShadow='0 8px 32px rgba(94,45,142,0.12)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''" onclick="openEbook('AI SRE Buyer\'s Guide 2025','The definitive 6-criteria framework for evaluating AI SRE platforms.')">
+        <div style="background:var(--white);border:var(--border);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:all var(--ease)" onmouseover="this.style.boxShadow='0 8px 32px rgba(94,45,142,0.12)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''" onclick="openEbook('Production Reliability Handbook','The definitive 6-criteria framework for evaluating AI SRE platforms.')">
           <div style="background:linear-gradient(135deg,var(--plum-deeper) 0%,#2D0F5E 100%);height:200px;display:flex;align-items:center;justify-content:center;position:relative;padding:32px">
             <div style="position:absolute;top:16px;left:16px;background:var(--plum);color:#fff;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px">Featured &middot; Ebook</div>
-            <div style="font-family:var(--serif);font-size:32px;color:#fff;font-weight:400;text-align:center;line-height:1.2;font-style:italic">AI SRE Buyer&rsquo;s<br>Guide 2025</div>
+            <div style="font-family:var(--serif);font-size:32px;color:#fff;font-weight:400;text-align:center;line-height:1.2;font-style:italic">Production<br>Reliability Handbook</div>
           </div>
           <div style="padding:28px;flex:1;display:flex;flex-direction:column">
-            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:8px;line-height:1.4">The complete framework for evaluating AI SRE platforms</div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:8px;line-height:1.4">The complete framework for choosing an AI production platform</div>
             <div style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300;flex:1">6 criteria, 40 pages. Covers evaluation methodology, red flags to watch for, and a scoring rubric your team can use immediately.</div>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:var(--border)">
               <div style="display:flex;gap:6px"><span style="font-size:11px;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px;font-weight:500">40 pages</span><span style="font-size:11px;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px;font-weight:500">Free download</span></div>
@@ -1241,21 +1241,21 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
         </div>
         <!-- SIDE STACK -->
         <div style="display:flex;flex-direction:column;gap:16px">
-          <div style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;flex:1;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)'" onmouseout="this.style.borderColor=''" onclick="openEbook('AI ROI Playbook','How to measure and justify AI investment in your engineering org.')">
+          <div style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;flex:1;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)'" onmouseout="this.style.borderColor=''" onclick="openEbook('Engineering ROI Framework','How to measure and justify AI investment in your engineering org.')">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
               <div style="width:36px;height:36px;border-radius:8px;background:var(--plum-cream);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">&#128202;</div>
               <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px">Ebook</span>
             </div>
-            <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:5px;line-height:1.3">AI ROI Playbook for Engineering Leaders</div>
+            <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:5px;line-height:1.3">Engineering ROI Framework for Engineering Leaders</div>
             <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5">Measure and communicate the business value of AI investments. Frameworks, benchmarks, and board-ready slides.</div>
             <div style="font-size:12px;color:var(--plum);font-weight:500;margin-top:12px">Download free &#8594;</div>
           </div>
-          <div style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;flex:1;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)'" onmouseout="this.style.borderColor=''" onclick="openEbook('AI Agents Beyond Code','4 practical workflows to adopt agentic AI beyond code completion.')">
+          <div style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;flex:1;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)'" onmouseout="this.style.borderColor=''" onclick="openEbook('Beyond the Terminal','4 practical workflows to adopt agentic AI beyond code completion.')">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
               <div style="width:36px;height:36px;border-radius:8px;background:var(--plum-cream);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">&#128640;</div>
               <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px">Ebook</span>
             </div>
-            <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:5px;line-height:1.3">AI Agents Beyond Code Generation</div>
+            <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:5px;line-height:1.3">Beyond the Terminal: Agentic AI for Production Teams</div>
             <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5">4 production workflows covering alert triage, incident investigation, debugging, and operational reviews.</div>
             <div style="font-size:12px;color:var(--plum);font-weight:500;margin-top:12px">Download free &#8594;</div>
           </div>
@@ -1337,9 +1337,9 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 <div class="page" id="page-prompt-library">
   <div class="container">
     <div class="page-hero-left">
-      <div class="section-tag"><span class="tag-dot"></span>Prompt Library</div>
-      <h1 class="display-h1" style="margin-bottom:14px">Pre-built prompts<br>for <em class="plum">production</em></h1>
-      <p class="lead">Ready-to-use prompts for common production engineering scenarios.</p>
+      <div class="section-tag"><span class="tag-dot"></span>Runbook Accelerator</div>
+      <h1 class="display-h1" style="margin-bottom:14px">Ready-made prompts<br>for <em class="plum">every incident</em></h1>
+      <p class="lead">Copy, adapt, and run these in Redplum for faster investigations and safer deploys.</p>
     </div>
     <div class="prompt-grid" style="margin-bottom:72px">
       <div class="prompt-card"><div class="prompt-tag">Investigation</div><div class="prompt-title">Investigate latency spike on service</div><div class="prompt-preview">"Investigate the p99 latency increase on payment-service over the last 2 hours. Check recent deploys, DB query times, and downstream dependencies."</div></div>
@@ -1356,8 +1356,8 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 <div class="page" id="page-glossary">
   <div class="container">
     <div class="page-hero-left">
-      <div class="section-tag"><span class="tag-dot"></span>Glossary</div>
-      <h1 class="display-h1" style="margin-bottom:14px">Production<br><em class="plum">engineering</em><br>terms</h1>
+      <div class="section-tag"><span class="tag-dot"></span>Operations Lexicon</div>
+      <h1 class="display-h1" style="margin-bottom:14px">Production<br><em class="plum">engineering</em><br>reference</h1>
     </div>
     <div class="glossary-list" style="margin-bottom:72px">
       <div class="glossary-item"><div class="glossary-term">MTTR &mdash; Mean Time to Resolution</div><div class="glossary-def">The average time from when an incident is detected to when it is fully resolved. Redplum reduces MTTR by automating the investigation and triage phases.</div></div>
@@ -1376,15 +1376,15 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 <div class="page" id="page-docs">
   <div style="display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - var(--nav-h))">
     <!-- SIDEBAR -->
-    <div style="background:var(--white);border-right:var(--border);padding:28px 0;position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto">
-      <div style="padding:0 20px 16px;border-bottom:var(--border);margin-bottom:12px">
-        <div style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-bottom:10px">Documentation</div>
+    <div style="background:var(--page-bg);border-right:2px solid var(--plum-cream);padding:0;position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto">
+      <div style="padding:16px 20px;border-bottom:var(--border);margin-bottom:0">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--plum)">redplum</span><span style="font-family:var(--mono);font-size:10px;color:var(--gray-light);background:var(--plum-cream);padding:2px 7px;border-radius:99px">docs</span></div>
         <div style="position:relative"><input style="width:100%;padding:7px 10px 7px 28px;border:1.5px solid var(--gray-pale);border-radius:6px;font-size:12px;font-family:var(--sans);outline:none;color:var(--black);background:var(--page-bg)" placeholder="Search docs..." onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--gray-pale)'"/><span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--gray-light);font-size:12px">&#128269;</span></div>
       </div>
       <div id="doc-nav" style="padding:0 12px;display:flex;flex-direction:column;gap:2px"></div>
     </div>
     <!-- CONTENT -->
-    <div style="padding:48px 64px;max-width:860px">
+    <div style="padding:44px 56px;max-width:800px">
       <div id="doc-content"></div>
       <!-- PREV / NEXT -->
       <div id="doc-nav-btns" style="display:flex;justify-content:space-between;margin-top:56px;padding-top:24px;border-top:var(--border)"></div>
@@ -1463,27 +1463,32 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
     <div id="trial-step-1" class="form-card">
       <h3 style="font-size:18px;font-weight:500;margin-bottom:18px">Create your account</h3>
       <div class="form-row">
-        <div class="form-group"><label class="form-label">First name <span class="req">*</span></label><input class="form-input" placeholder="Jane"/></div>
-        <div class="form-group"><label class="form-label">Last name <span class="req">*</span></label><input class="form-input" placeholder="Smith"/></div>
+        <div class="form-group"><label class="form-label">First name <span class="req">*</span></label><input class="form-input" id="tr-fname" placeholder="Jane"/></div>
+        <div class="form-group"><label class="form-label">Last name <span class="req">*</span></label><input class="form-input" id="tr-lname" placeholder="Smith"/></div>
       </div>
-      <div class="form-group"><label class="form-label">Work email <span class="req">*</span></label><input class="form-input" type="email" placeholder="jane@company.com"/></div>
-      <div class="form-group"><label class="form-label">Password <span class="req">*</span></label><input class="form-input" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"/></div>
-      <div class="form-group"><label class="form-label">Company <span class="req">*</span></label><input class="form-input" placeholder="Acme Corp"/></div>
-      <div class="form-group"><label class="form-label">Team size</label><select class="form-select"><option>1-5 engineers</option><option>6-20 engineers</option><option>21-100 engineers</option><option>100+ engineers</option></select></div>
+      <div class="form-group"><label class="form-label">Work email <span class="req">*</span></label><input class="form-input" id="tr-email" type="email" placeholder="jane@company.com"/></div>
+      <div class="form-group"><label class="form-label">Password <span class="req">*</span></label><input class="form-input" id="tr-pass" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"/></div>
+      <div class="form-group"><label class="form-label">Company <span class="req">*</span></label><input class="form-input" id="tr-company" placeholder="Acme Corp"/></div>
+      <div class="form-group"><label class="form-label">Team size</label><select class="form-select" id="tr-size"><option>1-5 engineers</option><option>6-20 engineers</option><option>21-100 engineers</option><option>100+ engineers</option></select></div>
+      <div id="trial-err-1" class="flash error" style="display:none"></div>
       <button class="btn btn-primary btn-lg" style="width:100%" onclick="trialNext()">Continue &#8594;</button>
-      <p style="font-size:12px;color:var(--gray);margin-top:10px;text-align:center">By continuing you agree to our <a href="#" onclick="showPage('terms')" style="color:var(--plum)">Terms</a> and <a href="#" onclick="showPage('privacy')" style="color:var(--plum)">Privacy Policy</a>.</p>
+      <p style="font-size:12px;color:var(--gray);margin-top:12px;text-align:center">By continuing you agree to our <a href="#" onclick="showPage('terms')" style="color:var(--plum)">Terms</a> and <a href="#" onclick="showPage('privacy')" style="color:var(--plum)">Privacy Policy</a>.</p>
     </div>
     <div id="trial-step-2" class="form-card" style="display:none">
       <h3 style="font-size:18px;font-weight:500;margin-bottom:7px">Connect your stack</h3>
       <p style="font-size:13px;color:var(--gray);margin-bottom:18px">Choose your primary observability tool to get started.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px" id="trial-int-grid">
         <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#128021;</div><div class="int-name">Datadog</div></div>
         <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#128202;</div><div class="int-name">Grafana</div></div>
         <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#128308;</div><div class="int-name">Prometheus</div></div>
         <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#9729;&#65039;</div><div class="int-name">Splunk</div></div>
       </div>
-      <div class="form-group"><label class="form-label">API Key / Token</label><input class="form-input" type="password" placeholder="Enter your API key..."/></div>
-      <button class="btn btn-primary btn-lg" style="width:100%" onclick="trialConnect()">Connect and continue &#8594;</button>
+      <div class="form-group"><label class="form-label">API Key / Token</label><input class="form-input" id="tr-apikey" type="password" placeholder="Enter your API key..."/></div>
+      <div id="trial-err-2" class="flash error" style="display:none"></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost btn-lg" style="flex:0 0 auto" onclick="trialBack(1)">&#8592; Back</button>
+        <button class="btn btn-primary btn-lg" style="flex:1" onclick="trialConnect()">Connect and continue &#8594;</button>
+      </div>
     </div>
     <div id="trial-step-3" class="form-card" style="display:none;text-align:center;padding:44px">
       <div style="font-size:52px;margin-bottom:14px">&#127881;</div>
@@ -1568,10 +1573,10 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
       <div class="footer-col-title">Resources</div>
       <ul>
         <li><a href="#" onclick="showPage('resources')">All Resources</a></li>
-        <li><a href="#" onclick="openEbook('AI SRE Buyer\'s Guide','6 criteria for evaluating AI SRE.')">AI SRE Buyer&rsquo;s Guide</a></li>
-        <li><a href="#" onclick="showPage('prompt-library')">Prompt Library</a></li>
+        <li><a href="#" onclick="openEbook('Production Reliability Handbook','6 criteria for evaluating AI SRE platforms.')">Production Reliability Handbook</a></li>
+        <li><a href="#" onclick="showPage('prompt-library')">Runbook Accelerator</a></li>
         <li><a href="#" onclick="showPage('blog')">Blog</a></li>
-        <li><a href="#" onclick="showPage('glossary')">Glossary</a></li>
+        <li><a href="#" onclick="showPage('glossary')">Operations Lexicon</a></li>
         <li><a href="#" onclick="showPage('docs')">Docs</a></li>
       </ul>
     </div>
@@ -1875,12 +1880,36 @@ function contactSubmit(btn){
 
 // TRIAL FLOW
 function trialNext(){
+  var fname=document.getElementById('tr-fname').value.trim();
+  var lname=document.getElementById('tr-lname').value.trim();
+  var email=document.getElementById('tr-email').value.trim();
+  var pass=document.getElementById('tr-pass').value;
+  var company=document.getElementById('tr-company').value.trim();
+  var err=document.getElementById('trial-err-1');
+  if(!fname||!lname||!email||!pass||!company){
+    err.textContent='Please fill in all required fields before continuing.';err.style.display='block';return;
+  }
+  if(!email.includes('@')){err.textContent='Please enter a valid work email address.';err.style.display='block';return;}
+  if(pass.length<8){err.textContent='Password must be at least 8 characters.';err.style.display='block';return;}
+  err.style.display='none';
   document.getElementById('trial-step-1').style.display='none';
   document.getElementById('trial-step-2').style.display='block';
   document.getElementById('ts1').classList.remove('active');document.getElementById('ts1').classList.add('done');
   document.getElementById('ts2').classList.add('active');
 }
+function trialBack(step){
+  if(step===1){
+    document.getElementById('trial-step-2').style.display='none';
+    document.getElementById('trial-step-1').style.display='block';
+    document.getElementById('ts2').classList.remove('active');
+    document.getElementById('ts1').classList.remove('done');document.getElementById('ts1').classList.add('active');
+  }
+}
 function trialConnect(){
+  var sel=document.querySelector('#trial-int-grid .int-card[style*="var(--plum)"]');
+  var err=document.getElementById('trial-err-2');
+  if(!sel){err.textContent='Please select an observability tool to connect.';err.style.display='block';return;}
+  err.style.display='none';
   document.getElementById('trial-step-2').style.display='none';
   document.getElementById('trial-step-3').style.display='block';
   document.getElementById('ts2').classList.remove('active');document.getElementById('ts2').classList.add('done');
@@ -1910,25 +1939,25 @@ function filterResources(type,btn){
 
 // DOCS SYSTEM
 var docPages=[
-  {id:'overview',section:'Getting Started',label:'Overview',icon:'&#127968;',
+  {id:'overview',section:'Start here',label:'What is Redplum',icon:'&#127968;',
   content:'<div class="doc-content"><div style="background:var(--plum-cream);border-radius:12px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start;margin-bottom:32px"><div style="font-size:28px">&#129302;</div><div><div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px">Welcome to Redplum documentation</div><div style="font-size:13px;color:var(--gray);font-weight:300;line-height:1.6">These docs cover everything from initial setup to advanced agent configuration and team knowledge.</div></div></div><h1>About Redplum AI</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:var(--plum-cream);color:var(--plum);padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">v2.4</span></div><p>Redplum works across your code, infrastructure, telemetry, and team knowledge to help engineering teams resolve incidents faster, debug with full production context, and operate production systems more reliably.</p><p>Redplum understands and operates all your tools like a seasoned expert, combines the expertise of your engineering teams, captures tribal knowledge, and learns from every investigation.</p><h2>What Redplum does</h2><h3>Resolve incidents</h3><p>Redplum joins every alert, starts investigating before your on-call engineer has woken up, builds and tests multiple hypotheses in parallel, and surfaces root cause with evidence and a remediation path.</p><h3>Debug with production context</h3><p>Get architectural recommendations and implementation guidance grounded in your actual production environment. No generic advice, just answers calibrated to your specific stack and traffic patterns.</p><h2>How it works</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Perceive</h4><p>Connects to your production systems and builds an understanding of how everything works together, learning from your runbooks, wikis, and chats.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Reason</h4><p>Plans investigations that pursue multiple hypotheses in parallel, orchestrating specialized agents to collect evidence and build causal timelines.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Act</h4><p>Works with any tool without requiring expertise in PromQL, kubectl, or complex query languages. Coordinates multi-tool investigations and takes actions like generating PRs or writing post-mortems.</p></div></div><div class="doc-step"><div class="doc-step-num">4</div><div class="doc-step-body"><h4>Learn</h4><p>Adapts based on your feedback and captures tribal knowledge from chats, incidents, and production systems.</p></div></div><div class="callout"><strong>Need help?</strong> Contact our team at <a href="mailto:hello@redplum.ai" style="color:var(--plum)">hello@redplum.ai</a> for setup assistance.</div></div>'},
-  {id:'quickstart',section:'Getting Started',label:'Quickstart',icon:'&#9889;',
+  {id:'quickstart',section:'Start here',label:'First 5 minutes',icon:'&#9889;',
   content:'<div class="doc-content"><h1>Quickstart</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:#e8f5e9;color:#1b5e20;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">5 min setup</span></div><p>Get Redplum connected to your production stack and running your first investigation in under 5 minutes.</p><h2>Step 1: Create your account</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Sign up</h4><p>Go to <a href="#" onclick="showPage(\'trial\')" style="color:var(--plum)">app.redplum.ai</a> and create your account with your work email. No credit card required for the Starter plan.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Create your organization</h4><p>Give your workspace a name and invite your team. Each workspace has its own knowledge graph and investigation history.</p></div></div><h2>Step 2: Connect your first integration</h2><p>Redplum works best with at least one observability tool and one code source connected. Start with what you use most.</p><div class="callout"><strong>Recommended first connection:</strong> Connect your primary observability tool (Datadog, Grafana, or Prometheus) first. This gives Redplum the telemetry context it needs to start building your knowledge graph immediately.</div><pre>redplum connect --integration datadog --api-key YOUR_KEY\nredplum connect --integration github --org your-org\nredplum connect --integration kubernetes --context your-cluster</pre><h2>Step 3: Run your first investigation</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Ask a question in chat</h4><p>Try: <code>"Give me a system overview"</code> or <code>"What are the most error-prone services in the last 24 hours?"</code></p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Enable alert triage</h4><p>Go to Settings &rarr; Alert Triage and connect your PagerDuty or OpsGenie. Redplum will start investigating new alerts automatically.</p></div></div></div>'},
-  {id:'connect',section:'Getting Started',label:'Connect integrations',icon:'&#128279;',
+  {id:'connect',section:'Start here',label:'Stack connections',icon:'&#128279;',
   content:'<div class="doc-content"><h1>Connect integrations</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum connects to your existing tools via API tokens or OAuth. All connections are read-only by default. Write access requires explicit opt-in.</p><div class="callout"><strong>Security note:</strong> Redplum uses scoped, read-only API credentials. We never store raw log data or customer telemetry.</div><h2>Observability</h2><table><tr><th>Integration</th><th>What Redplum accesses</th><th>Auth method</th></tr><tr><td>Datadog</td><td>Metrics, logs, APM traces, monitors</td><td>API key + App key</td></tr><tr><td>Grafana</td><td>Dashboards, alerting rules, data sources</td><td>Service account token</td></tr><tr><td>Prometheus</td><td>Metrics via PromQL, alert rules</td><td>HTTP endpoint</td></tr><tr><td>Splunk</td><td>Logs, saved searches, dashboards</td><td>API token</td></tr><tr><td>New Relic</td><td>Metrics, logs, traces, alerts</td><td>User API key</td></tr></table><h2>Infrastructure</h2><table><tr><th>Integration</th><th>What Redplum accesses</th><th>Auth method</th></tr><tr><td>Kubernetes</td><td>Pod status, events, logs, resource usage</td><td>kubeconfig / service account</td></tr><tr><td>AWS</td><td>CloudWatch, ECS, EC2, RDS, Lambda logs</td><td>IAM role (read-only policy)</td></tr><tr><td>GCP</td><td>Cloud Monitoring, GKE, Cloud Logging</td><td>Service account JSON</td></tr></table><h2>Adding an integration</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Open Settings &rarr; Integrations</h4><p>Each integration has a guided setup flow with the exact permissions required.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Enter credentials</h4><p>Credentials are encrypted at rest using AES-256 and never logged.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Test the connection</h4><p>Redplum runs a connectivity check and shows you what data it can see before saving.</p></div></div></div>'},
-  {id:'knowledge',section:'Getting Started',label:'Team knowledge',icon:'&#129504;',
+  {id:'knowledge',section:'Start here',label:'Knowledge &amp; runbooks',icon:'&#129504;',
   content:'<div class="doc-content"><h1>Team knowledge</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum learns from your team&rsquo;s existing knowledge. The more context you give it, the more accurate its investigations become.</p><h2>What you can add</h2><h3>Runbooks</h3><p>Connect your Notion workspace, Confluence space, or upload Markdown files directly. Redplum reads and indexes your runbooks and references them during investigations.</p><pre>redplum knowledge add --source notion --url https://notion.so/your-runbooks\nredplum knowledge add --source confluence --space ENG\nredplum knowledge add --file ./runbooks/*.md</pre><h3>Custom instructions</h3><p>Provide standing instructions that apply to every investigation. For example: <code>"Always check the payment-service dashboard first for any checkout-related alerts"</code> or <code>"Our primary DB is read-heavy; query timeouts are usually index issues, not capacity."</code></p><div class="callout"><strong>Tip:</strong> Start with 3-5 high-value instructions from your most experienced SRE. This is the fastest way to make Redplum feel calibrated to your environment.</div><h2>How Redplum learns over time</h2><p>Every investigation that Redplum completes contributes to its understanding of your environment. When an engineer corrects Redplum&rsquo;s analysis, that correction is captured and applied to future investigations of similar issues.</p></div>'},
-  {id:'ai-sre',section:'Features',label:'AI SRE',icon:'&#129302;',
+  {id:'ai-sre',section:'Platform',label:'Incident response',icon:'&#129302;',
   content:'<div class="doc-content"><h1>AI SRE</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:var(--plum-cream);color:var(--plum);padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">Core feature</span></div><p>AI SRE is Redplum&rsquo;s always-on incident response agent. It triages every alert, investigates in parallel, and surfaces root cause with evidence before your on-call engineer has even opened their laptop.</p><h2>How alert triage works</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Alert received</h4><p>Redplum receives the alert payload from PagerDuty, OpsGenie, or directly via webhook.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Correlation and noise filtering</h4><p>Redplum correlates the alert with all other active alerts, identifies downstream symptoms, and filters them out. Typically reduces alert volume by 80-94%.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Parallel hypothesis testing</h4><p>Specialist agents test multiple hypotheses simultaneously by pulling evidence from telemetry, code history, infrastructure state, and your knowledge graph.</p></div></div><div class="doc-step"><div class="doc-step-num">4</div><div class="doc-step-body"><h4>Root cause report</h4><p>A structured report is posted to Slack with root cause, confidence score, dependency chain, and recommended remediation within minutes of the alert firing.</p></div></div><h2>Enable alert triage</h2><pre>Settings &rarr; Alert Triage &rarr; Connect alerting source\nSelect: PagerDuty / OpsGenie / Webhook\nConfigure: Slack channel for reports\nSet: Severity threshold (P1 only, P1+P2, or All)</pre><div class="callout"><strong>Recommendation:</strong> Start with P1-only triage for your first week. Once you have calibrated Redplum&rsquo;s output to your environment, expand to P1+P2.</div></div>'},
-  {id:'debugging',section:'Features',label:'Debugging production',icon:'&#128269;',
+  {id:'debugging',section:'Platform',label:'Production debugging',icon:'&#128269;',
   content:'<div class="doc-content"><h1>Debugging production</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Use Redplum to code, architect, and debug with your full production environment as context. Every recommendation is grounded in your actual traffic patterns, service topology, and infrastructure state.</p><h2>Chat-based debugging</h2><p>Ask Redplum questions about your production system in plain language. Redplum translates your question into the right queries across all connected systems and synthesizes the results into a clear answer.</p><pre>"Why is checkout latency spiking on Tuesdays at 9am?"\n"Which services are most likely affected if payment-db goes down?"\n"Show me all changes deployed in the last 6 hours and flag anything risky."\n"What is the current error rate on auth-service and what changed recently?"</pre><h2>Pre-deploy review</h2><p>Share a diff or PR with Redplum before deploying and ask for a risk assessment. Redplum evaluates the change against your production patterns and highlights potential failure modes.</p><div class="callout"><strong>Pro tip:</strong> Use <code>/redplum review PR #1234</code> in Slack to trigger a production-context code review directly from a pull request link.</div></div>'},
-  {id:'slack-app',section:'Features',label:'Slack app',icon:'&#128172;',
+  {id:'slack-app',section:'Platform',label:'Slack &amp; alerts',icon:'&#128172;',
   content:'<div class="doc-content"><h1>Slack app</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>The Redplum Slack app brings your AI SRE into the communication channel where incident response already happens. No context switching required.</p><h2>Installing the Slack app</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Go to Settings &rarr; Integrations &rarr; Slack</h4><p>Click &ldquo;Install Slack app&rdquo; and authorize the OAuth flow for your workspace.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Choose your incident channel</h4><p>Select the channel where Redplum should post investigation reports. We recommend your existing <code>#incidents</code> or <code>#on-call</code> channel.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Invite the bot</h4><p>Run <code>/invite @redplum</code> in the channels where you want it to be active.</p></div></div><h2>Slash commands</h2><table><tr><th>Command</th><th>Description</th></tr><tr><td><code>/redplum investigate [alert]</code></td><td>Start a manual investigation from Slack</td></tr><tr><td><code>/redplum review [PR URL]</code></td><td>Get a production-context code review</td></tr><tr><td><code>/redplum status</code></td><td>Show current active investigations</td></tr><tr><td><code>/redplum ask [question]</code></td><td>Ask a free-form question about your production system</td></tr><tr><td><code>/redplum postmortem [incident-id]</code></td><td>Generate a post-mortem for a resolved incident</td></tr></table></div>'},
-  {id:'sso',section:'Setup & Security',label:'Single Sign-On',icon:'&#128274;',
+  {id:'sso',section:'Configuration',label:'SSO &amp; identity',icon:'&#128274;',
   content:'<div class="doc-content"><h1>Single Sign-On (SSO)</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:#E8EEF9;color:#1A3A6B;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">Growth &amp; Enterprise</span></div><p>Redplum supports SAML 2.0 and OIDC for single sign-on. Connect your identity provider so your engineers can log in with existing company credentials.</p><h2>Supported providers</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0"><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Okta</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Azure AD</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Google Workspace</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">JumpCloud</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">OneLogin</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Generic SAML</div></div><h2>SAML 2.0 setup</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Get your Redplum ACS URL and Entity ID</h4><p>Go to Settings &rarr; Security &rarr; SSO and copy the values for your identity provider configuration.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Configure your IdP</h4><p>Create a new SAML application in your identity provider, set the ACS URL, Entity ID, and map the <code>email</code> attribute.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Paste the IdP metadata URL</h4><p>Copy your IdP&rsquo;s metadata XML URL and paste it into Redplum Settings &rarr; Security &rarr; SSO &rarr; SAML configuration.</p></div></div><div class="doc-step"><div class="doc-step-num">4</div><div class="doc-step-body"><h4>Test and enable</h4><p>Use the &ldquo;Test SSO connection&rdquo; button before enabling. SSO can be rolled back within 60 minutes if there are issues.</p></div></div><div class="callout"><strong>Note:</strong> Once SSO is enforced, users can no longer log in with email and password. Ensure at least one admin has tested the SSO flow before enforcing organization-wide.</div></div>'},
-  {id:'security',section:'Setup & Security',label:'Security',icon:'&#128737;',
+  {id:'security',section:'Configuration',label:'Data &amp; compliance',icon:'&#128737;',
   content:'<div class="doc-content"><h1>Security</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum is built for engineering teams operating in security-conscious environments. Our security model is designed around minimal data access, strong encryption, and full auditability.</p><h2>Certifications</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0"><div style="background:var(--plum-deeper);color:#fff;border-radius:10px;padding:18px;text-align:center"><div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:4px">SOC 2 TYPE II</div><div style="font-size:11px;color:#888">Independently audited</div></div><div style="background:#0F6E56;color:#fff;border-radius:10px;padding:18px;text-align:center"><div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:4px">GDPR</div><div style="font-size:11px;color:rgba(255,255,255,0.7)">EU data protection</div></div><div style="background:#0C447C;color:#fff;border-radius:10px;padding:18px;text-align:center"><div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:4px">HIPAA</div><div style="font-size:11px;color:rgba(255,255,255,0.7)">Healthcare compatible</div></div></div><h2>Data access principles</h2><ul><li><strong>Read-only by default.</strong> Redplum never writes to your production systems unless you explicitly grant write permissions.</li><li><strong>No raw data stored.</strong> Redplum processes metadata and structural information only. Raw logs and traces are never persisted.</li><li><strong>Tenant isolation.</strong> Your data is completely isolated from other customers at the model, memory, and storage level.</li><li><strong>Scoped credentials.</strong> All integrations use the minimum API permissions required.</li></ul><h2>Encryption</h2><p>All data is encrypted in transit (TLS 1.3) and at rest (AES-256). API credentials are stored in a dedicated secrets manager and are never logged.</p><div class="callout"><strong>Penetration testing:</strong> Redplum undergoes annual third-party penetration testing. Reports are available to Enterprise customers under NDA. Contact hello@redplum.ai to request access.</div></div>'},
-  {id:'rbac',section:'Setup & Security',label:'Roles & permissions',icon:'&#128101;',
+  {id:'rbac',section:'Configuration',label:'Access control',icon:'&#128101;',
   content:'<div class="doc-content"><h1>Roles &amp; permissions</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum uses role-based access control (RBAC) to manage what each team member can see and do.</p><h2>Built-in roles</h2><table><tr><th>Role</th><th>Description</th><th>Key permissions</th></tr><tr><td><strong>Owner</strong></td><td>Full control of the organization</td><td>All permissions including billing and SSO</td></tr><tr><td><strong>Admin</strong></td><td>Manage team and integrations</td><td>Add integrations, manage members, view all investigations</td></tr><tr><td><strong>Engineer</strong></td><td>Full investigation access</td><td>Run investigations, chat, view all reports</td></tr><tr><td><strong>Viewer</strong></td><td>Read-only access</td><td>View investigation reports and dashboards only</td></tr></table><h2>Custom roles</h2><p>Enterprise plans support custom role definitions. Contact hello@redplum.ai to configure custom RBAC policies for your organization.</p></div>'},
 ];
 
