@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redplum AI &mdash; Intelligence for Production Engineering</title>
+<title>Redplum AI | AI that runs production while engineers build</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -333,9 +333,10 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 .footer-logo{font-family:var(--serif);font-size:20px;font-weight:600;color:#fff;margin-bottom:12px;letter-spacing:-0.03em}
 .footer-logo span{color:var(--plum-pale)}
 .footer-tagline{font-size:13px;color:#666;line-height:1.6;font-weight:300;max-width:200px;margin-bottom:20px}
-.footer-social{display:flex;gap:10px}
-.social-btn{width:34px;height:34px;border-radius:7px;border:1px solid #2D1A50;display:flex;align-items:center;justify-content:center;color:#888;font-size:13px;transition:all var(--ease);text-decoration:none}
+.footer-social{display:flex;gap:10px;align-items:center}
+.social-btn{width:34px;height:34px;border-radius:7px;border:1px solid #2D1A50;display:flex;align-items:center;justify-content:center;color:#888;font-size:13px;transition:all var(--ease);text-decoration:none;flex-shrink:0}
 .social-btn:hover{border-color:var(--plum);color:var(--plum-pale)}
+.social-btn svg{display:block}
 .footer-col-title{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-bottom:16px}
 .footer-col ul{display:flex;flex-direction:column;gap:10px}
 .footer-col a{font-size:13px;color:#888;transition:color var(--ease)}
@@ -650,7 +651,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 
 <!-- ANN BAR -->
 <div id="ann-bar">
-  <span>New: Production Reliability Handbook 2025 &mdash; the definitive framework for AI-powered incident response.</span>
+  <span>New: Production Reliability Handbook 2025: the definitive framework for AI-powered incident response.</span>
   <a href="#" onclick="openEbook('Production Reliability Handbook','The definitive framework for AI-powered incident response.')">Download free &#8594;</a>
   <button onclick="document.getElementById('ann-bar').style.display='none'">&#x2715;</button>
 </div>
@@ -745,8 +746,8 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
     <div class="hero">
       <div>
         <div class="section-tag"><span class="tag-dot"></span>Now in production</div>
-        <h1 class="display-h1" style="margin-bottom:22px">Production<br>intelligence<br>that <em class="plum">never</em><br>sleeps</h1>
-        <p class="lead" style="margin-bottom:36px">Redplum is the AI-native platform that investigates incidents, debugs production, and operates your tools so your engineers focus on what matters.</p>
+        <h1 class="display-h1" style="margin-bottom:22px">AI that runs<br>production<br>while engineers<br><em class="plum">build</em></h1>
+        <p class="lead" style="margin-bottom:36px">Redplum investigates incidents, fixes them with generated PRs and runbooks, and documents everything, so your engineers focus on what matters.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo &#8594;</a>
           <a class="btn btn-ghost btn-lg" href="#" onclick="showPage('trial')">Try for free</a>
@@ -1451,7 +1452,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
     <!-- NEWSLETTER STRIP -->
     <div style="background:var(--plum-deeper);border-radius:16px;padding:44px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:72px">
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--plum-pale);margin-bottom:12px">Production Pulse &mdash; Newsletter</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--plum-pale);margin-bottom:12px">Production Pulse / Newsletter</div>
         <h2 style="font-family:var(--serif);font-size:28px;font-weight:400;color:#fff;margin-bottom:10px;line-height:1.2">Weekly intelligence from<br>the production floor</h2>
         <p style="font-size:14px;color:#888;font-weight:300;line-height:1.6">Incident post-mortems, reliability patterns, and AI engineering ideas. Read by 4,000+ SREs and engineering leaders.</p>
       </div>
@@ -1493,10 +1494,10 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
       <h1 class="display-h1" style="margin-bottom:14px">Production<br><em class="plum">engineering</em><br>reference</h1>
     </div>
     <div class="glossary-list" style="margin-bottom:72px">
-      <div class="glossary-item"><div class="glossary-term">MTTR &mdash; Mean Time to Resolution</div><div class="glossary-def">The average time from when an incident is detected to when it is fully resolved. Redplum reduces MTTR by automating the investigation and triage phases.</div></div>
+      <div class="glossary-item"><div class="glossary-term">MTTR: Mean Time to Resolution</div><div class="glossary-def">The average time from when an incident is detected to when it is fully resolved. Redplum reduces MTTR by automating the investigation and triage phases.</div></div>
       <div class="glossary-item"><div class="glossary-term">Root Cause Analysis (RCA)</div><div class="glossary-def">The process of identifying the fundamental reason an incident occurred, not just the symptom. Redplum surfaces root cause automatically using evidence from logs, traces, metrics and code history.</div></div>
       <div class="glossary-item"><div class="glossary-term">Alert Fatigue</div><div class="glossary-def">The state where engineers receive so many alerts that they begin to ignore or miss critical ones. Usually caused by undiscriminating alerting rules and cascading downstream alerts from a single root issue.</div></div>
-      <div class="glossary-item"><div class="glossary-term">SRE &mdash; Site Reliability Engineering</div><div class="glossary-def">The practice of applying software engineering principles to infrastructure and operations problems. SREs own the reliability, scalability, and performance of production systems.</div></div>
+      <div class="glossary-item"><div class="glossary-term">SRE: Site Reliability Engineering</div><div class="glossary-def">The practice of applying software engineering principles to infrastructure and operations problems. SREs own the reliability, scalability, and performance of production systems.</div></div>
       <div class="glossary-item"><div class="glossary-term">Runbook</div><div class="glossary-def">A documented procedure for handling a specific operational task or incident type. Redplum ingests and learns from runbooks to improve investigation quality.</div></div>
       <div class="glossary-item"><div class="glossary-term">Multi-agent system</div><div class="glossary-def">An AI architecture where multiple specialised agents collaborate to solve a problem, each handling a distinct subtask while coordinating through a shared reasoning layer.</div></div>
       <div class="glossary-item"><div class="glossary-term">Observability</div><div class="glossary-def">The ability to understand the internal state of a system from its external outputs, typically logs, metrics, and traces.</div></div>
@@ -1684,12 +1685,18 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   <div class="footer-top">
     <div>
       <div class="footer-logo">redplum<span>.</span>ai</div>
-      <p class="footer-tagline">Production intelligence that never sleeps. AI SRE for engineering teams who care about reliability.</p>
+      <p class="footer-tagline">AI that runs production while engineers build. Incident response, root cause analysis, and production debugging. Automated.</p>
       <div class="footer-social">
         <a class="social-btn" href="https://www.linkedin.com/company/redplumai" target="_blank" title="LinkedIn">in</a>
         <a class="social-btn" href="https://x.com/redplumai" target="_blank" title="X / Twitter">&#120143;</a>
         <a class="social-btn" href="https://www.youtube.com/@redplumai" target="_blank" title="YouTube">&#9654;</a>
-        <a class="social-btn" href="https://www.instagram.com/redplumai/" target="_blank" title="Instagram" style="font-size:15px">&#128247;</a>
+        <a class="social-btn" href="https://www.instagram.com/redplumai/" target="_blank" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
       </div>
     </div>
     <div class="footer-col">
