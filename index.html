@@ -27,16 +27,7 @@ ul{list-style:none}
 ::-webkit-scrollbar-thumb{background:var(--gray-pale);border-radius:99px}
 
 /* COOKIE */
-#cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--plum-deeper);color:#fff;padding:16px 24px;border-radius:var(--r);display:flex;align-items:center;gap:20px;font-size:13px;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.25);max-width:660px;width:calc(100% - 48px);animation:slideUp 0.4s ease forwards}
-@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
-#cookie-banner p{flex:1;line-height:1.5;color:#ccc;font-size:12.5px}
-#cookie-banner a{color:var(--plum-pale);text-decoration:underline}
-.cookie-btns{display:flex;gap:8px;flex-shrink:0}
-.ck-btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap}
-.ck-accept{background:var(--plum);color:#fff;border:1px solid var(--plum)}
-.ck-accept:hover{background:var(--plum-dark)}
-.ck-decline{background:transparent;color:#ccc;border:1px solid #555}
-.ck-decline:hover{background:#333}
+
 
 /* ANN BAR */
 #ann-bar{background:var(--plum);color:#fff;font-size:12.5px;text-align:center;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;z-index:200}
@@ -396,12 +387,13 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 .doc-step-body p{font-size:14px;color:var(--gray);font-weight:300;line-height:1.6;margin:0}
 
 /* RESPONSIVE */
+/* ── TABLET (≤1024px) ── */
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr;gap:40px;padding:48px 24px}
+  .hero{grid-template-columns:1fr;gap:36px;padding:48px 24px}
   .feat-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
   .step::after{display:none}
-  .pricing-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
   .pricing-card.featured{transform:none}
   .footer-top{grid-template-columns:1fr 1fr;gap:28px}
   .contact-grid{grid-template-columns:1fr}
@@ -409,26 +401,174 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   .team-grid{grid-template-columns:repeat(2,1fr)}
   .story-body{grid-template-columns:1fr}
   .resource-grid{grid-template-columns:1fr}
+  .mega-drop{min-width:320px!important}
+  .mega-grid{grid-template-columns:1fr}
+  #page-docs>div{grid-template-columns:220px 1fr}
 }
+
+/* ── MOBILE (≤768px) ── */
 @media(max-width:768px){
-  #navbar{padding:0 20px}
+  /* NAV */
+  #navbar{padding:0 16px;height:52px}
   .nav-links,.nav-actions .btn-ghost{display:none}
+  .nav-actions .btn-primary{padding:8px 14px;font-size:13px}
   .hamburger{display:flex}
-  .hero{padding:36px 20px}
-  .container{padding:0 20px}
-  .section-wrap{padding:48px 0}
+  .nav-logo{font-size:17px}
+
+  /* LAYOUT */
+  .container{padding:0 16px}
+  .section-wrap{padding:40px 0}
+  .page-hero{padding:44px 0 32px}
+  .page-hero-left{padding:44px 0 32px}
+
+  /* HERO */
+  .hero{padding:28px 16px 32px;gap:28px}
+  .hero-visual{border-radius:12px}
+  .terminal-body{padding:16px;font-size:11px;line-height:1.7}
+
+  /* DISPLAY HEADINGS */
+  .display-h1{font-size:clamp(32px,9vw,52px)}
+  .display-h2{font-size:clamp(24px,7vw,38px)}
+  .display-h3{font-size:clamp(20px,5vw,28px)}
+  .lead{font-size:16px}
+
+  /* GRIDS → single column */
   .feat-grid,.security-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr}
-  .testimonial-card{min-width:290px}
-  .footer-top{grid-template-columns:1fr;padding:36px 20px}
-  .footer-bottom{flex-direction:column;gap:10px;padding:14px 20px;text-align:center}
-  .footer-legal{flex-wrap:wrap;justify-content:center}
+  .steps{grid-template-columns:1fr;gap:12px}
   .blog-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .story-stats{flex-direction:column;gap:16px}
-  .pricing-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:100%}
   .prompt-grid{grid-template-columns:1fr}
+  .resource-grid{grid-template-columns:1fr}
+  .security-grid{grid-template-columns:1fr}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* LOGO STRIP */
+  .logo-item{padding:0 20px;height:44px}
+  .logo-item img{height:26px}
+
+  /* TESTIMONIALS */
+  .testimonial-card{min-width:calc(100vw - 48px);padding:24px}
+  .testimonial-quote{font-size:15px}
+
+  /* STEPS */
+  .step::after{display:none}
+  .step{padding:20px}
+
+  /* CARDS */
+  .card{padding:22px}
+
+  /* PRICING */
+  .pricing-card.featured{transform:none}
+  .pricing-card{padding:28px}
+
+  /* STORY */
+  .story-stats{flex-direction:column;gap:14px}
+  .story-header{padding:36px 20px;border-radius:12px}
+  .story-body{grid-template-columns:1fr}
+  .story-sidebar{position:static}
+
+  /* FOOTER */
+  .footer-top{grid-template-columns:1fr;padding:36px 16px 28px;gap:24px}
+  .footer-bottom{flex-direction:column;gap:10px;padding:14px 16px;text-align:center}
+  .footer-legal{flex-wrap:wrap;justify-content:center}
+  footer{margin-top:48px}
+
+  /* CONTACT */
+  .contact-grid{grid-template-columns:1fr}
+
+  /* FORM CARD */
+  .form-card{padding:24px 20px}
+
+  /* BLOG */
+  .blog-hero-img{height:180px;font-size:44px}
+
+  /* ANN BAR */
+  #ann-bar{font-size:11.5px;padding:8px 36px 8px 16px;gap:6px;flex-wrap:wrap;justify-content:center;text-align:center}
+  #ann-bar button{right:8px}
+
+  /* SECTION HERO (inner pages) */
+  .page-hero{padding:36px 0 24px}
+  .page-hero-left{padding:36px 0 24px}
+
+  /* DEMO PAGE */
+  #page-demo .container>div{grid-template-columns:1fr!important;gap:28px}
+  .calendly-wrap{min-height:280px}
+
+  /* CUSTOMERS grid */
+  #page-customers .container>div:first-of-type{grid-template-columns:1fr!important}
+
+  /* HOME customer logos row */
+  #page-home .container>div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important}
+
+  /* HOW IT WORKS stats */
+  #page-home .hero>div>div[style*="display:flex;gap:32px"]{gap:20px;flex-wrap:wrap}
+
+  /* ABOUT mission block */
+  #page-about div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+
+  /* CAREERS stats */
+  #page-careers div[style*="display:flex;gap:32px"]{flex-direction:column;gap:12px}
+
+  /* RESOURCES featured grid */
+  #page-resources #res-featured>div:first-child{grid-template-columns:1fr!important}
+  #page-resources #res-all-grid #res-grid-inner{grid-template-columns:1fr!important}
+  #page-resources div[style*="grid-template-columns:1fr 1fr"][style*="gap:40px"]{grid-template-columns:1fr!important}
+
+  /* INTEGRATIONS custom request */
+  #page-integrations div[style*="grid-template-columns:1fr 1fr"][style*="gap:44px"]{grid-template-columns:1fr!important}
+  #page-integrations div[style*="grid-template-columns:1fr 1fr"][style*="gap:14px"]{grid-template-columns:1fr!important}
+
+  /* DOCS: stack sidebar on top */
+  #page-docs>div{grid-template-columns:1fr!important;grid-template-rows:auto 1fr}
+  #page-docs>div>div:first-child{height:auto;position:static;border-right:none;border-bottom:2px solid var(--plum-cream)}
+  #page-docs>div>div:last-child{padding:28px 16px}
+  #doc-nav{flex-direction:row;flex-wrap:wrap;gap:4px;padding:8px 12px!important}
+  .doc-nav-section{width:100%;padding:8px 4px 2px!important;margin-top:0!important}
+  .doc-nav-item{padding:5px 10px!important;font-size:12px;border-radius:6px!important;border-left:none!important;white-space:nowrap;flex-shrink:0}
+  .doc-nav-item.active{border-left:none!important;padding-left:10px!important}
+  .doc-content h1{font-size:clamp(22px,6vw,32px)}
+  .doc-content pre{font-size:11px;padding:14px}
+
+  /* TRIAL */
+  #page-trial .container{padding:36px 16px}
+
+  /* PRICING page hero */
+  #page-pricing .page-hero{padding:36px 0 20px}
+
+  /* MODALS */
+  .modal-box{padding:28px 20px;max-height:95vh}
+  .ebook-box{padding:28px 20px}
+
+  /* SECURITY certs grid */
+  #page-security div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+
+  /* ABOUT team */
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* GLOSSARY */
+  .glossary-term{font-size:15px}
+
+  /* BLOG ARTICLE */
+  .blog-article{padding:0 4px}
+  .blog-article h1{font-size:clamp(22px,6vw,32px)}
+  .blog-article .body p{font-size:15px}
+
+  /* STORY SIDEBAR below content */
+  .story-content blockquote{font-size:16px}
+}
+
+/* ── SMALL PHONES (≤420px) ── */
+@media(max-width:420px){
+  .display-h1{font-size:clamp(28px,8vw,40px)}
+  .btn-lg{padding:11px 20px;font-size:14px}
+  .hero>div>div[style*="display:flex;gap:12px"]{flex-direction:column}
+  .hero>div>div[style*="display:flex;gap:12px"] .btn{width:100%;justify-content:center}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonial-card{min-width:calc(100vw - 32px)}
+  .team-grid{grid-template-columns:1fr}
+  .feat-badge{font-size:10px;padding:3px 10px}
 }
 </style>
 </head>
@@ -506,13 +646,6 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   </div>
 </div>
 
-<!-- COOKIE BANNER -->
-<div id="cookie-banner">
-  <p>We use cookies to improve your experience. See our <a href="#" onclick="showPage('privacy')">Privacy Policy</a>.</p>
-  <div class="cookie-btns">
-    <button class="ck-btn ck-decline" onclick="dismissCookie()">Decline</button>
-    <button class="ck-btn ck-accept" onclick="dismissCookie()">Accept all</button>
-  </div>
 </div>
 
 <!-- ANN BAR -->
@@ -1556,6 +1689,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
         <a class="social-btn" href="https://www.linkedin.com/company/redplumai" target="_blank" title="LinkedIn">in</a>
         <a class="social-btn" href="https://x.com/redplumai" target="_blank" title="X / Twitter">&#120143;</a>
         <a class="social-btn" href="https://www.youtube.com/@redplumai" target="_blank" title="YouTube">&#9654;</a>
+        <a class="social-btn" href="https://www.instagram.com/redplumai/" target="_blank" title="Instagram" style="font-size:15px">&#128247;</a>
       </div>
     </div>
     <div class="footer-col">
@@ -1639,7 +1773,7 @@ function closeMobileNav(){
 }
 
 // COOKIE
-function dismissCookie(){document.getElementById('cookie-banner').style.display='none';}
+
 
 // CAROUSEL
 var carouselIdx=0;
