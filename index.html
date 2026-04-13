@@ -366,6 +366,35 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 .page-hero{padding:72px 0 52px;text-align:center}
 .page-hero-left{padding:72px 0 52px}
 
+/* RESOURCE TABS */
+.res-tab{padding:12px 20px;font-size:13px;font-weight:500;color:#888;background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all var(--ease);white-space:nowrap}
+.res-tab:hover{color:#fff}
+.res-tab.active{color:#fff;border-bottom-color:var(--plum-pale)}
+
+/* DOCS */
+.doc-nav-item{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:7px;font-size:13px;color:var(--gray);cursor:pointer;transition:all var(--ease);font-weight:400;text-align:left;border:none;background:transparent;width:100%}
+.doc-nav-item:hover{background:var(--plum-cream);color:var(--plum)}
+.doc-nav-item.active{background:var(--plum-cream);color:var(--plum);font-weight:500}
+.doc-nav-section{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-light);padding:14px 12px 6px;margin-top:4px}
+.doc-content h1{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:400;color:var(--black);margin-bottom:8px;letter-spacing:-0.02em;line-height:1.15}
+.doc-content .doc-updated{font-size:12px;color:var(--gray-light);margin-bottom:32px;display:flex;align-items:center;gap:12px}
+.doc-content h2{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--black);margin:36px 0 12px;padding-bottom:10px;border-bottom:var(--border)}
+.doc-content h3{font-size:16px;font-weight:600;color:var(--black);margin:24px 0 8px}
+.doc-content p{font-size:15px;line-height:1.8;color:var(--charcoal);font-weight:300;margin-bottom:14px}
+.doc-content ul,.doc-content ol{padding-left:22px;margin-bottom:14px}
+.doc-content li{font-size:15px;line-height:1.75;color:var(--charcoal);font-weight:300;margin-bottom:4px}
+.doc-content code{font-family:var(--mono);font-size:12.5px;background:var(--plum-cream);color:var(--plum);padding:2px 7px;border-radius:4px}
+.doc-content pre{background:var(--plum-deeper);color:#C49EF5;padding:20px 24px;border-radius:10px;font-family:var(--mono);font-size:12px;line-height:1.8;overflow-x:auto;margin:16px 0}
+.doc-content .callout{background:var(--plum-cream);border-left:3px solid var(--plum);border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0;font-size:14px;color:var(--charcoal);font-weight:300;line-height:1.65}
+.doc-content .callout strong{color:var(--plum);font-weight:600}
+.doc-content table{width:100%;border-collapse:collapse;font-size:13px;margin:20px 0}
+.doc-content th{background:var(--plum-cream);padding:10px 14px;text-align:left;font-weight:600;color:var(--black);border:var(--border)}
+.doc-content td{padding:10px 14px;border:var(--border);color:var(--charcoal);font-weight:300;vertical-align:top}
+.doc-step{display:flex;gap:16px;margin-bottom:20px;align-items:flex-start}
+.doc-step-num{width:28px;height:28px;border-radius:50%;background:var(--plum);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.doc-step-body h4{font-size:15px;font-weight:600;color:var(--black);margin-bottom:4px}
+.doc-step-body p{font-size:14px;color:var(--gray);font-weight:300;line-height:1.6;margin:0}
+
 /* RESPONSIVE */
 @media(max-width:1024px){
   .hero{grid-template-columns:1fr;gap:40px;padding:48px 24px}
@@ -1174,23 +1203,131 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 
 <!-- RESOURCES -->
 <div class="page" id="page-resources">
-  <div class="container">
-    <div class="page-hero">
-      <div class="section-tag"><span class="tag-dot"></span>Resources</div>
-      <h1 class="display-h1" style="margin-bottom:14px">Learn from the<br><em class="plum">best</em> in production</h1>
+  <!-- HERO STRIP -->
+  <div style="background:var(--plum-deeper);padding:56px 0 0">
+    <div class="container">
+      <div class="section-tag" style="background:rgba(94,45,142,0.5);color:var(--plum-pale)"><span class="tag-dot"></span>Resource library</div>
+      <h1 class="display-h1" style="color:#fff;margin-bottom:14px;max-width:600px">Everything you need<br>to run production <em style="color:var(--plum-pale);font-family:var(--serif);font-style:italic">better</em></h1>
+      <p style="font-size:16px;color:#888;font-weight:300;max-width:480px;margin-bottom:44px">Guides, playbooks, and on-demand sessions from the engineers and leaders who have solved these problems before you.</p>
+      <!-- TOPIC FILTERS -->
+      <div style="display:flex;gap:0;border-bottom:1px solid #2D1A50">
+        <button class="res-tab active" onclick="filterResources('all',this)">All resources</button>
+        <button class="res-tab" onclick="filterResources('ebook',this)">Ebooks</button>
+        <button class="res-tab" onclick="filterResources('guide',this)">Guides</button>
+        <button class="res-tab" onclick="filterResources('webinar',this)">Webinars</button>
+        <button class="res-tab" onclick="filterResources('report',this)">Reports</button>
+      </div>
     </div>
-    <div class="resource-grid">
-      <div class="resource-card"><div class="resource-thumb" style="background:var(--plum-deeper)">&#128216;</div><div class="resource-body"><div class="resource-type">Ebook</div><div class="resource-title">AI SRE Buyer&rsquo;s Guide 2025</div><div class="resource-desc">The definitive guide to evaluating, shortlisting and deploying AI SRE in your engineering org. 6 criteria, 40 pages.</div><span class="resource-cta" onclick="openEbook('AI SRE Buyer\'s Guide','6 criteria for evaluating AI SRE in production.')">Download free &#8594;</span></div></div>
-      <div class="resource-card"><div class="resource-thumb" style="background:var(--plum-dark)">&#128202;</div><div class="resource-body"><div class="resource-type">Ebook</div><div class="resource-title">AI ROI Playbook for Engineering Leaders</div><div class="resource-desc">How to measure and communicate the business value of AI investment in your engineering organization.</div><span class="resource-cta" onclick="openEbook('AI ROI Playbook','Measure ROI of AI in engineering orgs.')">Download free &#8594;</span></div></div>
-      <div class="resource-card"><div class="resource-thumb" style="background:var(--plum)">&#128640;</div><div class="resource-body"><div class="resource-type">Ebook</div><div class="resource-title">AI Agents Beyond Code Generation</div><div class="resource-desc">4 practical workflows to adopt agentic AI in your engineering org, beyond the basics of code completion.</div><span class="resource-cta" onclick="openEbook('AI Agents Beyond Code','4 workflows for agentic AI.')">Download free &#8594;</span></div></div>
-      <div class="resource-card"><div class="resource-thumb" style="background:var(--plum-light)">&#127891;</div><div class="resource-body"><div class="resource-type">Guide</div><div class="resource-title">Evaluating AI for Production Systems</div><div class="resource-desc">A technical evaluation framework for engineering teams assessing AI tools in production-critical environments.</div><span class="resource-cta" onclick="openEbook('Evaluating AI for Production Systems','Technical evaluation framework.')">Download free &#8594;</span></div></div>
+  </div>
+
+  <div class="container" style="padding-top:0">
+    <!-- FEATURED ROW -->
+    <div id="res-featured" style="margin:44px 0 0">
+      <div style="display:grid;grid-template-columns:3fr 2fr;gap:24px;margin-bottom:24px">
+        <!-- FEATURED LARGE -->
+        <div style="background:var(--white);border:var(--border);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:all var(--ease)" onmouseover="this.style.boxShadow='0 8px 32px rgba(94,45,142,0.12)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''" onclick="openEbook('AI SRE Buyer\'s Guide 2025','The definitive 6-criteria framework for evaluating AI SRE platforms.')">
+          <div style="background:linear-gradient(135deg,var(--plum-deeper) 0%,#2D0F5E 100%);height:200px;display:flex;align-items:center;justify-content:center;position:relative;padding:32px">
+            <div style="position:absolute;top:16px;left:16px;background:var(--plum);color:#fff;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px">Featured &middot; Ebook</div>
+            <div style="font-family:var(--serif);font-size:32px;color:#fff;font-weight:400;text-align:center;line-height:1.2;font-style:italic">AI SRE Buyer&rsquo;s<br>Guide 2025</div>
+          </div>
+          <div style="padding:28px;flex:1;display:flex;flex-direction:column">
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:8px;line-height:1.4">The complete framework for evaluating AI SRE platforms</div>
+            <div style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300;flex:1">6 criteria, 40 pages. Covers evaluation methodology, red flags to watch for, and a scoring rubric your team can use immediately.</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:var(--border)">
+              <div style="display:flex;gap:6px"><span style="font-size:11px;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px;font-weight:500">40 pages</span><span style="font-size:11px;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px;font-weight:500">Free download</span></div>
+              <span style="font-size:13px;color:var(--plum);font-weight:500">Download &#8594;</span>
+            </div>
+          </div>
+        </div>
+        <!-- SIDE STACK -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;flex:1;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)'" onmouseout="this.style.borderColor=''" onclick="openEbook('AI ROI Playbook','How to measure and justify AI investment in your engineering org.')">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+              <div style="width:36px;height:36px;border-radius:8px;background:var(--plum-cream);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">&#128202;</div>
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px">Ebook</span>
+            </div>
+            <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:5px;line-height:1.3">AI ROI Playbook for Engineering Leaders</div>
+            <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5">Measure and communicate the business value of AI investments. Frameworks, benchmarks, and board-ready slides.</div>
+            <div style="font-size:12px;color:var(--plum);font-weight:500;margin-top:12px">Download free &#8594;</div>
+          </div>
+          <div style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;flex:1;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)'" onmouseout="this.style.borderColor=''" onclick="openEbook('AI Agents Beyond Code','4 practical workflows to adopt agentic AI beyond code completion.')">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+              <div style="width:36px;height:36px;border-radius:8px;background:var(--plum-cream);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">&#128640;</div>
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--plum);background:var(--plum-cream);padding:3px 8px;border-radius:99px">Ebook</span>
+            </div>
+            <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:5px;line-height:1.3">AI Agents Beyond Code Generation</div>
+            <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5">4 production workflows covering alert triage, incident investigation, debugging, and operational reviews.</div>
+            <div style="font-size:12px;color:var(--plum);font-weight:500;margin-top:12px">Download free &#8594;</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="margin-top:56px;margin-bottom:72px">
-      <div class="eyebrow">Webinars</div>
-      <h2 class="display-h2" style="margin-bottom:28px">On-demand sessions</h2>
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <div class="card" style="display:flex;gap:18px;align-items:center"><div style="width:48px;height:48px;border-radius:10px;background:var(--plum-cream);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#9654;</div><div style="flex:1"><div style="font-size:14px;font-weight:500;margin-bottom:3px">How Kelviq made investigations 4 hours faster using Redplum</div><div style="font-size:13px;color:var(--gray)">45 min &middot; Engineering leadership</div></div><a class="btn btn-ghost btn-sm" href="#" onclick="openEbook('Webinar Access','Watch our on-demand sessions.')">Watch &#8594;</a></div>
-        <div class="card" style="display:flex;gap:18px;align-items:center"><div style="width:48px;height:48px;border-radius:10px;background:var(--plum-cream);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#9654;</div><div style="flex:1"><div style="font-size:14px;font-weight:500;margin-bottom:3px">AI SRE in regulated environments: HIPAA, SOC 2, and GDPR considerations</div><div style="font-size:13px;color:var(--gray)">30 min &middot; Compliance &amp; Security</div></div><a class="btn btn-ghost btn-sm" href="#" onclick="openEbook('Compliance Webinar','Watch our compliance and security webinar.')">Watch &#8594;</a></div>
+
+    <!-- ALL RESOURCES ROW -->
+    <div id="res-all-grid" style="margin-bottom:72px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:var(--border)">
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light)">All resources</div>
+        <div style="font-size:12px;color:var(--gray)">7 resources</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="res-grid-inner">
+        <!-- Guide -->
+        <div class="res-item" data-type="guide" style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''" onclick="openEbook('Evaluating AI for Production Systems','A technical evaluation framework for engineering teams.')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#0F6E56;background:#e8f5f2;padding:3px 8px;border-radius:99px">Guide</span></div>
+          <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px;line-height:1.3">Evaluating AI for Production Systems</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:14px">A technical evaluation framework for engineering teams assessing AI tools in production-critical environments.</div>
+          <div style="font-size:12px;color:var(--plum);font-weight:500">Download &#8594;</div>
+        </div>
+        <!-- Webinar 1 -->
+        <div class="res-item" data-type="webinar" style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''" onclick="openEbook('Webinar: Kelviq on Redplum','45-minute on-demand session with Kelviq\'s engineering team.')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#7C3D0F;background:#FEF3E2;padding:3px 8px;border-radius:99px">Webinar</span><span style="font-size:11px;color:var(--gray-light)">45 min</span></div>
+          <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px;line-height:1.3">How Kelviq made investigations 4 hours faster</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:14px">Kelviq&rsquo;s VP Engineering walks through the deployment, early results, and what changed for their on-call rotation.</div>
+          <div style="font-size:12px;color:var(--plum);font-weight:500">Watch on-demand &#8594;</div>
+        </div>
+        <!-- Webinar 2 -->
+        <div class="res-item" data-type="webinar" style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''" onclick="openEbook('Webinar: AI SRE in Regulated Environments','30-minute compliance-focused session.')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#7C3D0F;background:#FEF3E2;padding:3px 8px;border-radius:99px">Webinar</span><span style="font-size:11px;color:var(--gray-light)">30 min</span></div>
+          <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px;line-height:1.3">AI SRE in regulated environments: SOC 2, HIPAA, GDPR</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:14px">How to deploy AI agents in compliance-sensitive environments without compromising security posture.</div>
+          <div style="font-size:12px;color:var(--plum);font-weight:500">Watch on-demand &#8594;</div>
+        </div>
+        <!-- Report -->
+        <div class="res-item" data-type="report" style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''" onclick="openEbook('State of On-Call 2025','Annual survey of 400+ engineering teams on on-call practices and burnout.')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1A3A6B;background:#E8EEF9;padding:3px 8px;border-radius:99px">Report</span></div>
+          <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px;line-height:1.3">State of On-Call 2025</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:14px">Survey of 400+ engineering teams. What changed, what stayed broken, and how AI is beginning to shift the picture.</div>
+          <div style="font-size:12px;color:var(--plum);font-weight:500">Download &#8594;</div>
+        </div>
+        <!-- Guide 2 -->
+        <div class="res-item" data-type="guide" style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''" onclick="openEbook('SLO Design Playbook','How to set SLOs that actually drive the right engineering behaviour.')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#0F6E56;background:#e8f5f2;padding:3px 8px;border-radius:99px">Guide</span></div>
+          <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px;line-height:1.3">SLO Design Playbook for Platform Teams</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:14px">Set error budgets and SLOs that engineering actually respects. Includes worked examples for APIs, pipelines, and batch jobs.</div>
+          <div style="font-size:12px;color:var(--plum);font-weight:500">Download &#8594;</div>
+        </div>
+        <!-- Report 2 -->
+        <div class="res-item" data-type="report" style="background:var(--white);border:var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all var(--ease)" onmouseover="this.style.borderColor='var(--plum)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''" onclick="openEbook('AI in Engineering 2025 Benchmark Report','How 200 engineering teams are adopting AI across SDLC.')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1A3A6B;background:#E8EEF9;padding:3px 8px;border-radius:99px">Report</span></div>
+          <div style="font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px;line-height:1.3">AI in Engineering 2025 Benchmark Report</div>
+          <div style="font-size:12px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:14px">How 200 engineering orgs are deploying AI across the SDLC, where adoption is highest, and where the biggest ROI lives.</div>
+          <div style="font-size:12px;color:var(--plum);font-weight:500">Download &#8594;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER STRIP -->
+    <div style="background:var(--plum-deeper);border-radius:16px;padding:44px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:72px">
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--plum-pale);margin-bottom:12px">Production Pulse &mdash; Newsletter</div>
+        <h2 style="font-family:var(--serif);font-size:28px;font-weight:400;color:#fff;margin-bottom:10px;line-height:1.2">Weekly intelligence from<br>the production floor</h2>
+        <p style="font-size:14px;color:#888;font-weight:300;line-height:1.6">Incident post-mortems, reliability patterns, and AI engineering ideas. Read by 4,000+ SREs and engineering leaders.</p>
+      </div>
+      <div>
+        <div style="display:flex;gap:10px;margin-bottom:10px">
+          <input class="form-input" placeholder="your@company.com" style="background:#1A0F2E;border-color:#3D2060;color:#fff;flex:1" onfocus="this.style.borderColor='var(--plum-pale)'" onblur="this.style.borderColor='#3D2060'"/>
+          <button class="btn btn-primary" onclick="this.textContent='Subscribed \u2713';this.style.background='#27500A'">Subscribe</button>
+        </div>
+        <p style="font-size:11px;color:#555">No spam. Unsubscribe anytime. Sent every Tuesday.</p>
       </div>
     </div>
   </div>
@@ -1237,12 +1374,20 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 
 <!-- DOCS -->
 <div class="page" id="page-docs">
-  <div class="container" style="padding:72px 48px">
-    <div style="text-align:center;padding:72px 40px;background:var(--plum-cream);border-radius:16px">
-      <div style="font-size:56px;margin-bottom:14px">&#128218;</div>
-      <h1 class="display-h3" style="margin-bottom:10px">Documentation</h1>
-      <p style="font-size:16px;color:var(--gray);margin-bottom:24px">Full technical docs are hosted at docs.redplum.ai</p>
-      <a class="btn btn-primary btn-lg" href="https://docs.redplum.ai" target="_blank">Go to Docs &#8594;</a>
+  <div style="display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - var(--nav-h))">
+    <!-- SIDEBAR -->
+    <div style="background:var(--white);border-right:var(--border);padding:28px 0;position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto">
+      <div style="padding:0 20px 16px;border-bottom:var(--border);margin-bottom:12px">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-bottom:10px">Documentation</div>
+        <div style="position:relative"><input style="width:100%;padding:7px 10px 7px 28px;border:1.5px solid var(--gray-pale);border-radius:6px;font-size:12px;font-family:var(--sans);outline:none;color:var(--black);background:var(--page-bg)" placeholder="Search docs..." onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--gray-pale)'"/><span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--gray-light);font-size:12px">&#128269;</span></div>
+      </div>
+      <div id="doc-nav" style="padding:0 12px;display:flex;flex-direction:column;gap:2px"></div>
+    </div>
+    <!-- CONTENT -->
+    <div style="padding:48px 64px;max-width:860px">
+      <div id="doc-content"></div>
+      <!-- PREV / NEXT -->
+      <div id="doc-nav-btns" style="display:flex;justify-content:space-between;margin-top:56px;padding-top:24px;border-top:var(--border)"></div>
     </div>
   </div>
 </div>
@@ -1745,6 +1890,90 @@ function selectIntegration(el){
   document.querySelectorAll('#trial-step-2 .int-card').forEach(function(c){c.style.borderColor='';});
   el.style.borderColor='var(--plum)';
 }
+
+// RESOURCES FILTER
+function filterResources(type,btn){
+  document.querySelectorAll('.res-tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var items=document.querySelectorAll('.res-item');
+  var featured=document.getElementById('res-featured');
+  if(type==='all'){
+    if(featured)featured.style.display='block';
+    items.forEach(function(i){i.style.display='';});
+  } else {
+    if(featured)featured.style.display='none';
+    items.forEach(function(i){
+      i.style.display=(i.dataset.type===type||i.dataset.type===type+'ebook')?'':'none';
+    });
+  }
+}
+
+// DOCS SYSTEM
+var docPages=[
+  {id:'overview',section:'Getting Started',label:'Overview',icon:'&#127968;',
+  content:'<div class="doc-content"><div style="background:var(--plum-cream);border-radius:12px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start;margin-bottom:32px"><div style="font-size:28px">&#129302;</div><div><div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px">Welcome to Redplum documentation</div><div style="font-size:13px;color:var(--gray);font-weight:300;line-height:1.6">These docs cover everything from initial setup to advanced agent configuration and team knowledge.</div></div></div><h1>About Redplum AI</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:var(--plum-cream);color:var(--plum);padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">v2.4</span></div><p>Redplum works across your code, infrastructure, telemetry, and team knowledge to help engineering teams resolve incidents faster, debug with full production context, and operate production systems more reliably.</p><p>Redplum understands and operates all your tools like a seasoned expert, combines the expertise of your engineering teams, captures tribal knowledge, and learns from every investigation.</p><h2>What Redplum does</h2><h3>Resolve incidents</h3><p>Redplum joins every alert, starts investigating before your on-call engineer has woken up, builds and tests multiple hypotheses in parallel, and surfaces root cause with evidence and a remediation path.</p><h3>Debug with production context</h3><p>Get architectural recommendations and implementation guidance grounded in your actual production environment. No generic advice, just answers calibrated to your specific stack and traffic patterns.</p><h2>How it works</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Perceive</h4><p>Connects to your production systems and builds an understanding of how everything works together, learning from your runbooks, wikis, and chats.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Reason</h4><p>Plans investigations that pursue multiple hypotheses in parallel, orchestrating specialized agents to collect evidence and build causal timelines.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Act</h4><p>Works with any tool without requiring expertise in PromQL, kubectl, or complex query languages. Coordinates multi-tool investigations and takes actions like generating PRs or writing post-mortems.</p></div></div><div class="doc-step"><div class="doc-step-num">4</div><div class="doc-step-body"><h4>Learn</h4><p>Adapts based on your feedback and captures tribal knowledge from chats, incidents, and production systems.</p></div></div><div class="callout"><strong>Need help?</strong> Contact our team at <a href="mailto:hello@redplum.ai" style="color:var(--plum)">hello@redplum.ai</a> for setup assistance.</div></div>'},
+  {id:'quickstart',section:'Getting Started',label:'Quickstart',icon:'&#9889;',
+  content:'<div class="doc-content"><h1>Quickstart</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:#e8f5e9;color:#1b5e20;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">5 min setup</span></div><p>Get Redplum connected to your production stack and running your first investigation in under 5 minutes.</p><h2>Step 1: Create your account</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Sign up</h4><p>Go to <a href="#" onclick="showPage(\'trial\')" style="color:var(--plum)">app.redplum.ai</a> and create your account with your work email. No credit card required for the Starter plan.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Create your organization</h4><p>Give your workspace a name and invite your team. Each workspace has its own knowledge graph and investigation history.</p></div></div><h2>Step 2: Connect your first integration</h2><p>Redplum works best with at least one observability tool and one code source connected. Start with what you use most.</p><div class="callout"><strong>Recommended first connection:</strong> Connect your primary observability tool (Datadog, Grafana, or Prometheus) first. This gives Redplum the telemetry context it needs to start building your knowledge graph immediately.</div><pre>redplum connect --integration datadog --api-key YOUR_KEY\nredplum connect --integration github --org your-org\nredplum connect --integration kubernetes --context your-cluster</pre><h2>Step 3: Run your first investigation</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Ask a question in chat</h4><p>Try: <code>"Give me a system overview"</code> or <code>"What are the most error-prone services in the last 24 hours?"</code></p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Enable alert triage</h4><p>Go to Settings &rarr; Alert Triage and connect your PagerDuty or OpsGenie. Redplum will start investigating new alerts automatically.</p></div></div></div>'},
+  {id:'connect',section:'Getting Started',label:'Connect integrations',icon:'&#128279;',
+  content:'<div class="doc-content"><h1>Connect integrations</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum connects to your existing tools via API tokens or OAuth. All connections are read-only by default. Write access requires explicit opt-in.</p><div class="callout"><strong>Security note:</strong> Redplum uses scoped, read-only API credentials. We never store raw log data or customer telemetry.</div><h2>Observability</h2><table><tr><th>Integration</th><th>What Redplum accesses</th><th>Auth method</th></tr><tr><td>Datadog</td><td>Metrics, logs, APM traces, monitors</td><td>API key + App key</td></tr><tr><td>Grafana</td><td>Dashboards, alerting rules, data sources</td><td>Service account token</td></tr><tr><td>Prometheus</td><td>Metrics via PromQL, alert rules</td><td>HTTP endpoint</td></tr><tr><td>Splunk</td><td>Logs, saved searches, dashboards</td><td>API token</td></tr><tr><td>New Relic</td><td>Metrics, logs, traces, alerts</td><td>User API key</td></tr></table><h2>Infrastructure</h2><table><tr><th>Integration</th><th>What Redplum accesses</th><th>Auth method</th></tr><tr><td>Kubernetes</td><td>Pod status, events, logs, resource usage</td><td>kubeconfig / service account</td></tr><tr><td>AWS</td><td>CloudWatch, ECS, EC2, RDS, Lambda logs</td><td>IAM role (read-only policy)</td></tr><tr><td>GCP</td><td>Cloud Monitoring, GKE, Cloud Logging</td><td>Service account JSON</td></tr></table><h2>Adding an integration</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Open Settings &rarr; Integrations</h4><p>Each integration has a guided setup flow with the exact permissions required.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Enter credentials</h4><p>Credentials are encrypted at rest using AES-256 and never logged.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Test the connection</h4><p>Redplum runs a connectivity check and shows you what data it can see before saving.</p></div></div></div>'},
+  {id:'knowledge',section:'Getting Started',label:'Team knowledge',icon:'&#129504;',
+  content:'<div class="doc-content"><h1>Team knowledge</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum learns from your team&rsquo;s existing knowledge. The more context you give it, the more accurate its investigations become.</p><h2>What you can add</h2><h3>Runbooks</h3><p>Connect your Notion workspace, Confluence space, or upload Markdown files directly. Redplum reads and indexes your runbooks and references them during investigations.</p><pre>redplum knowledge add --source notion --url https://notion.so/your-runbooks\nredplum knowledge add --source confluence --space ENG\nredplum knowledge add --file ./runbooks/*.md</pre><h3>Custom instructions</h3><p>Provide standing instructions that apply to every investigation. For example: <code>"Always check the payment-service dashboard first for any checkout-related alerts"</code> or <code>"Our primary DB is read-heavy; query timeouts are usually index issues, not capacity."</code></p><div class="callout"><strong>Tip:</strong> Start with 3-5 high-value instructions from your most experienced SRE. This is the fastest way to make Redplum feel calibrated to your environment.</div><h2>How Redplum learns over time</h2><p>Every investigation that Redplum completes contributes to its understanding of your environment. When an engineer corrects Redplum&rsquo;s analysis, that correction is captured and applied to future investigations of similar issues.</p></div>'},
+  {id:'ai-sre',section:'Features',label:'AI SRE',icon:'&#129302;',
+  content:'<div class="doc-content"><h1>AI SRE</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:var(--plum-cream);color:var(--plum);padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">Core feature</span></div><p>AI SRE is Redplum&rsquo;s always-on incident response agent. It triages every alert, investigates in parallel, and surfaces root cause with evidence before your on-call engineer has even opened their laptop.</p><h2>How alert triage works</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Alert received</h4><p>Redplum receives the alert payload from PagerDuty, OpsGenie, or directly via webhook.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Correlation and noise filtering</h4><p>Redplum correlates the alert with all other active alerts, identifies downstream symptoms, and filters them out. Typically reduces alert volume by 80-94%.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Parallel hypothesis testing</h4><p>Specialist agents test multiple hypotheses simultaneously by pulling evidence from telemetry, code history, infrastructure state, and your knowledge graph.</p></div></div><div class="doc-step"><div class="doc-step-num">4</div><div class="doc-step-body"><h4>Root cause report</h4><p>A structured report is posted to Slack with root cause, confidence score, dependency chain, and recommended remediation within minutes of the alert firing.</p></div></div><h2>Enable alert triage</h2><pre>Settings &rarr; Alert Triage &rarr; Connect alerting source\nSelect: PagerDuty / OpsGenie / Webhook\nConfigure: Slack channel for reports\nSet: Severity threshold (P1 only, P1+P2, or All)</pre><div class="callout"><strong>Recommendation:</strong> Start with P1-only triage for your first week. Once you have calibrated Redplum&rsquo;s output to your environment, expand to P1+P2.</div></div>'},
+  {id:'debugging',section:'Features',label:'Debugging production',icon:'&#128269;',
+  content:'<div class="doc-content"><h1>Debugging production</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Use Redplum to code, architect, and debug with your full production environment as context. Every recommendation is grounded in your actual traffic patterns, service topology, and infrastructure state.</p><h2>Chat-based debugging</h2><p>Ask Redplum questions about your production system in plain language. Redplum translates your question into the right queries across all connected systems and synthesizes the results into a clear answer.</p><pre>"Why is checkout latency spiking on Tuesdays at 9am?"\n"Which services are most likely affected if payment-db goes down?"\n"Show me all changes deployed in the last 6 hours and flag anything risky."\n"What is the current error rate on auth-service and what changed recently?"</pre><h2>Pre-deploy review</h2><p>Share a diff or PR with Redplum before deploying and ask for a risk assessment. Redplum evaluates the change against your production patterns and highlights potential failure modes.</p><div class="callout"><strong>Pro tip:</strong> Use <code>/redplum review PR #1234</code> in Slack to trigger a production-context code review directly from a pull request link.</div></div>'},
+  {id:'slack-app',section:'Features',label:'Slack app',icon:'&#128172;',
+  content:'<div class="doc-content"><h1>Slack app</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>The Redplum Slack app brings your AI SRE into the communication channel where incident response already happens. No context switching required.</p><h2>Installing the Slack app</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Go to Settings &rarr; Integrations &rarr; Slack</h4><p>Click &ldquo;Install Slack app&rdquo; and authorize the OAuth flow for your workspace.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Choose your incident channel</h4><p>Select the channel where Redplum should post investigation reports. We recommend your existing <code>#incidents</code> or <code>#on-call</code> channel.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Invite the bot</h4><p>Run <code>/invite @redplum</code> in the channels where you want it to be active.</p></div></div><h2>Slash commands</h2><table><tr><th>Command</th><th>Description</th></tr><tr><td><code>/redplum investigate [alert]</code></td><td>Start a manual investigation from Slack</td></tr><tr><td><code>/redplum review [PR URL]</code></td><td>Get a production-context code review</td></tr><tr><td><code>/redplum status</code></td><td>Show current active investigations</td></tr><tr><td><code>/redplum ask [question]</code></td><td>Ask a free-form question about your production system</td></tr><tr><td><code>/redplum postmortem [incident-id]</code></td><td>Generate a post-mortem for a resolved incident</td></tr></table></div>'},
+  {id:'sso',section:'Setup & Security',label:'Single Sign-On',icon:'&#128274;',
+  content:'<div class="doc-content"><h1>Single Sign-On (SSO)</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span><span style="background:#E8EEF9;color:#1A3A6B;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600">Growth &amp; Enterprise</span></div><p>Redplum supports SAML 2.0 and OIDC for single sign-on. Connect your identity provider so your engineers can log in with existing company credentials.</p><h2>Supported providers</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0"><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Okta</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Azure AD</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Google Workspace</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">JumpCloud</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">OneLogin</div><div style="background:var(--page-bg);border:var(--border);border-radius:8px;padding:14px;text-align:center;font-size:13px;font-weight:500">Generic SAML</div></div><h2>SAML 2.0 setup</h2><div class="doc-step"><div class="doc-step-num">1</div><div class="doc-step-body"><h4>Get your Redplum ACS URL and Entity ID</h4><p>Go to Settings &rarr; Security &rarr; SSO and copy the values for your identity provider configuration.</p></div></div><div class="doc-step"><div class="doc-step-num">2</div><div class="doc-step-body"><h4>Configure your IdP</h4><p>Create a new SAML application in your identity provider, set the ACS URL, Entity ID, and map the <code>email</code> attribute.</p></div></div><div class="doc-step"><div class="doc-step-num">3</div><div class="doc-step-body"><h4>Paste the IdP metadata URL</h4><p>Copy your IdP&rsquo;s metadata XML URL and paste it into Redplum Settings &rarr; Security &rarr; SSO &rarr; SAML configuration.</p></div></div><div class="doc-step"><div class="doc-step-num">4</div><div class="doc-step-body"><h4>Test and enable</h4><p>Use the &ldquo;Test SSO connection&rdquo; button before enabling. SSO can be rolled back within 60 minutes if there are issues.</p></div></div><div class="callout"><strong>Note:</strong> Once SSO is enforced, users can no longer log in with email and password. Ensure at least one admin has tested the SSO flow before enforcing organization-wide.</div></div>'},
+  {id:'security',section:'Setup & Security',label:'Security',icon:'&#128737;',
+  content:'<div class="doc-content"><h1>Security</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum is built for engineering teams operating in security-conscious environments. Our security model is designed around minimal data access, strong encryption, and full auditability.</p><h2>Certifications</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0"><div style="background:var(--plum-deeper);color:#fff;border-radius:10px;padding:18px;text-align:center"><div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:4px">SOC 2 TYPE II</div><div style="font-size:11px;color:#888">Independently audited</div></div><div style="background:#0F6E56;color:#fff;border-radius:10px;padding:18px;text-align:center"><div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:4px">GDPR</div><div style="font-size:11px;color:rgba(255,255,255,0.7)">EU data protection</div></div><div style="background:#0C447C;color:#fff;border-radius:10px;padding:18px;text-align:center"><div style="font-family:var(--mono);font-size:13px;font-weight:600;margin-bottom:4px">HIPAA</div><div style="font-size:11px;color:rgba(255,255,255,0.7)">Healthcare compatible</div></div></div><h2>Data access principles</h2><ul><li><strong>Read-only by default.</strong> Redplum never writes to your production systems unless you explicitly grant write permissions.</li><li><strong>No raw data stored.</strong> Redplum processes metadata and structural information only. Raw logs and traces are never persisted.</li><li><strong>Tenant isolation.</strong> Your data is completely isolated from other customers at the model, memory, and storage level.</li><li><strong>Scoped credentials.</strong> All integrations use the minimum API permissions required.</li></ul><h2>Encryption</h2><p>All data is encrypted in transit (TLS 1.3) and at rest (AES-256). API credentials are stored in a dedicated secrets manager and are never logged.</p><div class="callout"><strong>Penetration testing:</strong> Redplum undergoes annual third-party penetration testing. Reports are available to Enterprise customers under NDA. Contact hello@redplum.ai to request access.</div></div>'},
+  {id:'rbac',section:'Setup & Security',label:'Roles & permissions',icon:'&#128101;',
+  content:'<div class="doc-content"><h1>Roles &amp; permissions</h1><div class="doc-updated"><span>&#128197; Updated April 2025</span></div><p>Redplum uses role-based access control (RBAC) to manage what each team member can see and do.</p><h2>Built-in roles</h2><table><tr><th>Role</th><th>Description</th><th>Key permissions</th></tr><tr><td><strong>Owner</strong></td><td>Full control of the organization</td><td>All permissions including billing and SSO</td></tr><tr><td><strong>Admin</strong></td><td>Manage team and integrations</td><td>Add integrations, manage members, view all investigations</td></tr><tr><td><strong>Engineer</strong></td><td>Full investigation access</td><td>Run investigations, chat, view all reports</td></tr><tr><td><strong>Viewer</strong></td><td>Read-only access</td><td>View investigation reports and dashboards only</td></tr></table><h2>Custom roles</h2><p>Enterprise plans support custom role definitions. Contact hello@redplum.ai to configure custom RBAC policies for your organization.</p></div>'},
+];
+
+var docInited=false;
+function initDocs(){
+  if(docInited)return;
+  docInited=true;
+  var nav=document.getElementById('doc-nav');
+  if(!nav)return;
+  var sections={};
+  docPages.forEach(function(p,i){
+    if(!sections[p.section]){
+      sections[p.section]=true;
+      var sec=document.createElement('div');sec.className='doc-nav-section';sec.textContent=p.section;nav.appendChild(sec);
+    }
+    var btn=document.createElement('button');
+    btn.className='doc-nav-item'+(i===0?' active':'');
+    btn.innerHTML=p.icon+' '+p.label;
+    (function(idx){btn.onclick=function(){loadDoc(idx);};})(i);
+    btn.id='doc-btn-'+i;
+    nav.appendChild(btn);
+  });
+  loadDoc(0);
+}
+function loadDoc(idx){
+  document.querySelectorAll('.doc-nav-item').forEach(function(b){b.classList.remove('active');});
+  var btn=document.getElementById('doc-btn-'+idx);if(btn)btn.classList.add('active');
+  var content=document.getElementById('doc-content');
+  if(content)content.innerHTML=docPages[idx].content;
+  var navBtns=document.getElementById('doc-nav-btns');
+  if(navBtns){
+    var prev=idx>0?'<button class="btn btn-ghost" onclick="loadDoc('+(idx-1)+')">&#8592; '+docPages[idx-1].label+'</button>':'<span></span>';
+    var next=idx<docPages.length-1?'<button class="btn btn-primary" onclick="loadDoc('+(idx+1)+')">'+docPages[idx+1].label+' &#8594;</button>':'<span></span>';
+    navBtns.innerHTML=prev+next;
+  }
+  var docRight=document.querySelector('#page-docs > div > div:last-child');
+  if(docRight)docRight.scrollTop=0;
+}
+
+// Patch showPage to init docs
+var _origShow=showPage;
+showPage=function(id){
+  _origShow(id);
+  if(id==='docs'){setTimeout(initDocs,60);}
+};
 </script>
 </body>
 </html>
