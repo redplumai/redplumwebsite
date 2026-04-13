@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redplum AI — Intelligence for Production Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B92D2D;
+  --red-dark:#8B1E1E;
+  --red-light:#F5E8E8;
+  --red-mid:#D94F4F;
+  --cream:#FAF8F5;
+  --cream-dark:#F0EDE8;
+  --black:#1A1614;
+  --charcoal:#2E2825;
+  --gray:#6B6460;
+  --gray-light:#C4BCBA;
+  --gray-pale:#E8E4E0;
+  --white:#FFFFFF;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --nav-h:60px;
+  --r:8px;
+  --transition:0.22s cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--cream);color:var(--black);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:var(--sans);border:none;background:none}
+ul{list-style:none}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gray-pale);border-radius:99px}
+
+/* ══════════ COOKIE BANNER ══════════ */
+#cookie-banner{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--charcoal);color:var(--white);
+  padding:16px 24px;border-radius:var(--r);
+  display:flex;align-items:center;gap:20px;
+  font-size:13px;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  max-width:660px;width:calc(100% - 48px);
+  animation:slideUp 0.4s ease forwards;
+}
+@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+#cookie-banner p{flex:1;line-height:1.5;color:#ccc}
+#cookie-banner a{color:var(--red-mid);text-decoration:underline}
+.cookie-btns{display:flex;gap:8px;flex-shrink:0}
+.cookie-btn{padding:8px 16px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap}
+.cookie-accept{background:var(--red);color:#fff;border:1px solid var(--red)}
+.cookie-decline{background:transparent;color:#ccc;border:1px solid #555}
+.cookie-accept:hover{background:var(--red-dark)}
+.cookie-decline:hover{background:#333}
+
+/* ══════════ ANNOUNCEMENT BAR ══════════ */
+#ann-bar{
+  background:var(--red);color:#fff;
+  font-size:12.5px;text-align:center;
+  padding:10px 20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  position:relative;z-index:200;
+}
+#ann-bar a{color:#fff;text-decoration:underline;text-underline-offset:3px;font-weight:500}
+#ann-bar button{position:absolute;right:16px;color:#fff;opacity:0.7;font-size:16px;background:none;border:none;cursor:pointer;top:50%;transform:translateY(-50%)}
+
+/* ══════════ NAV ══════════ */
+#navbar{
+  position:sticky;top:0;z-index:500;
+  height:var(--nav-h);
+  background:var(--cream);
+  border-bottom:1px solid var(--gray-pale);
+  display:flex;align-items:center;
+  padding:0 48px;gap:32px;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--serif);font-size:20px;font-weight:600;
+  color:var(--black);flex-shrink:0;
+  letter-spacing:-0.02em;
+}
+.logo-svg{width:32px;height:32px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:0;height:var(--nav-h);margin-left:8px}
+.nav-item{position:relative;height:100%;display:flex;align-items:center}
+.nav-link{
+  padding:0 16px;height:100%;display:flex;align-items:center;
+  font-size:14px;font-weight:400;color:var(--gray);
+  transition:color var(--transition);white-space:nowrap;gap:4px;
+}
+.nav-link:hover,.nav-link.active{color:var(--black)}
+.nav-link svg{width:14px;height:14px;transition:transform var(--transition)}
+.nav-item:hover .nav-link svg{transform:rotate(180deg)}
+
+/* MEGA DROPDOWN */
+.mega-drop{
+  position:absolute;top:calc(var(--nav-h) + 1px);left:-20px;
+  background:var(--white);border:1px solid var(--gray-pale);
+  border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,0.12);
+  padding:24px;min-width:520px;
+  display:none;z-index:600;
+  animation:dropIn 0.18s ease forwards;
+}
+@keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.nav-item:hover .mega-drop{display:block}
+.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mega-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;border-radius:8px;
+  transition:background var(--transition);cursor:pointer;
+}
+.mega-item:hover{background:var(--cream)}
+.mega-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--red-light);display:flex;align-items:center;justify-content:center;
+  color:var(--red);flex-shrink:0;font-size:16px;
+}
+.mega-text h4{font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px}
+.mega-text p{font-size:12px;color:var(--gray);line-height:1.4}
+.mega-section-title{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-bottom:12px;padding:0 14px}
+
+.nav-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 20px;border-radius:7px;
+  font-size:14px;font-weight:500;
+  transition:all var(--transition);cursor:pointer;white-space:nowrap;
+}
+.btn-primary{background:var(--red);color:#fff;border:1.5px solid var(--red)}
+.btn-primary:hover{background:var(--red-dark);border-color:var(--red-dark)}
+.btn-ghost{background:transparent;color:var(--black);border:1.5px solid var(--gray-pale)}
+.btn-ghost:hover{border-color:var(--gray-light);background:var(--white)}
+.btn-outline-red{background:transparent;color:var(--red);border:1.5px solid var(--red)}
+.btn-outline-red:hover{background:var(--red-light)}
+.btn-lg{padding:13px 28px;font-size:15px;border-radius:9px}
+.btn-sm{padding:7px 14px;font-size:13px;border-radius:6px}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:22px;height:2px;background:var(--black);border-radius:2px;display:block;transition:all 0.3s}
+
+/* ══════════ PAGE SYSTEM ══════════ */
+.page{display:none;min-height:calc(100vh - var(--nav-h));animation:pageIn 0.3s ease}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ SHARED COMPONENTS ══════════ */
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+.section-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--red);background:var(--red-light);
+  padding:5px 12px;border-radius:99px;margin-bottom:20px;
+}
+.section-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.display-h1{font-family:var(--serif);font-size:clamp(44px,6vw,80px);font-weight:400;line-height:1.05;letter-spacing:-0.03em;color:var(--black)}
+.display-h2{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:400;line-height:1.1;letter-spacing:-0.025em}
+.display-h3{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:400;line-height:1.2;letter-spacing:-0.02em}
+.lead{font-size:18px;font-weight:300;color:var(--gray);line-height:1.75;max-width:580px}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-light);margin-bottom:12px}
+em.red{color:var(--red);font-style:italic;font-family:var(--serif)}
+strong.red{color:var(--red)}
+.divider{height:1px;background:var(--gray-pale);margin:80px 0}
+.card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;padding:32px;transition:all var(--transition)}
+.card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.stat-num{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--red);letter-spacing:-0.03em;line-height:1}
+.stat-label{font-size:13px;color:var(--gray);margin-top:4px}
+.metric-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--red);background:var(--red-light);padding:4px 10px;border-radius:99px}
+.tag{display:inline-block;font-size:12px;padding:4px 12px;border:1px solid var(--gray-pale);border-radius:99px;color:var(--gray);background:var(--white);font-family:var(--mono)}
+
+/* HERO SECTION */
+.hero{
+  padding:100px 48px 80px;
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.hero-visual{
+  background:var(--charcoal);border-radius:16px;
+  overflow:hidden;position:relative;
+  box-shadow:0 32px 80px rgba(0,0,0,0.2);
+}
+.terminal-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 20px;background:#1a1614;border-bottom:1px solid #333;
+}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-title{font-family:var(--mono);font-size:11px;color:#555;margin-left:8px;letter-spacing:0.04em}
+.terminal-body{padding:24px;font-family:var(--mono);font-size:12px;line-height:1.9;color:#888}
+.tl{display:block}.tp{color:#E8856B}.tcmd{color:#E8E0D8}.tok{color:#82C99A}.terr{color:#E86B6B}.tinfo{color:#6BA8E8}.twarn{color:#E8C56B}.tsec{color:#9B9B9B;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;margin:10px 0 4px}
+.cursor{display:inline-block;width:8px;height:13px;background:#82C99A;vertical-align:middle;animation:blink 1.1s step-end infinite;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+.tl{opacity:0;animation:fadeIn 0.15s forwards}
+@keyframes fadeIn{to{opacity:1}}
+.d1{animation-delay:0.2s}.d2{animation-delay:0.6s}.d3{animation-delay:0.8s}.d4{animation-delay:1.1s}.d5{animation-delay:1.4s}.d6{animation-delay:1.6s}.d7{animation-delay:1.9s}.d8{animation-delay:2.2s}.d9{animation-delay:2.5s}.d10{animation-delay:2.8s}.d11{animation-delay:3.1s}.d12{animation-delay:3.4s}.d13{animation-delay:3.7s}.d14{animation-delay:4.0s}.d15{animation-delay:4.3s}.d16{animation-delay:4.6s}
+
+/* LOGO STRIP */
+.logo-strip{border-top:1px solid var(--gray-pale);border-bottom:1px solid var(--gray-pale);padding:28px 48px;overflow:hidden;position:relative}
+.logo-strip::before,.logo-strip::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2}
+.logo-strip::before{left:0;background:linear-gradient(to right,var(--cream),transparent)}
+.logo-strip::after{right:0;background:linear-gradient(to left,var(--cream),transparent)}
+.logo-track{display:flex;gap:0;animation:scroll 30s linear infinite;width:max-content}
+.logo-track:hover{animation-play-state:paused}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.logo-item{padding:0 36px;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--gray-light);white-space:nowrap;letter-spacing:0.02em;border-right:1px solid var(--gray-pale);transition:color var(--transition);cursor:default}
+.logo-item:hover{color:var(--gray)}
+
+/* FEATURE GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-pale);border:1px solid var(--gray-pale);border-radius:12px;overflow:hidden}
+.feat-cell{background:var(--white);padding:32px;transition:background var(--transition)}
+.feat-cell:hover{background:var(--cream)}
+.feat-icon{width:40px;height:40px;border-radius:10px;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.feat-title{font-size:15px;font-weight:500;color:var(--black);margin-bottom:6px}
+.feat-desc{font-size:13px;color:var(--gray);line-height:1.65;font-weight:300}
+
+/* STEP FLOW */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.step{padding:28px;border-radius:12px;background:var(--white);border:1px solid var(--gray-pale);position:relative}
+.step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);color:var(--gray-pale);font-size:20px;z-index:1}
+.step:last-child::after{display:none}
+.step-num{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--red-light);line-height:1;margin-bottom:12px}
+.step-title{font-size:14px;font-weight:500;color:var(--black);margin-bottom:6px}
+.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+/* TESTIMONIAL CAROUSEL */
+.testimonials-wrap{overflow:hidden;position:relative}
+.testimonial-track{display:flex;gap:24px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.testimonial-card{
+  min-width:400px;background:var(--white);border:1px solid var(--gray-pale);
+  border-radius:16px;padding:36px;flex-shrink:0;
+}
+.testimonial-quote{font-family:var(--serif);font-size:17px;font-weight:300;line-height:1.7;color:var(--black);margin-bottom:24px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:var(--red)}
+.author-name{font-size:14px;font-weight:500;color:var(--black)}
+.author-role{font-size:12px;color:var(--gray)}
+.carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:28px}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-pale);cursor:pointer;transition:background var(--transition)}
+.carousel-dot.active{background:var(--red)}
+.carousel-controls{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.carousel-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gray-pale);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition);color:var(--gray)}
+.carousel-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* INT FILTER */
+.int-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.int-filter{padding:8px 16px;border-radius:99px;border:1.5px solid var(--gray-pale);background:var(--white);font-size:13px;color:var(--gray);cursor:pointer;transition:all var(--transition);font-weight:400}
+.int-filter.active,.int-filter:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.int-card{
+  background:var(--white);border:1px solid var(--gray-pale);border-radius:10px;
+  padding:20px 16px;text-align:center;cursor:pointer;
+  transition:all var(--transition);display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.int-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(185,45,45,0.1)}
+.int-logo{width:40px;height:40px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:18px}
+.int-name{font-size:12px;font-weight:500;color:var(--black)}
+.int-cat{font-size:11px;color:var(--gray)}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.pricing-card{
+  background:var(--white);border:1px solid var(--gray-pale);border-radius:16px;padding:36px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.pricing-card.featured{border-color:var(--red);background:var(--black);color:var(--white);position:relative;transform:scale(1.02)}
+.pricing-card.featured .plan-name,.pricing-card.featured .plan-price,.pricing-card.featured .plan-desc{color:var(--white)}
+.pricing-card.featured .check-item{color:#ccc}
+.feat-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:11px;font-weight:500;padding:4px 14px;border-radius:99px;white-space:nowrap}
+.plan-name{font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray)}
+.plan-price{font-family:var(--serif);font-size:40px;font-weight:400;color:var(--black);line-height:1}
+.plan-price span{font-size:15px;font-family:var(--sans);color:var(--gray)}
+.plan-desc{font-size:14px;color:var(--gray);line-height:1.6;font-weight:300}
+.check-list{display:flex;flex-direction:column;gap:10px}
+.check-item{font-size:13px;color:var(--charcoal);display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+.check-item::before{content:'✓';color:var(--red);font-weight:600;flex-shrink:0}
+.pricing-card.featured .check-item::before{color:#E86B6B}
+
+/* SECURITY PAGE */
+.security-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.security-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;padding:32px;display:flex;gap:20px}
+.security-badge{width:48px;height:48px;border-radius:10px;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:500;flex-shrink:0;text-align:center;line-height:1.2}
+.security-badge.green{background:#1a6b3c}
+.security-badge.blue{background:#1a3d6b}
+.security-badge.purple{background:#4a1a6b}
+.security-content h3{font-size:15px;font-weight:500;margin-bottom:6px}
+.security-content p{font-size:13px;color:var(--gray);line-height:1.65;font-weight:300}
+
+/* FORM */
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:13px;font-weight:500;color:var(--black);margin-bottom:8px}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:11px 16px;
+  border:1.5px solid var(--gray-pale);border-radius:8px;
+  font-family:var(--sans);font-size:14px;color:var(--black);
+  background:var(--white);transition:border-color var(--transition);
+  outline:none;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--red)}
+.form-textarea{min-height:100px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* CAREERS */
+.job-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;padding:28px 32px;display:flex;align-items:center;gap:20px;transition:all var(--transition);cursor:pointer}
+.job-card:hover{border-color:var(--red);box-shadow:0 4px 20px rgba(185,45,45,0.1)}
+.job-dept{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--red);background:var(--red-light);padding:4px 10px;border-radius:99px;flex-shrink:0;white-space:nowrap}
+.job-title{font-size:16px;font-weight:500;color:var(--black)}
+.job-meta{font-size:13px;color:var(--gray);margin-top:3px}
+.job-arrow{margin-left:auto;color:var(--gray-light);font-size:20px;flex-shrink:0;transition:all var(--transition)}
+.job-card:hover .job-arrow{color:var(--red);transform:translateX(4px)}
+
+/* CUSTOMER STORY */
+.story-header{background:var(--black);color:var(--white);padding:80px 48px;border-radius:16px;margin-bottom:48px}
+.story-header .company-name{font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--red-mid);margin-bottom:16px}
+.story-header h1{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:400;line-height:1.1;color:var(--white);margin-bottom:24px}
+.story-header .story-lead{font-size:17px;font-weight:300;color:#aaa;line-height:1.7}
+.story-stats{display:flex;gap:40px;margin-top:40px;padding-top:40px;border-top:1px solid #333}
+.story-stat .num{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--red-mid)}
+.story-stat .lbl{font-size:13px;color:#888;margin-top:4px}
+.story-body{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start}
+.story-content{font-size:16px;line-height:1.8;color:var(--charcoal)}
+.story-content h2{font-family:var(--serif);font-size:26px;font-weight:400;color:var(--black);margin:32px 0 16px}
+.story-content p{margin-bottom:16px;font-weight:300}
+.story-content blockquote{border-left:3px solid var(--red);padding-left:20px;font-family:var(--serif);font-size:19px;font-style:italic;color:var(--black);margin:32px 0;line-height:1.6}
+.story-sidebar{position:sticky;top:calc(var(--nav-h)+24px)}
+.sidebar-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;padding:24px}
+.sidebar-card h4{font-size:13px;font-weight:500;margin-bottom:16px;color:var(--gray)}
+
+/* ABOUT */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.team-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;padding:28px;text-align:center}
+.team-avatar{width:72px;height:72px;border-radius:50%;background:var(--red-light);color:var(--red);font-size:24px;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:var(--serif)}
+.team-name{font-size:15px;font-weight:500;color:var(--black);margin-bottom:4px}
+.team-role{font-size:13px;color:var(--red);margin-bottom:8px}
+.team-bio{font-size:13px;color:var(--gray);line-height:1.6;font-weight:300}
+
+/* FOOTER */
+footer{background:var(--black);color:var(--white);margin-top:80px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;padding:64px 48px 48px;border-bottom:1px solid #2a2825}
+.footer-brand .logo-wrap{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em}
+.footer-tagline{font-size:13px;color:#666;line-height:1.6;font-weight:300;max-width:220px;margin-bottom:24px}
+.footer-social{display:flex;gap:10px}
+.social-btn{width:34px;height:34px;border-radius:7px;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:#888;font-size:14px;transition:all var(--transition)}
+.social-btn:hover{border-color:var(--red);color:var(--red)}
+.footer-col-title{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-bottom:18px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{font-size:13px;color:#888;transition:color var(--transition)}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 48px}
+.footer-copy{font-size:12px;color:#555}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:12px;color:#555;transition:color var(--transition)}
+.footer-legal a:hover{color:var(--white)}
+
+/* PAGE SECTIONS SHARED */
+.page-hero{padding:80px 0 60px;text-align:center}
+.page-hero-left{padding:80px 0 60px;text-align:left}
+.section-wrap{padding:72px 0}
+.section-wrap-sm{padding:48px 0}
+.bg-dark{background:var(--black);color:var(--white)}
+.bg-cream{background:var(--cream-dark)}
+.bg-red{background:var(--red);color:#fff}
+
+/* RESOURCE CARDS */
+.resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.resource-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:all var(--transition)}
+.resource-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.resource-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.resource-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.resource-type{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.resource-title{font-size:16px;font-weight:500;color:var(--black);margin-bottom:8px;line-height:1.3}
+.resource-desc{font-size:13px;color:var(--gray);line-height:1.6;font-weight:300;flex:1;margin-bottom:16px}
+.resource-cta{font-size:13px;color:var(--red);font-weight:500;display:flex;align-items:center;gap:4px}
+
+/* EBOOK GATE MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:800;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex;animation:fadeIn 0.2s ease}
+.modal-box{background:var(--white);border-radius:16px;padding:48px;max-width:480px;width:100%;position:relative;animation:modalUp 0.3s ease}
+@keyframes modalUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid var(--gray-pale);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--gray);transition:all var(--transition)}
+.modal-close:hover{border-color:var(--red);color:var(--red)}
+.modal-success{text-align:center;padding:20px 0}
+.modal-success .big-check{font-size:48px;margin-bottom:16px}
+.modal-success h3{font-family:var(--serif);font-size:24px;margin-bottom:8px}
+.modal-success p{color:var(--gray);font-size:14px}
+
+/* LEGAL PAGES */
+.legal-content{max-width:720px;margin:0 auto}
+.legal-content h1{font-family:var(--serif);font-size:40px;font-weight:400;margin-bottom:8px}
+.legal-content .updated{font-size:13px;color:var(--gray);margin-bottom:40px}
+.legal-content h2{font-size:20px;font-weight:500;margin:32px 0 12px}
+.legal-content p,.legal-content li{font-size:15px;color:var(--charcoal);line-height:1.8;font-weight:300;margin-bottom:12px}
+.legal-content ul{list-style:disc;padding-left:24px}
+
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.blog-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:12px;overflow:hidden;transition:all var(--transition)}
+.blog-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.blog-thumb{height:160px;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:36px}
+.blog-body{padding:24px}
+.blog-cat{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.blog-title{font-size:17px;font-weight:500;line-height:1.3;margin-bottom:8px;color:var(--black)}
+.blog-excerpt{font-size:13px;color:var(--gray);line-height:1.6;font-weight:300}
+.blog-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--gray-pale)}
+.blog-date{font-size:12px;color:var(--gray-light)}
+.blog-read{font-size:12px;color:var(--red);font-weight:500}
+
+/* CONTACT PAGE */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact-info h2{font-family:var(--serif);font-size:36px;margin-bottom:16px}
+.contact-info p{font-size:16px;color:var(--gray);line-height:1.7;font-weight:300;margin-bottom:32px}
+.contact-detail{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
+.contact-icon{width:40px;height:40px;border-radius:8px;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.contact-detail h4{font-size:14px;font-weight:500;margin-bottom:2px}
+.contact-detail p{font-size:13px;color:var(--gray);margin:0}
+.form-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:16px;padding:40px}
+
+/* DEMO / CALENDLY EMBED */
+.calendly-wrap{background:var(--white);border:1px solid var(--gray-pale);border-radius:16px;overflow:hidden;min-height:680px;display:flex;align-items:center;justify-content:center}
+.calendly-placeholder{text-align:center;padding:60px;color:var(--gray)}
+.calendly-placeholder .big-icon{font-size:56px;margin-bottom:16px}
+.calendly-placeholder h3{font-family:var(--serif);font-size:28px;color:var(--black);margin-bottom:8px}
+.calendly-placeholder p{font-size:15px;line-height:1.6;margin-bottom:24px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:60px 24px}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step::after{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .pricing-card.featured{transform:none}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .contact-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .story-body{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #navbar{padding:0 20px}
+  .nav-links,.nav-actions .btn-ghost{display:none}
+  .hamburger{display:flex}
+  .hero{padding:40px 20px}
+  .container{padding:0 20px}
+  .logo-strip{padding:20px}
+  .section-wrap{padding:48px 0}
+  .feat-grid,.resource-grid,.security-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .testimonial-card{min-width:300px}
+  .footer-top{grid-template-columns:1fr;padding:40px 20px}
+  .footer-bottom{flex-direction:column;gap:12px;padding:16px 20px;text-align:center}
+  .footer-legal{flex-wrap:wrap;justify-content:center}
+  .blog-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .story-stats{flex-direction:column;gap:20px}
+  .pricing-grid{grid-template-columns:1fr}
+}
+
+/* MOBILE NAV */
+#mobile-nav{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--cream);z-index:700;
+  flex-direction:column;padding:24px;
+  overflow-y:auto;
+}
+#mobile-nav.open{display:flex}
+.mobile-nav-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.mobile-nav-links{display:flex;flex-direction:column;gap:4px;flex:1}
+.mobile-nav-link{
+  font-size:18px;font-weight:400;color:var(--black);
+  padding:14px 0;border-bottom:1px solid var(--gray-pale);
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;
+}
+.mobile-nav-link:hover{color:var(--red)}
+.mobile-nav-sub{padding-left:16px;display:none;flex-direction:column;gap:4px;margin-top:4px;margin-bottom:8px}
+.mobile-nav-sub.open{display:flex}
+.mobile-sub-link{font-size:15px;color:var(--gray);padding:8px 0;cursor:pointer}
+.mobile-sub-link:hover{color:var(--red)}
+.mobile-nav-ctas{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+
+/* GLOSSARY */
+.glossary-list{display:flex;flex-direction:column;gap:0}
+.glossary-item{padding:24px 0;border-bottom:1px solid var(--gray-pale)}
+.glossary-term{font-size:18px;font-weight:500;color:var(--black);margin-bottom:6px}
+.glossary-def{font-size:14px;color:var(--gray);line-height:1.7;font-weight:300}
+.glossary-alpha{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
+.alpha-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--gray-pale);background:var(--white);font-size:13px;color:var(--gray);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
+.alpha-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* Prompt Library */
+.prompt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+.prompt-card{background:var(--white);border:1px solid var(--gray-pale);border-radius:10px;padding:20px;cursor:pointer;transition:all var(--transition)}
+.prompt-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(185,45,45,0.08)}
+.prompt-tag{font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.prompt-title{font-size:15px;font-weight:500;color:var(--black);margin-bottom:6px}
+.prompt-preview{font-family:var(--mono);font-size:12px;color:var(--gray);background:var(--cream);padding:10px 12px;border-radius:6px;line-height:1.6}
+
+/* Why redplum section */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:72px 0}
+.why-visual{position:relative}
+.why-visual-inner{background:var(--black);border-radius:16px;padding:40px;color:var(--white)}
+.compare-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #2a2825;font-size:14px}
+.compare-row:last-child{border-bottom:none}
+.compare-check{color:#82C99A;font-size:16px}
+.compare-x{color:#E86B6B;font-size:16px}
+.compare-old{color:#555;font-size:12px}
+
+/* Success/error flash */
+.flash{padding:12px 16px;border-radius:8px;font-size:14px;margin-top:12px;display:none}
+.flash.success{background:#d4edda;color:#155724;border:1px solid #c3e6cb;display:block}
+.flash.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;display:block}
+
+/* Trial flow */
+.trial-steps{display:flex;gap:0;margin-bottom:40px;border:1px solid var(--gray-pale);border-radius:10px;overflow:hidden}
+.trial-step{flex:1;padding:16px;text-align:center;font-size:13px;color:var(--gray);border-right:1px solid var(--gray-pale);position:relative}
+.trial-step:last-child{border-right:none}
+.trial-step.active{background:var(--red-light);color:var(--red);font-weight:500}
+.trial-step.done{background:var(--cream-dark);color:var(--black)}
+.trial-step-num{font-size:20px;font-weight:500;display:block;margin-bottom:4px;font-family:var(--serif)}
+</style>
+</head>
+<body>
+
+<!-- EBOOK GATE MODAL -->
+<div class="modal-overlay" id="ebook-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="ebook-form-view">
+      <div class="section-tag"><span class="dot"></span>Free Download</div>
+      <h2 class="display-h3" style="margin-bottom:8px" id="ebook-title">Download the Guide</h2>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:28px" id="ebook-subtitle">Enter your work email to get instant access.</p>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First name</label><input class="form-input" placeholder="Jane" /></div>
+        <div class="form-group"><label class="form-label">Last name</label><input class="form-input" placeholder="Smith" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Work email</label><input class="form-input" type="email" placeholder="jane@company.com" /></div>
+      <div class="form-group"><label class="form-label">Company</label><input class="form-input" placeholder="Acme Corp" /></div>
+      <div class="form-group"><label class="form-label">Role</label>
+        <select class="form-select">
+          <option>Engineering Leader</option><option>SRE / DevOps</option><option>Software Engineer</option><option>Product Manager</option><option>CTO / VP Engineering</option><option>Other</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-lg" style="width:100%" onclick="submitEbook()">Get free access →</button>
+      <p style="font-size:12px;color:var(--gray);margin-top:12px;text-align:center">No spam. Unsubscribe anytime. We respect your privacy.</p>
+    </div>
+    <div class="modal-success" id="ebook-success-view" style="display:none">
+      <div class="big-check">🎉</div>
+      <h3>You're all set!</h3>
+      <p style="margin-bottom:20px">Check your inbox — your guide is on its way.<br>We've also saved your spot for upcoming webinars.</p>
+      <button class="btn btn-primary" onclick="closeModal()">Back to resources</button>
+    </div>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <p>We use cookies to improve your experience and analyze site traffic. See our <a href="#" onclick="showPage('privacy')">Privacy Policy</a> for details.</p>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-decline" onclick="dismissCookie()">Decline</button>
+    <button class="cookie-btn cookie-accept" onclick="dismissCookie()">Accept all</button>
+  </div>
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div id="ann-bar">
+  <span>🌟 New: AI SRE Buyer's Guide 2025 — learn how to evaluate AI SRE for production environments.</span>
+  <a href="#" onclick="openEbook('AI SRE Buyer\'s Guide','Evaluate, shortlist and deploy AI SRE in your engineering org.')">Download free →</a>
+  <button onclick="document.getElementById('ann-bar').style.display='none'">×</button>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#" onclick="showPage('home')">
+    <svg class="logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="#B92D2D"/>
+      <ellipse cx="16" cy="18" rx="8" ry="9" fill="#8B1E1E"/>
+      <ellipse cx="16" cy="16" rx="8" ry="9" fill="#E85050"/>
+      <path d="M16 7 Q19 4 21 6" stroke="#FAF8F5" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="16" cy="16" rx="4" ry="5" fill="#B92D2D" opacity="0.5"/>
+      <ellipse cx="13.5" cy="13.5" rx="2" ry="2.5" fill="#FAF8F5" opacity="0.15"/>
+    </svg>
+    redplum<span style="color:var(--red)">.</span>ai
+  </a>
+  <ul class="nav-links">
+    <li class="nav-item">
+      <a class="nav-link" href="#" onclick="showPage('product')">
+        Product
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l4 4 4-4"/></svg>
+      </a>
+      <div class="mega-drop" style="min-width:480px">
+        <div class="mega-section-title">Use Cases</div>
+        <div class="mega-grid">
+          <div class="mega-item" onclick="showPage('ai-sre')">
+            <div class="mega-icon">🤖</div>
+            <div class="mega-text"><h4>AI SRE</h4><p>Autonomous incident response & triage at scale</p></div>
+          </div>
+          <div class="mega-item" onclick="showPage('debugging')">
+            <div class="mega-icon">🔍</div>
+            <div class="mega-text"><h4>Debugging Production</h4><p>Code with full production context</p></div>
+          </div>
+          <div class="mega-item" onclick="showPage('product')">
+            <div class="mega-icon">⚡</div>
+            <div class="mega-text"><h4>Product Overview</h4><p>The complete Redplum platform</p></div>
+          </div>
+          <div class="mega-item" onclick="showPage('integrations')">
+            <div class="mega-icon">🔗</div>
+            <div class="mega-text"><h4>Integrations</h4><p>Connect your existing stack seamlessly</p></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('customers')">Customers</a></li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        Resources
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l4 4 4-4"/></svg>
+      </a>
+      <div class="mega-drop">
+        <div class="mega-section-title">Ebooks</div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:20px">
+          <div class="mega-item" onclick="openEbook('AI SRE Buyer\'s Guide','Learn the 6 criteria for evaluating AI SRE.')">
+            <div class="mega-icon">📘</div>
+            <div class="mega-text"><h4>AI SRE Buyer's Guide</h4><p>6 criteria for evaluating AI SRE</p></div>
+          </div>
+          <div class="mega-item" onclick="openEbook('AI ROI Playbook','Measure and maximize AI investment in engineering.')">
+            <div class="mega-icon">📊</div>
+            <div class="mega-text"><h4>AI ROI Playbook</h4><p>Measure ROI of AI in engineering orgs</p></div>
+          </div>
+          <div class="mega-item" onclick="openEbook('AI Agents Beyond Code','4 workflows for agentic AI beyond code generation.')">
+            <div class="mega-icon">🚀</div>
+            <div class="mega-text"><h4>AI Agents Beyond Code</h4><p>4 workflows for agentic AI</p></div>
+          </div>
+        </div>
+        <div class="mega-section-title">Other</div>
+        <div class="mega-grid">
+          <div class="mega-item" onclick="showPage('prompt-library')"><div class="mega-icon">✍️</div><div class="mega-text"><h4>Prompt Library</h4><p>Pre-built prompts for production</p></div></div>
+          <div class="mega-item" onclick="showPage('blog')"><div class="mega-icon">📰</div><div class="mega-text"><h4>Blog</h4><p>Engineering insights & updates</p></div></div>
+          <div class="mega-item" onclick="showPage('glossary')"><div class="mega-icon">📖</div><div class="mega-text"><h4>Glossary</h4><p>Production engineering terms</p></div></div>
+          <div class="mega-item" onclick="showPage('docs')"><div class="mega-icon">📚</div><div class="mega-text"><h4>Docs</h4><p>Technical documentation</p></div></div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('security')">Security</a></li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        Company
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l4 4 4-4"/></svg>
+      </a>
+      <div class="mega-drop" style="min-width:380px">
+        <div class="mega-grid">
+          <div class="mega-item" onclick="showPage('about')"><div class="mega-icon">🏢</div><div class="mega-text"><h4>About Us</h4><p>Our story, mission and team</p></div></div>
+          <div class="mega-item" onclick="showPage('careers')"><div class="mega-icon">💼</div><div class="mega-text"><h4>Careers</h4><p>Join the Redplum team</p></div></div>
+          <div class="mega-item" onclick="showPage('contact')"><div class="mega-icon">✉️</div><div class="mega-text"><h4>Contact Us</h4><p>Talk to our team</p></div></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-actions">
+    <a class="btn btn-ghost" href="#" onclick="showPage('pricing')">Pricing</a>
+    <a class="btn btn-primary" href="#" onclick="showPage('demo')">Book a demo</a>
+  </div>
+  <div class="hamburger" onclick="toggleMobileNav()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav">
+  <div class="mobile-nav-header">
+    <span class="nav-logo" style="font-family:var(--serif);font-size:20px;font-weight:600;display:flex;align-items:center;gap:8px">
+      <svg class="logo-svg" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#B92D2D"/><ellipse cx="16" cy="16" rx="8" ry="9" fill="#E85050"/><path d="M16 7 Q19 4 21 6" stroke="#FAF8F5" stroke-width="1.5" stroke-linecap="round" fill="none"/><ellipse cx="16" cy="16" rx="4" ry="5" fill="#B92D2D" opacity="0.5"/></svg>
+      redplum.ai
+    </span>
+    <button onclick="toggleMobileNav()" style="font-size:24px;background:none;border:none;cursor:pointer">✕</button>
+  </div>
+  <div class="mobile-nav-links">
+    <div class="mobile-nav-link" onclick="mobileNav('home')">Home</div>
+    <div class="mobile-nav-link" onclick="mobileNav('product')">Product</div>
+    <div class="mobile-nav-link" onclick="mobileNav('ai-sre')">AI SRE</div>
+    <div class="mobile-nav-link" onclick="mobileNav('debugging')">Debugging Prod</div>
+    <div class="mobile-nav-link" onclick="mobileNav('customers')">Customers</div>
+    <div class="mobile-nav-link" onclick="mobileNav('integrations')">Integrations</div>
+    <div class="mobile-nav-link" onclick="mobileNav('security')">Security</div>
+    <div class="mobile-nav-link" onclick="mobileNav('pricing')">Pricing</div>
+    <div class="mobile-nav-link" onclick="mobileNav('about')">About Us</div>
+    <div class="mobile-nav-link" onclick="mobileNav('careers')">Careers</div>
+    <div class="mobile-nav-link" onclick="mobileNav('blog')">Blog</div>
+    <div class="mobile-nav-link" onclick="mobileNav('contact')">Contact</div>
+  </div>
+  <div class="mobile-nav-ctas">
+    <a class="btn btn-ghost" href="#" onclick="mobileNav('pricing')">Get pricing</a>
+    <a class="btn btn-primary" href="#" onclick="mobileNav('demo')">Book a demo</a>
+  </div>
+</div>
+
+<!-- ════════════════════════ PAGES ════════════════════════ -->
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <!-- HERO -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 48px">
+    <div class="hero" style="padding:80px 0 60px">
+      <div>
+        <div class="section-tag"><span class="dot"></span>Now in production</div>
+        <h1 class="display-h1" style="margin-bottom:24px">
+          Production<br>intelligence<br>that <em class="red">never</em><br>sleeps
+        </h1>
+        <p class="lead" style="margin-bottom:40px">Redplum is the AI-native platform that investigates incidents, debugs production, and operates your tools — so your engineers focus on what matters.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo →</a>
+          <a class="btn btn-ghost btn-lg" href="#" onclick="showPage('trial')">Try for free</a>
+        </div>
+        <div style="display:flex;gap:32px;margin-top:48px;padding-top:40px;border-top:1px solid var(--gray-pale)">
+          <div><div class="stat-num">100%</div><div class="stat-label">Alerts investigated</div></div>
+          <div><div class="stat-num">&lt;5m</div><div class="stat-label">Alert to RCA</div></div>
+          <div><div class="stat-num">73%</div><div class="stat-label">Faster MTTR</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="terminal-bar">
+          <div class="t-dot" style="background:#ff5f57"></div>
+          <div class="t-dot" style="background:#febc2e"></div>
+          <div class="t-dot" style="background:#28c840"></div>
+          <span class="t-title">redplum-ai — live investigation</span>
+        </div>
+        <div class="terminal-body">
+          <span class="tl d1"><span class="tp">▶</span> <span class="tcmd">redplum investigate --alert api-gateway-500s</span></span>
+          <span class="tl d2 tinfo">  Correlating 89 alerts across 8 services...</span>
+          <span class="tl d3 tok">  ✓ Noise filtered — 84 downstream effects removed</span>
+          <span class="tl d4 twarn">  ⚠ Root signal: api-gateway → auth-service chain</span>
+          <span class="tl d5 tsec">HYPOTHESES</span>
+          <span class="tl d5 tinfo">  A: JWT validation timeout on auth-service</span>
+          <span class="tl d6 tinfo">  B: Redis connection exhaustion (session cache)</span>
+          <span class="tl d7 tinfo">  C: Deploy 8min ago — auth-service v3.1.2</span>
+          <span class="tl d8 tsec">EVIDENCE GATHERING</span>
+          <span class="tl d8">  Pulling Datadog metrics, GitHub diff, K8s state...</span>
+          <span class="tl d9 tok">  ✓ Redis pool at 98% — eviction storm detected</span>
+          <span class="tl d10 tok">  ✓ Deploy introduced session TTL bug (PR #2241)</span>
+          <span class="tl d11 tsec">ROOT CAUSE</span>
+          <span class="tl d12 terr">  ✗ Eliminated: JWT timeout</span>
+          <span class="tl d13 tok">  ✓ CONFIRMED: Redis eviction → session misses → 500s</span>
+          <span class="tl d14 tsec">REMEDIATION</span>
+          <span class="tl d15 tinfo">  Generating PR #2242 — fix session TTL + alert...</span>
+          <span class="tl d16 tok">  ✓ PR opened · docs updated · Slack notified</span>
+          <span class="tl d16"><span class="tp">▶</span> <span class="cursor"></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO STRIP -->
+  <div class="logo-strip">
+    <div class="logo-track">
+      <span class="logo-item">ParityDeals</span><span class="logo-item">Kelviq</span><span class="logo-item">Hootz AI</span><span class="logo-item">Gradeazy</span><span class="logo-item">ParityDeals</span><span class="logo-item">Kelviq</span><span class="logo-item">Hootz AI</span><span class="logo-item">Gradeazy</span><span class="logo-item">ParityDeals</span><span class="logo-item">Kelviq</span><span class="logo-item">Hootz AI</span><span class="logo-item">Gradeazy</span><span class="logo-item">ParityDeals</span><span class="logo-item">Kelviq</span><span class="logo-item">Hootz AI</span><span class="logo-item">Gradeazy</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="container section-wrap">
+    <div class="eyebrow">How it works</div>
+    <h2 class="display-h2" style="margin-bottom:16px">From alert to resolution<br>in <em class="red">minutes, not hours</em></h2>
+    <p class="lead" style="margin-bottom:48px">Redplum's multi-agent system works like a team of expert SREs — all of them, simultaneously, all the time.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-title">Alert triage</div><div class="step-desc">Correlates every alert across all services, filters noise, and ranks by business impact</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">Parallel investigation</div><div class="step-desc">Forms hypotheses and deploys specialized agents to test each simultaneously</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title">Root cause analysis</div><div class="step-desc">Surfaces the root cause with evidence, dependency chain, and confidence score</div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-title">Auto-remediation</div><div class="step-desc">Generates PRs, configs, runbook updates — and documents everything automatically</div></div>
+    </div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <div class="container section-wrap" style="padding-top:0">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="display-h2" style="margin-bottom:48px">Everything your<br><em class="red">production</em> needs</h2>
+    <div class="feat-grid">
+      <div class="feat-cell"><div class="feat-icon">🧠</div><div class="feat-title">Multi-agent intelligence</div><div class="feat-desc">Coordinated agents reason across code, infra, and telemetry in parallel — not sequentially.</div></div>
+      <div class="feat-cell"><div class="feat-icon">🗺️</div><div class="feat-title">Dynamic knowledge graph</div><div class="feat-desc">Real-time map of your system — services, deps, configs — updated with every deploy.</div></div>
+      <div class="feat-cell"><div class="feat-icon">🎯</div><div class="feat-title">Pinpoint root cause</div><div class="feat-desc">Identifies root cause with a confidence score, dependency chain, and full evidence timeline.</div></div>
+      <div class="feat-cell"><div class="feat-icon">🔧</div><div class="feat-title">Auto-remediation PRs</div><div class="feat-desc">Generates GitHub PRs and kubectl commands grounded in actual root cause — not guesses.</div></div>
+      <div class="feat-cell"><div class="feat-icon">📚</div><div class="feat-title">Tribal knowledge</div><div class="feat-desc">Captures runbooks, past incidents, and team knowledge into searchable contextual memory.</div></div>
+      <div class="feat-cell"><div class="feat-icon">📝</div><div class="feat-title">Auto-documentation</div><div class="feat-desc">Post-mortems, ticket updates, and Slack summaries generated without manual effort.</div></div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div style="background:var(--cream-dark);padding:80px 0">
+    <div class="container">
+      <div class="eyebrow" style="text-align:center">What engineers say</div>
+      <h2 class="display-h2" style="text-align:center;margin-bottom:48px">Loved by the teams<br>keeping <em class="red">production alive</em></h2>
+      <div class="testimonials-wrap">
+        <div class="testimonial-track" id="carousel-track">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Redplum found the root cause 4 hours before our on-call engineer did. We now run fewer war rooms and our SLAs have never been cleaner."</p>
+            <div class="testimonial-author"><div class="author-avatar">SK</div><div><div class="author-name">Sandeep Kumar</div><div class="author-role">VP Engineering, Kelviq</div></div><div class="metric-pill" style="margin-left:auto">-4h MTTR</div></div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Our junior engineers now respond to incidents with the same confidence as seniors. The experience gap is gone. That alone was worth it."</p>
+            <div class="testimonial-author"><div class="author-avatar">MR</div><div><div class="author-name">Maya Rodriguez</div><div class="author-role">Head of SRE, Hootz AI</div></div><div class="metric-pill" style="margin-left:auto">2× uplift</div></div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Redplum identified that all errors were from a single retried transaction — not a widespread outage. It saved us from a false major incident."</p>
+            <div class="testimonial-author"><div class="author-avatar">JL</div><div><div class="author-name">James Liu</div><div class="author-role">Staff SRE, ParityDeals</div></div><div class="metric-pill" style="margin-left:auto">Zero false MIs</div></div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"We integrated Redplum in a day. Within the first week it pinpointed a latent N+1 bug that had been causing intermittent slowdowns for months."</p>
+            <div class="testimonial-author"><div class="author-avatar">AP</div><div><div class="author-name">Anika Patel</div><div class="author-role">Engineering Lead, Gradeazy</div></div><div class="metric-pill" style="margin-left:auto">Day-1 value</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carousel-dots">
+        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+        <div class="carousel-dot" onclick="goToSlide(3)"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="prevSlide()">←</button>
+        <button class="carousel-btn" onclick="nextSlide()">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA STRIP -->
+  <div style="background:var(--black);padding:80px 0">
+    <div class="container" style="text-align:center">
+      <h2 class="display-h2" style="color:var(--white);margin-bottom:16px">Ready to put your<br>production <em style="color:var(--red-mid);font-family:var(--serif);font-style:italic">on autopilot?</em></h2>
+      <p style="font-size:17px;color:#888;margin-bottom:36px;font-weight:300">Join engineering teams at ParityDeals, Kelviq, Hootz AI, and Gradeazy.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo →</a>
+        <a class="btn" href="#" onclick="showPage('trial')" style="background:transparent;color:#fff;border:1.5px solid #444;padding:13px 28px;font-size:15px;border-radius:9px">Try free</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT OVERVIEW PAGE -->
+<div class="page" id="page-product">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>Product</div>
+      <h1 class="display-h1" style="margin-bottom:20px">The complete<br><em class="red">production</em><br>intelligence platform</h1>
+      <p class="lead" style="margin-bottom:36px">Redplum is not an alert router or a dashboard. It's a multi-agent system that reasons across your entire stack and operates like a team of expert engineers — around the clock.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo →</a>
+        <a class="btn btn-ghost btn-lg" href="#" onclick="showPage('ai-sre')">See AI SRE →</a>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:80px">
+      <div class="card" onclick="showPage('ai-sre')" style="cursor:pointer">
+        <div class="feat-icon" style="margin-bottom:20px">🤖</div>
+        <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:10px">AI SRE</h3>
+        <p style="font-size:14px;color:var(--gray);line-height:1.7;font-weight:300;margin-bottom:16px">Always-on agent that triages every alert, investigates in parallel, finds root cause, and generates remediation — 24/7 without burnout.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+          <span class="tag">Alert triage</span><span class="tag">Root cause</span><span class="tag">Auto-remediation</span>
+        </div>
+        <span style="color:var(--red);font-size:14px;font-weight:500">Explore AI SRE →</span>
+      </div>
+      <div class="card" onclick="showPage('debugging')" style="cursor:pointer">
+        <div class="feat-icon" style="margin-bottom:20px">🔍</div>
+        <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:10px">Debugging Production</h3>
+        <p style="font-size:14px;color:var(--gray);line-height:1.7;font-weight:300;margin-bottom:16px">Code, architect, and debug with your full production environment as context. Understand how your changes interact with live traffic before they ship.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+          <span class="tag">Production context</span><span class="tag">Architecture</span><span class="tag">Safe deploys</span>
+        </div>
+        <span style="color:var(--red);font-size:14px;font-weight:500">Explore Debugging →</span>
+      </div>
+    </div>
+
+    <div class="eyebrow">Platform pillars</div>
+    <h2 class="display-h2" style="margin-bottom:48px">Built on four<br>agentic foundations</h2>
+    <div class="feat-grid" style="margin-bottom:80px">
+      <div class="feat-cell"><div class="feat-icon">👁️</div><div class="feat-title">Perceive</div><div class="feat-desc">Transforms scattered docs, telemetry and observability data into searchable, contextual memory.</div></div>
+      <div class="feat-cell"><div class="feat-icon">🧩</div><div class="feat-title">Reason</div><div class="feat-desc">Formulates plans, tests hypotheses, surfaces root causes with evidence and explains outcomes.</div></div>
+      <div class="feat-cell"><div class="feat-icon">⚙️</div><div class="feat-title">Act</div><div class="feat-desc">Uses production tools to propose or execute changes — GitHub PRs, kubectl, config updates.</div></div>
+      <div class="feat-cell"><div class="feat-icon">📈</div><div class="feat-title">Learn</div><div class="feat-desc">Observes interactions, decisions, outcomes, and direct feedback to improve reasoning accuracy.</div></div>
+      <div class="feat-cell"><div class="feat-icon">🔒</div><div class="feat-title">Secure</div><div class="feat-desc">SOC 2 Type II, GDPR, HIPAA. Read-only access. No raw data stored. Full SSO + RBAC.</div></div>
+      <div class="feat-cell"><div class="feat-icon">🔗</div><div class="feat-title">Integrate</div><div class="feat-desc">MCP, APIs, Webhooks. Connects to Datadog, Grafana, GitHub, Kubernetes, Slack and more.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI SRE PAGE -->
+<div class="page" id="page-ai-sre">
+  <div style="background:var(--black);padding:80px 0">
+    <div class="container">
+      <div class="section-tag" style="background:rgba(185,45,45,0.3);color:#E85050"><span class="dot"></span>AI SRE</div>
+      <h1 class="display-h1" style="color:var(--white);margin-bottom:20px">The SRE that<br>never pages out</h1>
+      <p class="lead" style="color:#888;margin-bottom:40px">Triages every alert. Investigates complex incidents. Finds root cause. All before your on-call engineer finishes their coffee.</p>
+      <div style="display:flex;gap:32px;flex-wrap:wrap">
+        <div><div class="stat-num" style="color:var(--red-mid)">100%</div><div class="stat-label" style="color:#666">Alerts investigated</div></div>
+        <div><div class="stat-num" style="color:var(--red-mid)">&lt;5 min</div><div class="stat-label" style="color:#666">To root cause</div></div>
+        <div><div class="stat-num" style="color:var(--red-mid)">&gt;70%</div><div class="stat-label" style="color:#666">Faster MTTR</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section-wrap">
+    <div class="eyebrow">The 7-step workflow</div>
+    <h2 class="display-h2" style="margin-bottom:48px">How Redplum handles<br>every <em class="red">incident</em></h2>
+    <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--gray-pale);border-radius:12px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:80px 1fr 1fr;border-bottom:1px solid var(--gray-pale);background:var(--cream-dark)">
+        <div style="padding:16px 24px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light)">Step</div>
+        <div style="padding:16px 24px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);border-left:1px solid var(--gray-pale)">Action</div>
+        <div style="padding:16px 24px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);border-left:1px solid var(--gray-pale)">What Redplum does</div>
+      </div>
+      <div id="sre-steps"></div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS CAROUSEL on AI SRE page -->
+  <div style="background:var(--cream-dark);padding:72px 0">
+    <div class="container">
+      <div class="eyebrow" style="text-align:center">Engineers who use it daily</div>
+      <h2 class="display-h2" style="text-align:center;margin-bottom:40px">The on-call <em class="red">experience</em><br>is finally fixed</h2>
+      <div class="testimonials-wrap">
+        <div class="testimonial-track" id="sre-carousel-track">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"On-call used to mean 3am war rooms with 12 engineers. Now it's Redplum pinging Slack with the root cause before I've even woken up."</p>
+            <div class="testimonial-author"><div class="author-avatar">SK</div><div><div class="author-name">Sandeep Kumar</div><div class="author-role">VP Engineering, Kelviq</div></div></div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"The first time it pinpointed a PR that introduced a race condition — from three days ago — we knew this was a fundamentally different kind of tool."</p>
+            <div class="testimonial-author"><div class="author-avatar">JL</div><div><div class="author-name">James Liu</div><div class="author-role">Staff SRE, ParityDeals</div></div></div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Junior engineers are now as effective as seniors. The runbook gap is gone — Redplum carries the institutional knowledge for them."</p>
+            <div class="testimonial-author"><div class="author-avatar">MR</div><div><div class="author-name">Maya Rodriguez</div><div class="author-role">Head of SRE, Hootz AI</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-controls" style="margin-top:20px">
+        <button class="carousel-btn" onclick="sreCarousel(-1)">←</button>
+        <button class="carousel-btn" onclick="sreCarousel(1)">→</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section-wrap" style="text-align:center">
+    <h2 class="display-h2" style="margin-bottom:16px">See it handle a real incident</h2>
+    <p class="lead" style="margin:0 auto 36px">Book a personalized demo and we'll show Redplum investigating a sample incident in your stack.</p>
+    <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo →</a>
+  </div>
+</div>
+
+<!-- DEBUGGING PROD PAGE -->
+<div class="page" id="page-debugging">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>Debugging Production</div>
+      <h1 class="display-h1" style="margin-bottom:20px">Code with your<br>entire production<br><em class="red">as context</em></h1>
+      <p class="lead" style="margin-bottom:36px">Stop debugging in the dark. Redplum maps your architecture, traces request flows, evaluates constraints, and guides you from investigation to safe deploy.</p>
+      <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">See it in action →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:80px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div class="card" style="border-left:3px solid var(--red)">
+          <h3 style="font-size:16px;font-weight:500;margin-bottom:8px">🗺 Understand how it actually works</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65;font-weight:300">Maps architecture, request flows, and traffic patterns across all services. Identifies existing patterns and conventions in your codebase.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--red)">
+          <h3 style="font-size:16px;font-weight:500;margin-bottom:8px">⚠️ Identify technical realities</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65;font-weight:300">Evaluates performance constraints, scaling limitations, and potential failure modes before you write a single line of code.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--red)">
+          <h3 style="font-size:16px;font-weight:500;margin-bottom:8px">🏗 Grounded architecture choices</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65;font-weight:300">Multiple implementation options with real tradeoffs, based on your actual infra — not generic best practices.</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--red)">
+          <h3 style="font-size:16px;font-weight:500;margin-bottom:8px">🚀 Safe deployment guidance</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.65;font-weight:300">Highlights what could break, adds monitoring, suggests canary rollout strategy. Code that ships safely, first time.</p>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Pre-built examples</div>
+        <h3 class="display-h3" style="margin-bottom:24px">Start from real<br>production scenarios</h3>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="card" style="padding:20px;cursor:pointer" onclick="">
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px">Kafka cluster onboarding</div>
+            <div style="font-size:12px;color:var(--gray)">Understand your Kafka topology, consumer lag, and health in production</div>
+          </div>
+          <div class="card" style="padding:20px;cursor:pointer">
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px">Build a multi-tenant rate limiter</div>
+            <div style="font-size:12px;color:var(--gray)">Design with production traffic patterns and constraints as input</div>
+          </div>
+          <div class="card" style="padding:20px;cursor:pointer">
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px">Kubernetes cluster understanding</div>
+            <div style="font-size:12px;color:var(--gray)">Map resource allocation, bottlenecks, and pod health across namespaces</div>
+          </div>
+          <div class="card" style="padding:20px;cursor:pointer">
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px">Trace a latency regression</div>
+            <div style="font-size:12px;color:var(--gray)">From symptom to specific function call or query causing the slowdown</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOMERS PAGE -->
+<div class="page" id="page-customers">
+  <div class="container">
+    <div class="page-hero">
+      <div class="section-tag"><span class="dot"></span>Customers</div>
+      <h1 class="display-h1" style="margin-bottom:16px">Trusted by teams<br>building <em class="red">production-critical</em><br>software</h1>
+      <p class="lead" style="margin:0 auto 48px;text-align:center">From fast-growing startups to scaling platforms — Redplum keeps production healthy.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:64px">
+      <div class="card" onclick="showPage('story-paritydeals')" style="cursor:pointer;display:flex;align-items:flex-start;gap:20px">
+        <div style="width:56px;height:56px;border-radius:12px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🏷️</div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">ParityDeals</div>
+          <h3 style="font-size:18px;font-weight:500;margin-bottom:8px;line-height:1.3">How ParityDeals eliminated false major incidents with AI triage</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">The pricing platform reduced alert noise by 94% and freed engineers from war rooms.</p>
+          <div style="display:flex;gap:8px;margin-top:12px"><span class="metric-pill">94% noise reduction</span><span class="metric-pill">Zero false MIs</span></div>
+          <div style="margin-top:12px;font-size:13px;color:var(--red);font-weight:500">Read story →</div>
+        </div>
+      </div>
+      <div class="card" onclick="showPage('story-kelviq')" style="cursor:pointer;display:flex;align-items:flex-start;gap:20px">
+        <div style="width:56px;height:56px;border-radius:12px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">⚡</div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">Kelviq</div>
+          <h3 style="font-size:18px;font-weight:500;margin-bottom:8px;line-height:1.3">Kelviq cut MTTR by 4 hours using Redplum's parallel investigation</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">The data platform's on-call load dropped dramatically as Redplum handled first response.</p>
+          <div style="display:flex;gap:8px;margin-top:12px"><span class="metric-pill">4hr faster MTTR</span><span class="metric-pill">2× engineer output</span></div>
+          <div style="margin-top:12px;font-size:13px;color:var(--red);font-weight:500">Read story →</div>
+        </div>
+      </div>
+      <div class="card" onclick="showPage('story-hootz')" style="cursor:pointer;display:flex;align-items:flex-start;gap:20px">
+        <div style="width:56px;height:56px;border-radius:12px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🦉</div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">Hootz AI</div>
+          <h3 style="font-size:18px;font-weight:500;margin-bottom:8px;line-height:1.3">Hootz AI scaled to 10× users without scaling their SRE headcount</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">Redplum gave their lean team the coverage of a full SRE department.</p>
+          <div style="display:flex;gap:8px;margin-top:12px"><span class="metric-pill">10× scale</span><span class="metric-pill">Same team size</span></div>
+          <div style="margin-top:12px;font-size:13px;color:var(--red);font-weight:500">Read story →</div>
+        </div>
+      </div>
+      <div class="card" style="display:flex;align-items:flex-start;gap:20px">
+        <div style="width:56px;height:56px;border-radius:12px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🎓</div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">Gradeazy</div>
+          <h3 style="font-size:18px;font-weight:500;margin-bottom:8px;line-height:1.3">Gradeazy ships faster by debugging with production context</h3>
+          <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">EdTech platform uses Redplum's debugging flow to ship features safely in a test-sensitive environment.</p>
+          <div style="display:flex;gap:8px;margin-top:12px"><span class="metric-pill">Faster shipping</span><span class="metric-pill">Fewer regressions</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:60px;background:var(--cream-dark);border-radius:16px;margin-bottom:80px">
+      <h2 class="display-h3" style="margin-bottom:12px">Want to be featured here?</h2>
+      <p style="font-size:15px;color:var(--gray);margin-bottom:24px">We'd love to tell your story. Get in touch with our team.</p>
+      <a class="btn btn-primary" href="#" onclick="showPage('contact')">Talk to us</a>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOMER STORIES -->
+<div class="page" id="page-story-paritydeals">
+  <div class="container section-wrap">
+    <a href="#" onclick="showPage('customers')" style="font-size:13px;color:var(--gray);display:flex;align-items:center;gap:6px;margin-bottom:32px">← Back to customers</a>
+    <div class="story-header">
+      <div class="company-name">ParityDeals · Pricing Infrastructure</div>
+      <h1>How ParityDeals eliminated false major incidents and cut alert fatigue by 94%</h1>
+      <p class="story-lead">The team behind one of the fastest-growing pricing platforms was drowning in alert noise. Redplum changed how they think about on-call forever.</p>
+      <div class="story-stats">
+        <div class="story-stat"><div class="num">94%</div><div class="lbl">Alert noise reduced</div></div>
+        <div class="story-stat"><div class="num">Zero</div><div class="lbl">False major incidents</div></div>
+        <div class="story-stat"><div class="num">3×</div><div class="lbl">Faster triage time</div></div>
+      </div>
+    </div>
+    <div class="story-body">
+      <div class="story-content">
+        <p>ParityDeals powers purchasing power parity pricing for thousands of SaaS companies worldwide. When their infrastructure sneezes, thousands of checkout flows are affected — directly impacting customer revenue.</p>
+        <h2>The problem: alert storms and war rooms</h2>
+        <p>Before Redplum, ParityDeals' on-call rotation was brutal. A single deployment could trigger hundreds of correlated alerts across microservices. Engineers would spend 45 minutes just triaging which alerts were real versus which were cascades from one root issue.</p>
+        <p>"We'd get paged at 2am with 200 alerts firing," recalls James Liu, Staff SRE at ParityDeals. "By the time we figured out which one was the actual problem, we'd already called in half the engineering team to a Zoom call."</p>
+        <blockquote>"Redplum reduced a 200-alert storm to a single root cause notification. Our on-call engineer got the RCA before anyone else even woke up."</blockquote>
+        <h2>Rolling out Redplum</h2>
+        <p>ParityDeals connected Redplum to their Datadog instance, GitHub, Kubernetes cluster, and Slack in under a day. The dynamic knowledge graph built itself from day one — mapping every service, dependency, and deployment pattern automatically.</p>
+        <p>The first real test came three days later when a deployment introduced a subtle connection pool misconfiguration that started degrading their currency API. Redplum correlated the deploy event, identified the pool exhaustion, traced the dependency chain to downstream pricing endpoints, and posted the full root cause in Slack — in 4 minutes and 11 seconds.</p>
+        <h2>The results</h2>
+        <p>In the three months since deploying Redplum, ParityDeals has seen dramatic improvements across their engineering org. Alert noise dropped by 94%. The team has had zero false major incidents declared. And their average triage time went from 45 minutes to under 7 minutes.</p>
+        <p>More importantly, engineer morale improved. The on-call rotation became sustainable again. "On-call used to be something people dreaded. Now it's actually manageable — Redplum does the first-responder work. We just validate and approve," says Liu.</p>
+      </div>
+      <div class="story-sidebar">
+        <div class="sidebar-card" style="margin-bottom:16px">
+          <h4>Company</h4>
+          <p style="font-size:14px;color:var(--black);margin-bottom:4px;font-weight:500">ParityDeals</p>
+          <p style="font-size:13px;color:var(--gray)">Pricing infrastructure for global SaaS</p>
+          <a href="https://www.paritydeals.com/" target="_blank" style="font-size:12px;color:var(--red);display:block;margin-top:8px">paritydeals.com ↗</a>
+        </div>
+        <div class="sidebar-card" style="margin-bottom:16px">
+          <h4>Stack</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"><span class="tag">Datadog</span><span class="tag">Kubernetes</span><span class="tag">GitHub</span><span class="tag">Slack</span><span class="tag">AWS</span></div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Results</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">94%</div><div style="font-size:12px;color:var(--gray)">Alert noise reduction</div></div>
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">0</div><div style="font-size:12px;color:var(--gray)">False major incidents</div></div>
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">7 min</div><div style="font-size:12px;color:var(--gray)">Average triage time (was 45min)</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-story-kelviq">
+  <div class="container section-wrap">
+    <a href="#" onclick="showPage('customers')" style="font-size:13px;color:var(--gray);display:flex;align-items:center;gap:6px;margin-bottom:32px">← Back to customers</a>
+    <div class="story-header">
+      <div class="company-name">Kelviq · Data Platform</div>
+      <h1>How Kelviq's on-call load dropped dramatically — and engineers started loving their rotation</h1>
+      <p class="story-lead">Kelviq's data platform serves millions of queries per day. Their SRE team was burning out. Redplum became their force multiplier.</p>
+      <div class="story-stats">
+        <div class="story-stat"><div class="num">4 hr</div><div class="lbl">Faster MTTR</div></div>
+        <div class="story-stat"><div class="num">2×</div><div class="lbl">Engineer productivity</div></div>
+        <div class="story-stat"><div class="num">0</div><div class="lbl">Runbook gaps</div></div>
+      </div>
+    </div>
+    <div class="story-body">
+      <div class="story-content">
+        <p>Kelviq builds the data infrastructure layer for enterprise analytics teams. Uptime directly translates to customer business outcomes — a 10-minute outage for one of their clients can mean thousands of missed queries and broken dashboards in front of executives.</p>
+        <h2>The experience gap problem</h2>
+        <p>Like many scaling companies, Kelviq had a mix of senior SREs who understood the system deeply and junior engineers who were still learning. The result was an uneven on-call rotation — incidents that a senior could resolve in 20 minutes might take a junior 3 hours.</p>
+        <p>"We had a runbook gap we couldn't close," says Sandeep Kumar, VP Engineering at Kelviq. "Every time a senior engineer left or rotated off, we lost institutional knowledge. Junior engineers were flying blind."</p>
+        <blockquote>"Redplum is essentially a senior SRE that never forgets. Every past incident, every runbook, every root cause — it has it all, and it deploys that knowledge instantly."</blockquote>
+        <h2>How Redplum changed the picture</h2>
+        <p>Kelviq deployed Redplum across their full stack — connecting Grafana, their Kubernetes infrastructure, GitHub, and their internal runbook Notion workspace. Within 48 hours, Redplum had built a comprehensive knowledge graph of their system.</p>
+        <p>The first real test came during a complex multi-hop incident involving a Kafka consumer lag that cascaded into API timeouts. A junior on-call engineer received Redplum's investigation report before he had even opened his laptop: root cause identified (broker partition rebalancing triggered by an unrelated config push), with a clear remediation path and a draft PR ready for review.</p>
+        <p>Total time from alert to resolution: 18 minutes. Previously, this class of incident would have taken 4+ hours and escalated to three senior engineers.</p>
+        <h2>The results 90 days later</h2>
+        <p>MTTR dropped by an average of 4 hours across all P1 incidents. Junior engineers are now as effective as seniors on first response — the gap has been eliminated. And in Kelviq's last engineer satisfaction survey, "on-call experience" moved from the bottom quartile to the top.</p>
+      </div>
+      <div class="story-sidebar">
+        <div class="sidebar-card" style="margin-bottom:16px">
+          <h4>Company</h4>
+          <p style="font-size:14px;color:var(--black);margin-bottom:4px;font-weight:500">Kelviq</p>
+          <p style="font-size:13px;color:var(--gray)">Enterprise data platform infrastructure</p>
+          <a href="https://www.kelviq.com/" target="_blank" style="font-size:12px;color:var(--red);display:block;margin-top:8px">kelviq.com ↗</a>
+        </div>
+        <div class="sidebar-card" style="margin-bottom:16px">
+          <h4>Stack</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"><span class="tag">Grafana</span><span class="tag">Kafka</span><span class="tag">Kubernetes</span><span class="tag">Notion</span><span class="tag">GitHub</span></div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Results</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">4 hr</div><div style="font-size:12px;color:var(--gray)">Reduction in MTTR</div></div>
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">2×</div><div style="font-size:12px;color:var(--gray)">Engineer productivity lift</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-story-hootz">
+  <div class="container section-wrap">
+    <a href="#" onclick="showPage('customers')" style="font-size:13px;color:var(--gray);display:flex;align-items:center;gap:6px;margin-bottom:32px">← Back to customers</a>
+    <div class="story-header">
+      <div class="company-name">Hootz AI · AI Platform</div>
+      <h1>How Hootz AI scaled 10× without hiring a single additional SRE</h1>
+      <p class="story-lead">A lean AI startup needed enterprise-level reliability. Redplum gave them a full SRE team — at software pricing.</p>
+      <div class="story-stats">
+        <div class="story-stat"><div class="num">10×</div><div class="lbl">Scale achieved</div></div>
+        <div class="story-stat"><div class="num">Same</div><div class="lbl">Team size</div></div>
+        <div class="story-stat"><div class="num">99.97%</div><div class="lbl">Uptime maintained</div></div>
+      </div>
+    </div>
+    <div class="story-body">
+      <div class="story-content">
+        <p>Hootz AI builds intelligent automation tools for enterprise workflows. As an AI-native company, they knew they needed to lead by example — which meant their own infrastructure had to be bulletproof.</p>
+        <h2>The startup SRE dilemma</h2>
+        <p>Like most early-stage companies, Hootz AI couldn't afford to build a full SRE team. Their two senior engineers were incredible — but they were also the people building the product. Asking them to be permanently on-call was a recipe for burnout and slow product development.</p>
+        <p>"We were in a bind," says Maya Rodriguez, Head of SRE at Hootz AI. "We needed enterprise reliability standards but startup resource constraints. Something had to give — and we didn't want it to be our product velocity."</p>
+        <blockquote>"Redplum gave us the coverage of five SREs. We get paged when a decision needs to be made — not to figure out what's happening. That's Redplum's job now."</blockquote>
+        <h2>A single-day deployment</h2>
+        <p>The Hootz AI team deployed Redplum on a Tuesday afternoon. By Wednesday morning, it had already mapped their entire microservices architecture, indexed three years of GitHub history and associated incidents, and connected their Datadog dashboards.</p>
+        <p>That Thursday, a memory leak in their inference service triggered a cascade. Redplum detected the anomaly, traced it to a specific model serving endpoint that was failing to release tensors after batch completions, and flagged the PR that introduced the regression — all in under 6 minutes. Maya approved the fix, and it was deployed before any user noticed degradation.</p>
+        <h2>Scaling without scaling the team</h2>
+        <p>Over the next quarter, Hootz AI scaled from serving 50,000 to 500,000 API requests daily. Their team size didn't change. Their reliability, if anything, improved. Redplum handled the operational complexity of scale so the team could stay focused on the product.</p>
+        <p>"We tell people we have a world-class SRE function," says Maya. "What we have is Redplum and two great engineers who can focus on hard problems instead of alert fatigue."</p>
+      </div>
+      <div class="story-sidebar">
+        <div class="sidebar-card" style="margin-bottom:16px">
+          <h4>Company</h4>
+          <p style="font-size:14px;color:var(--black);margin-bottom:4px;font-weight:500">Hootz AI</p>
+          <p style="font-size:13px;color:var(--gray)">AI automation for enterprise workflows</p>
+          <a href="https://hootz.ai/" target="_blank" style="font-size:12px;color:var(--red);display:block;margin-top:8px">hootz.ai ↗</a>
+        </div>
+        <div class="sidebar-card" style="margin-bottom:16px">
+          <h4>Stack</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"><span class="tag">Datadog</span><span class="tag">AWS</span><span class="tag">GitHub</span><span class="tag">Slack</span><span class="tag">Kubernetes</span></div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Results</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">10×</div><div style="font-size:12px;color:var(--gray)">User scale achieved</div></div>
+            <div><div style="font-family:var(--serif);font-size:28px;color:var(--red)">99.97%</div><div style="font-size:12px;color:var(--gray)">Uptime SLA maintained</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTEGRATIONS PAGE -->
+<div class="page" id="page-integrations">
+  <div class="container">
+    <div class="page-hero">
+      <div class="section-tag"><span class="dot"></span>Integrations</div>
+      <h1 class="display-h1" style="margin-bottom:16px">Works with<br>your <em class="red">entire stack</em></h1>
+      <p class="lead" style="margin:0 auto 48px;text-align:center">Flexible, secure connections via MCP, APIs, and Webhooks. Read-only, tightly scoped, enterprise-ready.</p>
+    </div>
+    <div class="int-filters" id="int-filters">
+      <button class="int-filter active" onclick="filterInts('all',this)">All</button>
+      <button class="int-filter" onclick="filterInts('telemetry',this)">Telemetry</button>
+      <button class="int-filter" onclick="filterInts('infra',this)">Infrastructure</button>
+      <button class="int-filter" onclick="filterInts('code',this)">Code</button>
+      <button class="int-filter" onclick="filterInts('chat',this)">Chat</button>
+      <button class="int-filter" onclick="filterInts('pm',this)">Project Mgmt</button>
+      <button class="int-filter" onclick="filterInts('security',this)">Security</button>
+      <button class="int-filter" onclick="filterInts('knowledge',this)">Knowledge</button>
+    </div>
+    <div class="int-grid" id="int-grid"></div>
+
+    <div style="margin-top:64px;background:var(--cream-dark);border-radius:16px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div>
+        <h2 class="display-h3" style="margin-bottom:12px">Need a custom<br>integration?</h2>
+        <p style="font-size:15px;color:var(--gray);line-height:1.65;font-weight:300">Connect your internal tools, feature flags, custom CI/CD pipelines, or proprietary monitoring systems. We support MCP, REST APIs, and Webhooks.</p>
+      </div>
+      <div class="form-card">
+        <h4 style="font-size:15px;font-weight:500;margin-bottom:20px">Request an integration</h4>
+        <div class="form-group"><label class="form-label">Tool / Platform name</label><input class="form-input" placeholder="e.g. Honeycomb, OpsGenie..."/></div>
+        <div class="form-group"><label class="form-label">Your work email</label><input class="form-input" type="email" placeholder="you@company.com"/></div>
+        <div class="form-group"><label class="form-label">How you'd use it</label><textarea class="form-textarea" style="min-height:70px" placeholder="Tell us how this integration would help your workflow..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%" onclick="this.textContent='Request sent ✓';this.style.background='#1a6b3c'">Submit request</button>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:80px">
+      <div class="card" style="display:flex;align-items:center;gap:16px">
+        <div style="font-size:32px">🛒</div>
+        <div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px">AWS Marketplace</div>
+          <div style="font-size:13px;color:var(--gray);margin-bottom:8px">Deploy via your existing AWS agreement</div>
+          <a href="https://aws.amazon.com/marketplace" target="_blank" class="btn btn-ghost btn-sm">View on AWS →</a>
+        </div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;gap:16px">
+        <div style="font-size:32px">💬</div>
+        <div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px">Slack Marketplace</div>
+          <div style="font-size:13px;color:var(--gray);margin-bottom:8px">Add Redplum to your Slack workspace in clicks</div>
+          <a href="https://slack.com/marketplace" target="_blank" class="btn btn-ghost btn-sm">View on Slack →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY PAGE -->
+<div class="page" id="page-security">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>Security</div>
+      <h1 class="display-h1" style="margin-bottom:20px">Enterprise-grade<br>security, <em class="red">by design</em></h1>
+      <p class="lead" style="margin-bottom:36px">Redplum runs in the most regulated and security-conscious production environments in the world. Trust is not a feature — it's the foundation.</p>
+    </div>
+    <div class="security-grid" style="margin-bottom:64px">
+      <div class="security-card"><div class="security-badge">SOC 2<br>TYPE II</div><div class="security-content"><h3>SOC 2 Type II Certified</h3><p>Independently audited controls for security, availability, and confidentiality. Meets the bar for the most security-conscious enterprises.</p></div></div>
+      <div class="security-card"><div class="security-badge green">GDPR</div><div class="security-content"><h3>GDPR Compliant</h3><p>Full compliance with EU data protection regulation. Data residency controls. Right to deletion honored. DPA available on request.</p></div></div>
+      <div class="security-card"><div class="security-badge blue">HIPAA</div><div class="security-content"><h3>HIPAA Compatible</h3><p>Handles PHI securely. Supports regulated healthcare and life sciences environments. BAA available for eligible customers.</p></div></div>
+      <div class="security-card"><div class="security-badge purple">SSO<br>RBAC</div><div class="security-content"><h3>Identity & Access</h3><p>Single Sign-On, role-based access control, service account tokens, and audit logs for every action taken by Redplum agents.</p></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:64px">
+      <div class="card" style="text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">🔒</div>
+        <h3 style="font-size:15px;font-weight:500;margin-bottom:8px">Read-only access</h3>
+        <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">Redplum never writes to your systems unless explicitly authorized. Your data stays unchanged.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">🚫</div>
+        <h3 style="font-size:15px;font-weight:500;margin-bottom:8px">No raw data stored</h3>
+        <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">We process metadata only. No raw logs, traces or customer data is stored or transmitted to our cloud.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">🧱</div>
+        <h3 style="font-size:15px;font-weight:500;margin-bottom:8px">Tenant isolation</h3>
+        <p style="font-size:13px;color:var(--gray);line-height:1.6;font-weight:300">Your data never touches another customer's models or memory. Completely isolated fine-tuning per tenant.</p>
+      </div>
+    </div>
+    <div style="text-align:center;padding:60px;background:var(--black);border-radius:16px;color:var(--white);margin-bottom:80px">
+      <h2 class="display-h3" style="color:var(--white);margin-bottom:12px">Visit our Trust Center</h2>
+      <p style="color:#888;font-size:15px;margin-bottom:24px">Full security documentation, pen test reports, and compliance certificates available.</p>
+      <a class="btn btn-outline-red" href="#" style="color:var(--red-mid);border-color:var(--red-mid)">View Trust Center →</a>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING PAGE -->
+<div class="page" id="page-pricing">
+  <div class="container">
+    <div class="page-hero">
+      <div class="section-tag"><span class="dot"></span>Pricing</div>
+      <h1 class="display-h1" style="margin-bottom:16px">Pricing that scales<br>with your <em class="red">team</em></h1>
+      <p class="lead" style="margin:0 auto 16px;text-align:center">Simple, transparent pricing. No per-seat surprises. Cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div><div class="plan-name">Starter</div><div class="plan-price">Free <span>forever</span></div></div>
+        <div class="plan-desc">Perfect for small teams getting started with AI-powered incident response.</div>
+        <div class="check-list">
+          <div class="check-item">Up to 3 engineers</div>
+          <div class="check-item">100 alert investigations/mo</div>
+          <div class="check-item">3 integrations</div>
+          <div class="check-item">Slack notifications</div>
+          <div class="check-item">7-day incident history</div>
+        </div>
+        <a class="btn btn-ghost" href="#" onclick="showPage('trial')" style="text-align:center">Get started free</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="feat-badge">Most popular</div>
+        <div><div class="plan-name" style="color:#999">Growth</div><div class="plan-price">Custom <span style="color:#666">/ year</span></div></div>
+        <div class="plan-desc">For growing engineering teams who need full production coverage.</div>
+        <div class="check-list">
+          <div class="check-item">Unlimited engineers</div>
+          <div class="check-item">Unlimited alert investigations</div>
+          <div class="check-item">All integrations</div>
+          <div class="check-item">Full AI SRE workflow</div>
+          <div class="check-item">90-day incident history</div>
+          <div class="check-item">SSO + RBAC</div>
+          <div class="check-item">Slack & PagerDuty</div>
+        </div>
+        <a class="btn btn-primary" href="#" onclick="showPage('demo')" style="text-align:center">Talk to sales →</a>
+      </div>
+      <div class="pricing-card">
+        <div><div class="plan-name">Enterprise</div><div class="plan-price">Custom</div></div>
+        <div class="plan-desc">For large-scale orgs with strict compliance, custom tooling, and dedicated support needs.</div>
+        <div class="check-list">
+          <div class="check-item">Everything in Growth</div>
+          <div class="check-item">SOC 2 / GDPR / HIPAA</div>
+          <div class="check-item">Custom integrations (MCP)</div>
+          <div class="check-item">Dedicated success manager</div>
+          <div class="check-item">On-prem / VPC deployment</div>
+          <div class="check-item">SLA guarantees</div>
+        </div>
+        <a class="btn btn-ghost" href="#" onclick="showPage('contact')" style="text-align:center">Contact us</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;padding:40px;background:var(--cream-dark);border-radius:12px;margin-bottom:80px">
+      <p style="font-size:15px;color:var(--gray);margin-bottom:16px">Not sure which plan is right? Talk to our team — we'll help you figure it out.</p>
+      <a class="btn btn-primary" href="#" onclick="showPage('contact')">Talk to us →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>About Redplum</div>
+      <h1 class="display-h1" style="margin-bottom:20px">We're building<br>the AI that runs<br><em class="red">production</em></h1>
+      <p class="lead" style="margin-bottom:40px">Redplum was founded by engineers who spent years watching brilliant colleagues burn out managing production systems. We believe AI should absorb that operational complexity — so humans can focus on what only humans can do.</p>
+    </div>
+
+    <div style="background:var(--black);border-radius:16px;padding:56px;margin-bottom:64px;display:grid;grid-template-columns:1fr 1fr;gap:48px">
+      <div>
+        <div style="font-family:var(--serif);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-bottom:16px">Our mission</div>
+        <p style="font-family:var(--serif);font-size:26px;font-weight:300;color:var(--white);line-height:1.5;font-style:italic">"Help every engineer run software effortlessly — so they can spend their time building what matters."</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div><div style="font-family:var(--serif);font-size:40px;color:var(--red-mid)">2023</div><div style="font-size:13px;color:#888">Founded</div></div>
+        <div><div style="font-family:var(--serif);font-size:40px;color:var(--red-mid)">$12M</div><div style="font-size:13px;color:#888">Seed funding raised</div></div>
+        <div><div style="font-family:var(--serif);font-size:40px;color:var(--red-mid)">4</div><div style="font-size:13px;color:#888">Design partners in production</div></div>
+      </div>
+    </div>
+
+    <div class="eyebrow">Our team</div>
+    <h2 class="display-h2" style="margin-bottom:40px">Built by people who<br>lived the <em class="red">problem</em></h2>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">AR</div><div class="team-name">Asha Rajan</div><div class="team-role">CEO & Co-founder</div><div class="team-bio">Former VP Eng at Splunk. Led observability products serving Fortune 500s. Co-creator of OpenTelemetry.</div></div>
+      <div class="team-card"><div class="team-avatar">DM</div><div class="team-name">Dev Mehta</div><div class="team-role">CTO & Co-founder</div><div class="team-bio">Previously Staff Engineer at Cloudflare. Built global edge infrastructure at scale. PhD in distributed systems.</div></div>
+      <div class="team-card"><div class="team-avatar">PL</div><div class="team-name">Priya Lin</div><div class="team-role">Head of AI Research</div><div class="team-bio">Former research lead at DeepMind. Specialized in multi-agent systems and production-scale reasoning.</div></div>
+      <div class="team-card"><div class="team-avatar">TK</div><div class="team-name">Tomás Kovac</div><div class="team-role">Head of Product</div><div class="team-bio">Led product at PagerDuty's AI initiative. 10+ years building developer tools and incident management platforms.</div></div>
+      <div class="team-card"><div class="team-avatar">SA</div><div class="team-name">Sara Andrade</div><div class="team-role">Head of Design</div><div class="team-bio">Previously at Linear and Vercel. Obsessed with making complex systems feel intuitive for engineers.</div></div>
+      <div class="team-card"><div class="team-avatar">JN</div><div class="team-name">James Nguyen</div><div class="team-role">Head of Growth</div><div class="team-bio">Former Head of Growth at incident.io. Helped scale them from 0 to 1,000+ engineering teams in 18 months.</div></div>
+    </div>
+
+    <div style="text-align:center;margin-top:64px;padding:60px;background:var(--red-light);border-radius:16px;margin-bottom:80px">
+      <h2 class="display-h3" style="margin-bottom:12px">Want to join us?</h2>
+      <p style="font-size:15px;color:var(--gray);margin-bottom:24px">We're hiring across engineering, design, and go-to-market.</p>
+      <a class="btn btn-primary" href="#" onclick="showPage('careers')">See open roles →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CAREERS PAGE -->
+<div class="page" id="page-careers">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>We're hiring</div>
+      <h1 class="display-h1" style="margin-bottom:20px">Build the future<br>of <em class="red">production</em><br>engineering</h1>
+      <p class="lead" style="margin-bottom:40px">We're a small, high-output team working on one of the hardest and most impactful problems in software. If that excites you, we want to hear from you.</p>
+    </div>
+    <div style="background:var(--cream-dark);padding:32px;border-radius:12px;margin-bottom:40px;display:flex;gap:32px;flex-wrap:wrap">
+      <div><div class="stat-num">Remote</div><div class="stat-label">First — work from anywhere</div></div>
+      <div><div class="stat-num">Small</div><div class="stat-label">Team — high impact per person</div></div>
+      <div><div class="stat-num">Equity</div><div class="stat-label">Early-stage, meaningful grants</div></div>
+    </div>
+    <div id="jobs-list" style="display:flex;flex-direction:column;gap:12px;margin-bottom:80px"></div>
+  </div>
+</div>
+
+<!-- BLOG PAGE -->
+<div class="page" id="page-blog">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>Blog</div>
+      <h1 class="display-h1" style="margin-bottom:20px">Engineering<br><em class="red">insights</em></h1>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card"><div class="blog-thumb">🔴</div><div class="blog-body"><div class="blog-cat">AI SRE</div><div class="blog-title">Why 80% of on-call alerts are downstream noise — and how AI filters them</div><div class="blog-excerpt">Most alert fatigue doesn't come from real incidents. It comes from cascades. Here's how multi-agent correlation changes that.</div><div class="blog-footer"><span class="blog-date">Apr 8, 2025</span><span class="blog-read">8 min read</span></div></div></div>
+      <div class="blog-card"><div class="blog-thumb">⚡</div><div class="blog-body"><div class="blog-cat">Product</div><div class="blog-title">Introducing Redplum's dynamic knowledge graph: your system, always up-to-date</div><div class="blog-excerpt">Every deploy, config change, and incident updates your production map in real time. Here's how we built it.</div><div class="blog-footer"><span class="blog-date">Mar 28, 2025</span><span class="blog-read">12 min read</span></div></div></div>
+      <div class="blog-card"><div class="blog-thumb">📊</div><div class="blog-body"><div class="blog-cat">Engineering</div><div class="blog-title">Measuring the ROI of AI SRE: a framework for engineering leaders</div><div class="blog-excerpt">MTTR, alert noise, on-call burnout — how to put numbers on the value of autonomous incident response.</div><div class="blog-footer"><span class="blog-date">Mar 15, 2025</span><span class="blog-read">10 min read</span></div></div></div>
+      <div class="blog-card"><div class="blog-thumb">🧪</div><div class="blog-body"><div class="blog-cat">Research</div><div class="blog-title">Parallel hypothesis testing: how Redplum investigates like a team of senior SREs</div><div class="blog-excerpt">Single-hypothesis investigation is linear. Multi-agent parallel testing is why we find root cause in minutes, not hours.</div><div class="blog-footer"><span class="blog-date">Mar 2, 2025</span><span class="blog-read">15 min read</span></div></div></div>
+      <div class="blog-card"><div class="blog-thumb">🔗</div><div class="blog-body"><div class="blog-cat">Integration</div><div class="blog-title">Redplum + Datadog: turning observability data into autonomous action</div><div class="blog-excerpt">A deep-dive into how Redplum consumes Datadog metrics, logs, and traces to drive investigation and remediation.</div><div class="blog-footer"><span class="blog-date">Feb 20, 2025</span><span class="blog-read">7 min read</span></div></div></div>
+      <div class="blog-card"><div class="blog-thumb">🎓</div><div class="blog-body"><div class="blog-cat">Culture</div><div class="blog-title">The runbook gap: why tribal knowledge is an engineering org's hidden risk</div><div class="blog-excerpt">When your most experienced SRE leaves, where does the knowledge go? The answer matters more than you think.</div><div class="blog-footer"><span class="blog-date">Feb 8, 2025</span><span class="blog-read">6 min read</span></div></div></div>
+    </div>
+    <div style="text-align:center;margin:48px 0 80px">
+      <button class="btn btn-ghost btn-lg">Load more posts</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESOURCES / EBOOKS PAGE -->
+<div class="page" id="page-resources">
+  <div class="container">
+    <div class="page-hero">
+      <div class="section-tag"><span class="dot"></span>Resources</div>
+      <h1 class="display-h1" style="margin-bottom:16px">Learn from the<br><em class="red">best</em> in production</h1>
+    </div>
+    <div class="resource-grid">
+      <div class="resource-card"><div class="resource-thumb" style="background:#1a1614;color:var(--red-mid)">📘</div><div class="resource-body"><div class="resource-type">Ebook</div><div class="resource-title">AI SRE Buyer's Guide 2025</div><div class="resource-desc">The definitive guide to evaluating, shortlisting and deploying AI SRE in your engineering org. 6 criteria, 40 pages.</div><span class="resource-cta" onclick="openEbook('AI SRE Buyer\'s Guide','6 criteria for evaluating AI SRE in production.')">Download free →</span></div></div>
+      <div class="resource-card"><div class="resource-thumb" style="background:#1a3d6b;color:#85B7EB">📊</div><div class="resource-body"><div class="resource-type">Ebook</div><div class="resource-title">AI ROI Playbook for Engineering Leaders</div><div class="resource-desc">How to measure and communicate the business value of AI investment in your engineering organization.</div><span class="resource-cta" onclick="openEbook('AI ROI Playbook','Measure ROI of AI in engineering orgs.')">Download free →</span></div></div>
+      <div class="resource-card"><div class="resource-thumb" style="background:#1a6b3c;color:#82C99A">🚀</div><div class="resource-body"><div class="resource-type">Ebook</div><div class="resource-title">AI Agents Beyond Code Generation</div><div class="resource-desc">4 practical workflows to adopt agentic AI in your engineering org, beyond the basics of code completion.</div><span class="resource-cta" onclick="openEbook('AI Agents Beyond Code','4 workflows for agentic AI.')">Download free →</span></div></div>
+      <div class="resource-card"><div class="resource-thumb" style="background:#4a1a6b;color:#CEB5D4">🎓</div><div class="resource-body"><div class="resource-type">Guide</div><div class="resource-title">Evaluating AI for Production Systems</div><div class="resource-desc">A technical evaluation framework for engineering teams assessing AI tools in production-critical environments.</div><span class="resource-cta" onclick="openEbook('Evaluating AI for Production Systems','Technical evaluation framework.')">Download free →</span></div></div>
+    </div>
+    <div style="margin-top:64px;margin-bottom:80px">
+      <div class="eyebrow">Webinars</div>
+      <h2 class="display-h2" style="margin-bottom:32px">On-demand sessions</h2>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card" style="display:flex;gap:20px;align-items:center">
+          <div style="width:48px;height:48px;border-radius:10px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">▶</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:500;margin-bottom:4px">How Kelviq made investigations 4 hours faster using Redplum</div><div style="font-size:13px;color:var(--gray)">45 min · Engineering leadership</div></div>
+          <a class="btn btn-ghost btn-sm" href="#" onclick="openEbook('Webinar Access','Watch our on-demand sessions.')">Watch →</a>
+        </div>
+        <div class="card" style="display:flex;gap:20px;align-items:center">
+          <div style="width:48px;height:48px;border-radius:10px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">▶</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:500;margin-bottom:4px">AI SRE in regulated environments: HIPAA, SOC 2, and GDPR considerations</div><div style="font-size:13px;color:var(--gray)">30 min · Compliance & Security</div></div>
+          <a class="btn btn-ghost btn-sm" href="#" onclick="openEbook('Webinar Access','Watch our compliance webinar.')">Watch →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMPT LIBRARY PAGE -->
+<div class="page" id="page-prompt-library">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>Prompt Library</div>
+      <h1 class="display-h1" style="margin-bottom:16px">Pre-built prompts<br>for <em class="red">production</em></h1>
+      <p class="lead">Ready-to-use prompts for common production engineering scenarios.</p>
+    </div>
+    <div class="prompt-grid" style="margin-bottom:80px">
+      <div class="prompt-card"><div class="prompt-tag">Investigation</div><div class="prompt-title">Investigate latency spike on service</div><div class="prompt-preview">"Investigate the p99 latency increase on payment-service over the last 2 hours. Check recent deploys, DB query times, and downstream dependencies."</div></div>
+      <div class="prompt-card"><div class="prompt-tag">Architecture</div><div class="prompt-title">Kafka cluster onboarding</div><div class="prompt-preview">"Map our Kafka cluster topology, consumer groups, partition health, and lag trends. Identify any brokers or consumers showing signs of stress."</div></div>
+      <div class="prompt-card"><div class="prompt-tag">Code</div><div class="prompt-title">Build multi-tenant rate limiter</div><div class="prompt-preview">"Design a multi-tenant rate limiter for our API gateway. Use our actual traffic patterns and Redis config as context. Include failure mode analysis."</div></div>
+      <div class="prompt-card"><div class="prompt-tag">Debugging</div><div class="prompt-title">Trace N+1 query regression</div><div class="prompt-preview">"Identify whether our recent ORM migration introduced N+1 query patterns. Check the last 5 PRs merged to main against our DB query logs."</div></div>
+      <div class="prompt-card"><div class="prompt-tag">Cost</div><div class="prompt-title">Cloud cost optimization scan</div><div class="prompt-preview">"Analyze our AWS spend over the last 30 days. Identify underutilized resources, rightsizing opportunities, and reserved instance candidates."</div></div>
+      <div class="prompt-card"><div class="prompt-tag">Deployment</div><div class="prompt-title">Safe rollout strategy</div><div class="prompt-preview">"Given our upcoming deployment of auth-service v4, generate a canary rollout plan with specific health checks, rollback triggers, and monitoring recommendations."</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY PAGE -->
+<div class="page" id="page-glossary">
+  <div class="container">
+    <div class="page-hero-left">
+      <div class="section-tag"><span class="dot"></span>Glossary</div>
+      <h1 class="display-h1" style="margin-bottom:16px">Production<br><em class="red">engineering</em><br>terms</h1>
+    </div>
+    <div class="legal-content" style="max-width:100%;margin-bottom:80px">
+      <div class="glossary-list">
+        <div class="glossary-item"><div class="glossary-term">MTTR — Mean Time to Resolution</div><div class="glossary-def">The average time it takes from when an incident is detected to when it is fully resolved. A key reliability metric. Redplum reduces MTTR by automating the investigation and triage phases.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Root Cause Analysis (RCA)</div><div class="glossary-def">The process of identifying the fundamental reason an incident occurred — not just the symptom. Effective RCA prevents recurrence. Redplum surfaces root cause automatically using evidence from logs, traces, metrics and code history.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Alert Fatigue</div><div class="glossary-def">The state where engineers receive so many alerts that they begin to ignore or miss critical ones. Usually caused by undiscriminating alerting rules and cascading downstream alerts from a single root issue.</div></div>
+        <div class="glossary-item"><div class="glossary-term">SRE — Site Reliability Engineering</div><div class="glossary-def">The practice of applying software engineering principles to infrastructure and operations problems. SREs own the reliability, scalability, and performance of production systems.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Runbook</div><div class="glossary-def">A documented procedure for handling a specific operational task or incident type. Runbooks encode the knowledge of experienced engineers. Redplum ingests and learns from runbooks to improve investigation quality.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Multi-agent system</div><div class="glossary-def">An AI architecture where multiple specialized agents collaborate to solve a problem — each handling a distinct subtask (e.g., one agent queries Datadog, another reads GitHub) while coordinating through a shared reasoning layer.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Observability</div><div class="glossary-def">The ability to understand the internal state of a system from its external outputs — typically logs, metrics, and traces. Observability is a prerequisite for effective incident investigation.</div></div>
+        <div class="glossary-item"><div class="glossary-term">P1 / P2 Incident</div><div class="glossary-def">Severity classifications for production incidents. P1 (Priority 1) is the highest severity — typically indicating customer-facing outages or data loss. P2 is significant degradation. Redplum automatically assesses incident severity and business impact during triage.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCS PAGE -->
+<div class="page" id="page-docs">
+  <div class="container" style="padding:80px 48px">
+    <div style="text-align:center;padding:80px 40px;background:var(--cream-dark);border-radius:16px">
+      <div style="font-size:56px;margin-bottom:16px">📚</div>
+      <h1 class="display-h3" style="margin-bottom:12px">Documentation</h1>
+      <p style="font-size:16px;color:var(--gray);margin-bottom:28px">Full technical docs are hosted at docs.redplum.ai</p>
+      <a class="btn btn-primary btn-lg" href="https://docs.redplum.ai" target="_blank">Go to Docs →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div class="container section-wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-tag" style="margin-bottom:20px"><span class="dot"></span>Contact</div>
+        <h2 class="display-h2" style="margin-bottom:16px">Let's talk<br><em class="red">production</em></h2>
+        <p>Whether you're evaluating Redplum, have a security question, or want to explore a partnership — we'd love to hear from you.</p>
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:20px">
+          <div class="contact-detail"><div class="contact-icon">📧</div><div><h4>Email</h4><p>hello@redplum.ai</p></div></div>
+          <div class="contact-detail"><div class="contact-icon">📅</div><div><h4>Book a demo</h4><p><a href="#" onclick="showPage('demo')" style="color:var(--red)">Schedule a 30-min intro call →</a></p></div></div>
+          <div class="contact-detail"><div class="contact-icon">💼</div><div><h4>Careers</h4><p><a href="#" onclick="showPage('careers')" style="color:var(--red)">View open roles →</a></p></div></div>
+          <div class="contact-detail"><div class="contact-icon">🔒</div><div><h4>Security disclosures</h4><p>security@redplum.ai</p></div></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:24px">Send us a message</h3>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First name</label><input class="form-input" placeholder="Jane"/></div>
+          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Work email</label><input class="form-input" type="email" placeholder="jane@company.com"/></div>
+        <div class="form-group"><label class="form-label">Company</label><input class="form-input" placeholder="Acme Corp"/></div>
+        <div class="form-group"><label class="form-label">How can we help?</label><textarea class="form-textarea" placeholder="Tell us about your team, your stack, and what brought you here..."></textarea></div>
+        <button class="btn btn-primary btn-lg" style="width:100%" onclick="contactSubmit(this)">Send message →</button>
+        <div id="contact-flash"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK A DEMO PAGE -->
+<div class="page" id="page-demo">
+  <div class="container section-wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+      <div>
+        <div class="section-tag" style="margin-bottom:20px"><span class="dot"></span>Book a demo</div>
+        <h1 class="display-h2" style="margin-bottom:16px">See Redplum handle<br>a real <em class="red">incident</em></h1>
+        <p style="font-size:16px;color:var(--gray);line-height:1.7;font-weight:300;margin-bottom:32px">In 30 minutes, we'll show you Redplum investigating a sample incident in your actual stack — not a canned demo. You'll see root cause analysis, remediation, and auto-documentation in real time.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="color:var(--red);font-size:18px;flex-shrink:0;margin-top:2px">✓</div><p style="font-size:15px;color:var(--charcoal);font-weight:300">30-minute personalized session — no slides, just product</p></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="color:var(--red);font-size:18px;flex-shrink:0;margin-top:2px">✓</div><p style="font-size:15px;color:var(--charcoal);font-weight:300">We'll connect to your stack and run a live investigation</p></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="color:var(--red);font-size:18px;flex-shrink:0;margin-top:2px">✓</div><p style="font-size:15px;color:var(--charcoal);font-weight:300">Q&A with our engineering team, not a sales rep</p></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="color:var(--red);font-size:18px;flex-shrink:0;margin-top:2px">✓</div><p style="font-size:15px;color:var(--charcoal);font-weight:300">Custom pricing and deployment plan within 24 hours</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="form-card">
+          <h3 style="font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:24px">Schedule your demo</h3>
+          <div class="calendly-wrap" style="min-height:400px">
+            <div class="calendly-placeholder">
+              <div class="big-icon">📅</div>
+              <h3>Book a time with us</h3>
+              <p>This would embed your Calendly scheduling link. Replace with:<br><code style="font-family:var(--mono);font-size:12px;background:var(--cream);padding:4px 8px;border-radius:4px">https://calendly.com/redplum-ai/demo</code></p>
+              <a class="btn btn-primary" href="https://calendly.com" target="_blank">Open Calendly →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SELF-SERVE TRIAL PAGE -->
+<div class="page" id="page-trial">
+  <div class="container" style="max-width:680px;padding:80px 48px">
+    <div class="section-tag" style="margin-bottom:20px"><span class="dot"></span>Get started free</div>
+    <h1 class="display-h2" style="margin-bottom:8px">Start your free trial</h1>
+    <p style="font-size:15px;color:var(--gray);margin-bottom:36px;font-weight:300">No credit card required. Connect your stack in minutes.</p>
+    <div class="trial-steps" id="trial-steps">
+      <div class="trial-step active"><span class="trial-step-num">1</span>Account</div>
+      <div class="trial-step"><span class="trial-step-num">2</span>Connect</div>
+      <div class="trial-step"><span class="trial-step-num">3</span>Investigate</div>
+    </div>
+    <div id="trial-step-1" class="form-card">
+      <h3 style="font-size:18px;font-weight:500;margin-bottom:20px">Create your account</h3>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First name</label><input class="form-input" placeholder="Jane"/></div>
+        <div class="form-group"><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Work email</label><input class="form-input" type="email" placeholder="jane@company.com"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" placeholder="••••••••"/></div>
+      <div class="form-group"><label class="form-label">Company</label><input class="form-input" placeholder="Acme Corp"/></div>
+      <div class="form-group"><label class="form-label">Team size</label>
+        <select class="form-select"><option>1–5 engineers</option><option>6–20 engineers</option><option>21–100 engineers</option><option>100+ engineers</option></select>
+      </div>
+      <button class="btn btn-primary btn-lg" style="width:100%" onclick="trialNext()">Continue →</button>
+      <p style="font-size:12px;color:var(--gray);margin-top:12px;text-align:center">By continuing you agree to our <a href="#" onclick="showPage('terms')" style="color:var(--red)">Terms of Service</a> and <a href="#" onclick="showPage('privacy')" style="color:var(--red)">Privacy Policy</a>.</p>
+    </div>
+    <div id="trial-step-2" class="form-card" style="display:none">
+      <h3 style="font-size:18px;font-weight:500;margin-bottom:8px">Connect your stack</h3>
+      <p style="font-size:13px;color:var(--gray);margin-bottom:20px">Choose your primary observability tool to get started. More integrations can be added later.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
+        <div class="int-card" onclick="selectIntegration(this)" style="padding:16px"><div class="int-logo">🐕</div><div class="int-name">Datadog</div></div>
+        <div class="int-card" onclick="selectIntegration(this)" style="padding:16px"><div class="int-logo">📊</div><div class="int-name">Grafana</div></div>
+        <div class="int-card" onclick="selectIntegration(this)" style="padding:16px"><div class="int-logo">🔴</div><div class="int-name">Prometheus</div></div>
+        <div class="int-card" onclick="selectIntegration(this)" style="padding:16px"><div class="int-logo">☁️</div><div class="int-name">Splunk</div></div>
+      </div>
+      <div class="form-group"><label class="form-label">API Key / Token</label><input class="form-input" type="password" placeholder="Enter your API key..."/></div>
+      <button class="btn btn-primary btn-lg" style="width:100%" onclick="trialConnect()">Connect & continue →</button>
+    </div>
+    <div id="trial-step-3" class="form-card" style="display:none;text-align:center;padding:48px">
+      <div style="font-size:56px;margin-bottom:16px">🎉</div>
+      <h3 style="font-family:var(--serif);font-size:28px;margin-bottom:8px">You're all set!</h3>
+      <p style="color:var(--gray);margin-bottom:24px;font-weight:300">Redplum is now connected to your stack. Your knowledge graph is building in the background. First investigation results typically appear within 5 minutes.</p>
+      <a class="btn btn-primary btn-lg" href="https://app.redplum.ai" target="_blank">Open Redplum →</a>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY -->
+<div class="page" id="page-privacy">
+  <div class="container section-wrap">
+    <div class="legal-content">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: April 1, 2025</p>
+      <h2>1. Information We Collect</h2>
+      <p>Redplum AI ("Redplum", "we", "us") collects information you provide directly to us when you create an account, use our services, or contact us for support. This includes name, email address, company name, and payment information.</p>
+      <p>When you connect Redplum to your production systems, we access metadata (logs, metrics, traces, service topology) solely for the purpose of providing the Service. We do not store your raw observability data on our servers.</p>
+      <h2>2. How We Use Your Information</h2>
+      <ul>
+        <li>To provide and improve the Redplum platform</li>
+        <li>To send transactional and product communications</li>
+        <li>To analyze usage patterns and product performance</li>
+        <li>To respond to your support requests</li>
+        <li>To comply with legal obligations</li>
+      </ul>
+      <h2>3. Data Sharing</h2>
+      <p>We do not sell, rent, or share your personal information with third parties for their marketing purposes. We may share your information with trusted service providers who assist in operating our platform, subject to strict confidentiality obligations.</p>
+      <h2>4. Data Security</h2>
+      <p>Redplum maintains SOC 2 Type II certification and implements industry-standard security controls including encryption at rest and in transit, access controls, and regular security audits.</p>
+      <h2>5. Your Rights (GDPR / CCPA)</h2>
+      <p>You have the right to access, correct, delete, or export your personal data. To exercise these rights, contact privacy@redplum.ai. For California residents, you may opt out of the sale of personal information (we do not sell personal information) via the "Do Not Sell My Information" link in our footer.</p>
+      <h2>6. Contact</h2>
+      <p>For privacy questions: privacy@redplum.ai | Redplum AI, Inc., 548 Market St, San Francisco, CA 94104</p>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS OF SERVICE -->
+<div class="page" id="page-terms">
+  <div class="container section-wrap">
+    <div class="legal-content">
+      <h1>Terms of Service</h1>
+      <p class="updated">Last updated: April 1, 2025</p>
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using Redplum AI ("Service"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>
+      <h2>2. Description of Service</h2>
+      <p>Redplum AI provides an AI-powered production engineering platform that autonomously investigates incidents, performs root cause analysis, and assists with remediation. The Service connects to your infrastructure with read-only access (unless write permissions are explicitly granted).</p>
+      <h2>3. Account Responsibilities</h2>
+      <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must promptly notify us of any unauthorized use.</p>
+      <h2>4. Acceptable Use</h2>
+      <ul>
+        <li>You may not use the Service for any illegal purpose</li>
+        <li>You may not attempt to reverse-engineer or compromise the Service</li>
+        <li>You may not use the Service to infringe third-party intellectual property</li>
+      </ul>
+      <h2>5. Limitation of Liability</h2>
+      <p>Redplum AI shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the Service. Our total liability shall not exceed the amount paid by you in the 12 months preceding the claim.</p>
+      <h2>6. Governing Law</h2>
+      <p>These Terms are governed by the laws of the State of California, without regard to conflict of law principles. Any disputes shall be resolved in the courts of San Francisco County, California.</p>
+      <h2>7. Contact</h2>
+      <p>legal@redplum.ai</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <svg style="width:28px;height:28px" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#B92D2D"/><ellipse cx="16" cy="16" rx="8" ry="9" fill="#E85050"/><path d="M16 7 Q19 4 21 6" stroke="#FAF8F5" stroke-width="1.5" stroke-linecap="round" fill="none"/><ellipse cx="16" cy="16" rx="4" ry="5" fill="#B92D2D" opacity="0.5"/></svg>
+        redplum.ai
+      </div>
+      <p class="footer-tagline">Production intelligence that never sleeps. AI SRE for engineering teams who care about reliability.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#" title="LinkedIn">in</a>
+        <a class="social-btn" href="#" title="X/Twitter">𝕏</a>
+        <a class="social-btn" href="#" title="GitHub">⌥</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <ul>
+        <li><a href="#" onclick="showPage('product')">Overview</a></li>
+        <li><a href="#" onclick="showPage('ai-sre')">AI SRE</a></li>
+        <li><a href="#" onclick="showPage('debugging')">Debugging Prod</a></li>
+        <li><a href="#" onclick="showPage('integrations')">Integrations</a></li>
+        <li><a href="#" onclick="showPage('security')">Security</a></li>
+        <li><a href="#" onclick="showPage('pricing')">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <ul>
+        <li><a href="#" onclick="showPage('resources')">All Resources</a></li>
+        <li><a href="#" onclick="openEbook('AI SRE Buyer\'s Guide','6 criteria for evaluating AI SRE.')">AI SRE Buyer's Guide</a></li>
+        <li><a href="#" onclick="showPage('prompt-library')">Prompt Library</a></li>
+        <li><a href="#" onclick="showPage('blog')">Blog</a></li>
+        <li><a href="#" onclick="showPage('glossary')">Glossary</a></li>
+        <li><a href="#" onclick="showPage('docs')">Docs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+        <li><a href="#" onclick="showPage('customers')">Customers</a></li>
+        <li><a href="#" onclick="showPage('careers')">Careers</a></li>
+        <li><a href="#" onclick="showPage('blog')">Blog</a></li>
+        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <ul>
+        <li><a href="#" onclick="showPage('privacy')">Privacy Policy</a></li>
+        <li><a href="#" onclick="showPage('terms')">Terms of Service</a></li>
+        <li><a href="#" style="color:#555">Do Not Sell My Info</a></li>
+        <li><a href="#" style="color:#555">Cookie Preferences</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Redplum AI, Inc. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#" onclick="showPage('privacy')">Privacy</a>
+      <a href="#" onclick="showPage('terms')">Terms</a>
+      <a href="#" style="color:#555">Do Not Sell</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── PAGE ROUTER ──
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-'+id);
+  if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  closeMobileNav();
+}
+function mobileNav(id){showPage(id);toggleMobileNav();}
+
+// ── MOBILE NAV ──
+function toggleMobileNav(){
+  const nav=document.getElementById('mobile-nav');
+  const ham=document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  const isOpen=nav.classList.contains('open');
+  ham.children[0].style.transform=isOpen?'rotate(45deg) translate(5px,5px)':'';
+  ham.children[1].style.opacity=isOpen?'0':'1';
+  ham.children[2].style.transform=isOpen?'rotate(-45deg) translate(5px,-5px)':'';
+  document.body.style.overflow=isOpen?'hidden':'';
+}
+function closeMobileNav(){
+  const nav=document.getElementById('mobile-nav');
+  const ham=document.getElementById('hamburger');
+  nav.classList.remove('open');
+  ham.children[0].style.transform='';
+  ham.children[1].style.opacity='1';
+  ham.children[2].style.transform='';
+  document.body.style.overflow='';
+}
+
+// ── COOKIE ──
+function dismissCookie(){
+  document.getElementById('cookie-banner').style.display='none';
+}
+
+// ── CAROUSEL (home) ──
+let carouselIdx=0;
+const totalSlides=4;
+function goToSlide(i){
+  carouselIdx=i;
+  const track=document.getElementById('carousel-track');
+  if(!track)return;
+  track.style.transform=`translateX(-${i*(400+24)}px)`;
+  document.querySelectorAll('#carousel-dots .carousel-dot').forEach((d,idx)=>d.classList.toggle('active',idx===i));
+}
+function nextSlide(){goToSlide((carouselIdx+1)%totalSlides);}
+function prevSlide(){goToSlide((carouselIdx-1+totalSlides)%totalSlides);}
+setInterval(nextSlide,5000);
+
+// ── CAROUSEL (SRE page) ──
+let sreIdx=0;
+function sreCarousel(dir){
+  const track=document.getElementById('sre-carousel-track');
+  if(!track)return;
+  sreIdx=Math.max(0,Math.min(2,sreIdx+dir));
+  track.style.transform=`translateX(-${sreIdx*(400+24)}px)`;
+}
+
+// ── EBOOK MODAL ──
+function openEbook(title,subtitle){
+  document.getElementById('ebook-title').textContent='Download: '+title;
+  document.getElementById('ebook-subtitle').textContent=subtitle;
+  document.getElementById('ebook-form-view').style.display='block';
+  document.getElementById('ebook-success-view').style.display='none';
+  document.getElementById('ebook-modal').classList.add('open');
+}
+function closeModal(){document.getElementById('ebook-modal').classList.remove('open');}
+function submitEbook(){
+  document.getElementById('ebook-form-view').style.display='none';
+  document.getElementById('ebook-success-view').style.display='block';
+}
+document.getElementById('ebook-modal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+
+// ── SRE STEPS TABLE ──
+const sreSteps=[
+  ['01','Alert triage','Correlates alerts across services, filters noise, ranks by severity and business impact'],
+  ['02','Plan investigation','Formulates parallel hypotheses using production context and adaptive agents'],
+  ['03','Learn from history','Analyzes historical patterns, incorporates runbooks, avoids repeat mistakes'],
+  ['04','Gather evidence','Pulls from code, infra, logs, metrics, traces — correlates across all systems'],
+  ['05','Pinpoint root cause','Surfaces RCA with confidence score, dependency chain, and evidence timeline'],
+  ['06','Recommend fixes','Validates against past incidents, generates remediation PRs with full context'],
+  ['07','Document & track','Auto-generates post-mortems, updates tickets, shares findings in Slack'],
+];
+const sreContainer=document.getElementById('sre-steps');
+if(sreContainer){
+  sreContainer.innerHTML=sreSteps.map(([n,a,w])=>`
+    <div style="display:grid;grid-template-columns:80px 1fr 1fr;border-bottom:1px solid var(--gray-pale);transition:background 0.15s" onmouseover="this.style.background='#FAF8F5'" onmouseout="this.style.background='#fff'">
+      <div style="padding:20px 24px;font-family:var(--serif);font-size:22px;font-weight:400;color:var(--red-light)">${n}</div>
+      <div style="padding:20px 24px;font-size:14px;font-weight:500;color:var(--black);border-left:1px solid var(--gray-pale)">${a}</div>
+      <div style="padding:20px 24px;font-size:13px;color:var(--gray);font-weight:300;border-left:1px solid var(--gray-pale)">${w}</div>
+    </div>`).join('');
+}
+
+// ── INTEGRATIONS ──
+const integrations=[
+  {name:'Grafana',cat:'telemetry',icon:'📈'},
+  {name:'Datadog',cat:'telemetry',icon:'🐕'},
+  {name:'Prometheus',cat:'telemetry',icon:'🔥'},
+  {name:'Splunk',cat:'telemetry',icon:'🔍'},
+  {name:'Chronosphere',cat:'telemetry',icon:'⏱'},
+  {name:'Kloudfuse',cat:'telemetry',icon:'☁️'},
+  {name:'New Relic',cat:'telemetry',icon:'📡'},
+  {name:'Kubernetes',cat:'infra',icon:'⚙️'},
+  {name:'AWS',cat:'infra',icon:'🟧'},
+  {name:'GCP',cat:'infra',icon:'🔵'},
+  {name:'Azure',cat:'infra',icon:'🔷'},
+  {name:'Terraform',cat:'infra',icon:'🏗'},
+  {name:'GitHub',cat:'code',icon:'🐙'},
+  {name:'GitLab',cat:'code',icon:'🦊'},
+  {name:'Jenkins',cat:'code',icon:'🤵'},
+  {name:'CircleCI',cat:'code',icon:'🔄'},
+  {name:'Slack',cat:'chat',icon:'💬'},
+  {name:'PagerDuty',cat:'chat',icon:'📟'},
+  {name:'OpsGenie',cat:'chat',icon:'🔔'},
+  {name:'Jira',cat:'pm',icon:'🎯'},
+  {name:'Linear',cat:'pm',icon:'📐'},
+  {name:'Shortcut',cat:'pm',icon:'📋'},
+  {name:'Snyk',cat:'security',icon:'🛡️'},
+  {name:'Wiz',cat:'security',icon:'🧙'},
+  {name:'Notion',cat:'knowledge',icon:'📓'},
+  {name:'Confluence',cat:'knowledge',icon:'📚'},
+  {name:'Runbooks',cat:'knowledge',icon:'📖'},
+];
+function renderIntegrations(filter){
+  const grid=document.getElementById('int-grid');
+  if(!grid)return;
+  const filtered=filter==='all'?integrations:integrations.filter(i=>i.cat===filter);
+  grid.innerHTML=filtered.map(i=>`<div class="int-card"><div class="int-logo">${i.icon}</div><div class="int-name">${i.name}</div><div class="int-cat">${i.cat}</div></div>`).join('');
+}
+function filterInts(cat,btn){
+  document.querySelectorAll('.int-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderIntegrations(cat);
+}
+renderIntegrations('all');
+
+// ── JOBS ──
+const jobs=[
+  {title:'AI Engineer',dept:'Engineering',type:'Full-time · Remote'},
+  {title:'Product Designer',dept:'Design',type:'Full-time · Remote'},
+  {title:'Product Manager',dept:'Product',type:'Full-time · Remote'},
+  {title:'Growth Engineer',dept:'Engineering',type:'Full-time · Remote'},
+  {title:'Product Marketing Manager',dept:'Marketing',type:'Full-time · Remote'},
+  {title:'Research Engineer',dept:'Research',type:'Full-time · Remote'},
+  {title:'Software Engineer — Frontend',dept:'Engineering',type:'Full-time · Remote'},
+];
+const jobsList=document.getElementById('jobs-list');
+if(jobsList){
+  jobsList.innerHTML=jobs.map(j=>`
+    <div class="job-card">
+      <span class="job-dept">${j.dept}</span>
+      <div style="flex:1">
+        <div class="job-title">${j.title}</div>
+        <div class="job-meta">${j.type}</div>
+      </div>
+      <span class="job-arrow">→</span>
+    </div>`).join('');
+}
+
+// ── CONTACT FORM ──
+function contactSubmit(btn){
+  btn.textContent='Sent! We\'ll be in touch shortly ✓';
+  btn.style.background='#1a6b3c';
+  const flash=document.getElementById('contact-flash');
+  if(flash){flash.className='flash success';flash.textContent='Message received. Expect to hear from us within one business day.';}
+}
+
+// ── TRIAL FLOW ──
+let trialStep=1;
+function trialNext(){
+  document.getElementById('trial-step-1').style.display='none';
+  document.getElementById('trial-step-2').style.display='block';
+  const steps=document.querySelectorAll('#trial-steps .trial-step');
+  steps[0].classList.remove('active');steps[0].classList.add('done');
+  steps[1].classList.add('active');
+  trialStep=2;
+}
+function trialConnect(){
+  document.getElementById('trial-step-2').style.display='none';
+  document.getElementById('trial-step-3').style.display='block';
+  const steps=document.querySelectorAll('#trial-steps .trial-step');
+  steps[1].classList.remove('active');steps[1].classList.add('done');
+  steps[2].classList.add('active');
+}
+function selectIntegration(el){
+  document.querySelectorAll('#trial-step-2 .int-card').forEach(c=>c.style.borderColor='');
+  el.style.borderColor='var(--red)';
+}
+</script>
+</body>
+</html>
