@@ -107,7 +107,7 @@ em.plum{color:var(--plum);font-style:italic;font-family:var(--serif)}
 
 /* LOGO STRIP */
 .logo-strip{border-top:var(--border);border-bottom:var(--border);padding:20px 0;overflow:hidden;position:relative;background:var(--white)}
-.logo-strip-label{text-align:center;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-bottom:16px}
+.logo-strip-label{text-align:center;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-bottom:16px;padding:0 20px}
 .logo-strip::before,.logo-strip::after{content:'';position:absolute;top:0;width:100px;height:100%;z-index:2}
 .logo-strip::before{left:0;background:linear-gradient(to right,var(--white),transparent)}
 .logo-strip::after{right:0;background:linear-gradient(to left,var(--white),transparent)}
@@ -417,8 +417,10 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   .nav-logo{font-size:17px}
 
   /* LAYOUT */
-  .container{padding:0 16px}
+  .container{padding:0 20px}
+  html,body{overflow-x:hidden;max-width:100%}
   .section-wrap{padding:40px 0}
+  .page-hero,.page-hero-left{padding-left:4px;padding-right:4px}
   .page-hero{padding:44px 0 32px}
   .page-hero-left{padding:44px 0 32px}
 
@@ -458,8 +460,8 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 
   /* TESTIMONIALS */
   .testimonials-wrap{overflow:hidden}
-  .testimonial-track{gap:0}
-  .testimonial-card{min-width:100%;width:100%;padding:24px;border-radius:12px}
+  .testimonial-track{gap:0;display:flex}
+  .testimonial-card{min-width:100%;max-width:100%;width:100%;flex-shrink:0;padding:22px;border-radius:12px}
   .testimonial-quote{font-size:15px}
 
   /* STEPS */
@@ -754,53 +756,52 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
     <!-- Platform group -->
     <div class="mobile-nav-group">
       <div class="mobile-nav-parent" onclick="toggleMobileGroup(this)">
-        Platform
+        Product
         <svg class="mobile-nav-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l4 4 4-4"/></svg>
       </div>
       <div class="mobile-nav-children">
-        <div class="mobile-nav-child" onclick="mobileNav('product')">Platform overview</div>
-        <div class="mobile-nav-child" onclick="mobileNav('ai-sre')">Incident response</div>
-        <div class="mobile-nav-child" onclick="mobileNav('debugging')">Production debugging</div>
+        <div class="mobile-nav-child" onclick="mobileNav('product')">Product overview</div>
+        <div class="mobile-nav-child" onclick="mobileNav('ai-sre')">AI SRE</div>
+        <div class="mobile-nav-child" onclick="mobileNav('debugging')">Debugging production</div>
         <div class="mobile-nav-child" onclick="mobileNav('integrations')">Integrations</div>
       </div>
     </div>
 
-    <div class="mobile-nav-link" onclick="mobileNav('customers')">Case Studies</div>
+    <div class="mobile-nav-link" onclick="mobileNav('customers')">Customers</div>
 
     <!-- Learn group -->
     <div class="mobile-nav-group">
       <div class="mobile-nav-parent" onclick="toggleMobileGroup(this)">
-        Learn
+        Resources
         <svg class="mobile-nav-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l4 4 4-4"/></svg>
       </div>
       <div class="mobile-nav-children">
-        <div class="mobile-nav-child" onclick="mobileNav('resources')">Guides &amp; Playbooks</div>
-        <div class="mobile-nav-child" onclick="mobileNav('blog')">The Wire</div>
-        <div class="mobile-nav-child" onclick="mobileNav('prompt-library')">Runbook Accelerator</div>
-        <div class="mobile-nav-child" onclick="mobileNav('docs')">Documentation</div>
-        <div class="mobile-nav-child" onclick="mobileNav('glossary')">Operations Lexicon</div>
+        <div class="mobile-nav-child" onclick="mobileNav('resources')">Resources</div>
+        <div class="mobile-nav-child" onclick="mobileNav('blog')">Blog</div>
+        <div class="mobile-nav-child" onclick="mobileNav('prompt-library')">Prompt library</div>
+        <div class="mobile-nav-child" onclick="mobileNav('docs')">Docs</div>
+        <div class="mobile-nav-child" onclick="mobileNav('glossary')">Glossary</div>
       </div>
     </div>
 
-    <div class="mobile-nav-link" onclick="mobileNav('security')">Trust</div>
+    <div class="mobile-nav-link" onclick="mobileNav('security')">Security</div>
 
     <!-- Our Story group -->
     <div class="mobile-nav-group">
       <div class="mobile-nav-parent" onclick="toggleMobileGroup(this)">
-        Our Story
+        Company
         <svg class="mobile-nav-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l4 4 4-4"/></svg>
       </div>
       <div class="mobile-nav-children">
-        <div class="mobile-nav-child" onclick="mobileNav('about')">Who we are</div>
-        <div class="mobile-nav-child" onclick="mobileNav('careers')">Work with us</div>
-        <div class="mobile-nav-child" onclick="mobileNav('contact')">Get in touch</div>
+        <div class="mobile-nav-child" onclick="mobileNav('about')">About us</div>
+        <div class="mobile-nav-child" onclick="mobileNav('careers')">Careers</div>
+        <div class="mobile-nav-child" onclick="mobileNav('contact')">Contact</div>
       </div>
     </div>
 
     <div class="mobile-nav-link" onclick="mobileNav('pricing')">Pricing</div>
   </div>
   <div class="mobile-nav-ctas">
-    <a class="btn btn-ghost" style="text-align:center" href="#" onclick="mobileNav('pricing')">Get pricing</a>
     <a class="btn btn-primary" style="text-align:center" href="#" onclick="mobileNav('demo')">See it live</a>
   </div>
 </div>
@@ -1865,10 +1866,18 @@ function closeMobileNav(){
 
 // CAROUSEL
 var carouselIdx=0;
+function getCardOffset(trackId,idx){
+  if(window.innerWidth<=768){return idx*100+'%';}
+  var track=document.getElementById(trackId);
+  var card=track&&track.querySelector('.testimonial-card');
+  var w=card?(card.offsetWidth+24):424;
+  return (idx*w)+'px';
+}
 function goToSlide(i){
   carouselIdx=i;
   var track=document.getElementById('carousel-track');
-  if(track)track.style.transform='translateX(-'+(i*424)+'px)';
+  if(!track)return;
+  track.style.transform='translateX(-'+getCardOffset('carousel-track',i)+')';
   document.querySelectorAll('#carousel-dots .carousel-dot').forEach(function(d,idx){d.classList.toggle('active',idx===i);});
 }
 function nextSlide(){goToSlide((carouselIdx+1)%4);}
@@ -1880,7 +1889,7 @@ function sreCarousel(dir){
   var track=document.getElementById('sre-carousel-track');
   if(!track)return;
   sreIdx=Math.max(0,Math.min(2,sreIdx+dir));
-  track.style.transform='translateX(-'+(sreIdx*424)+'px)';
+  track.style.transform='translateX(-'+getCardOffset('sre-carousel-track',sreIdx)+')';
 }
 
 // EBOOK MODAL
