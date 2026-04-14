@@ -73,7 +73,7 @@ ul{list-style:none}
 @keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
 /* SHARED */
-.container{max-width:1200px;margin:0 auto;padding:0 48px}
+.container{max-width:1200px;margin:0 auto;padding:0 48px;box-sizing:border-box}
 .section-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--plum);background:var(--plum-cream);padding:5px 12px;border-radius:99px;margin-bottom:20px}
 .tag-dot{width:6px;height:6px;border-radius:50%;background:var(--plum);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
@@ -409,6 +409,13 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
 
 /* ── MOBILE (≤768px) ── */
 @media(max-width:768px){
+  /* GLOBAL CONTENT PADDING — ensures nothing touches screen edges */
+  .container{padding:0 20px!important}
+  .container .page-hero,.container .page-hero-left{padding-left:0;padding-right:0}
+  /* Full-bleed sections: push inner content away from edges */
+  .section-wrap>.eyebrow,.section-wrap>.display-h2,.section-wrap>.display-h1,.section-wrap>.lead,
+  .section-wrap>p,.section-wrap>h2,.section-wrap>h1{padding-left:0;padding-right:0}
+
   /* NAV */
   #navbar{padding:0 16px;height:52px}
   .nav-links,.nav-actions .btn-ghost{display:none}
@@ -420,7 +427,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   .container{padding:0 20px}
   html,body{overflow-x:hidden;max-width:100%}
   .section-wrap{padding:40px 0}
-  .page-hero,.page-hero-left{padding-left:4px;padding-right:4px}
+  .page-hero,.page-hero-left{padding-left:0;padding-right:0}
   .page-hero{padding:44px 0 32px}
   .page-hero-left{padding:44px 0 32px}
 
@@ -577,6 +584,35 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   /* STORY SIDEBAR below content */
   .story-content blockquote{font-size:16px}
 }
+
+
+  /* Fix inline-padded full-bleed wrappers */
+  .story-header{padding:28px 20px!important;border-radius:12px}
+  [style*="padding:72px 0"],[style*="padding:64px 0"],[style*="padding:56px 0"],
+  [style*="padding:52px 0"],[style*="padding:48px 0"]{padding-left:0!important;padding-right:0!important}
+  /* sections with inline horizontal padding */
+  [style*="padding:72px 48px"]{padding:40px 20px!important}
+  [style*="padding:56px 48px"]{padding:36px 20px!important}
+  [style*="padding:48px 48px"]{padding:32px 20px!important}
+  [style*="padding:44px 48px"]{padding:28px 20px!important}
+  /* footer */
+  .footer-top{padding:36px 20px!important}
+  .footer-bottom{padding:14px 20px!important}
+  /* hero full-bleed bg sections */
+  #page-ai-sre>div:first-child .container,
+  #page-home>div[style*="background:var(--plum"]{padding-left:20px!important;padding-right:20px!important}
+  /* how it works / capabilities section */
+  .eyebrow{display:block}
+  /* legal content */
+  .legal-content{padding:40px 0}
+  /* blog article */
+  .blog-article .body p,.blog-article .body h2,.blog-article .body li{padding:0}
+  /* resource newsletter strip */
+  #page-resources div[style*="padding:44px 48px"]{padding:28px 20px!important}
+  /* pricing page hero */
+  #page-pricing .container{padding:0 20px!important}
+  /* contact page */
+  #page-contact .container{padding:0 20px!important}
 
 /* ── SMALL PHONES (≤420px) ── */
 @media(max-width:420px){
@@ -1335,26 +1371,9 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
       <h1 class="display-h1" style="margin-bottom:18px">We&rsquo;re building<br>the AI that runs<br><em class="plum">production</em></h1>
       <p class="lead" style="margin-bottom:36px">Redplum was founded by engineers who spent years watching brilliant colleagues burn out managing production systems. We believe AI should absorb that operational complexity so humans can focus on what only humans can do.</p>
     </div>
-    <div style="background:var(--plum-deeper);border-radius:16px;padding:48px;margin-bottom:56px;display:grid;grid-template-columns:1fr 1fr;gap:44px">
-      <div>
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-bottom:14px">Our mission</div>
-        <p style="font-family:var(--serif);font-size:22px;font-weight:300;color:#fff;line-height:1.55;font-style:italic">&ldquo;Help every engineer run software effortlessly so they can spend their time building what matters.&rdquo;</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:20px">
-        <div><div style="font-family:var(--serif);font-size:38px;color:var(--plum-pale)">2023</div><div style="font-size:13px;color:#888">Founded</div></div>
-        <div><div style="font-family:var(--serif);font-size:38px;color:var(--plum-pale)">$12M</div><div style="font-size:13px;color:#888">Seed funding raised</div></div>
-        <div><div style="font-family:var(--serif);font-size:38px;color:var(--plum-pale)">4</div><div style="font-size:13px;color:#888">Design partners in production</div></div>
-      </div>
-    </div>
-    <div class="eyebrow">Our team</div>
-    <h2 class="display-h2" style="margin-bottom:36px">Built by people who<br>lived the <em class="plum">problem</em></h2>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-avatar">AR</div><div class="team-name">Asha Rajan</div><div class="team-role">CEO &amp; Co-founder</div><div class="team-bio">Former VP Eng at Splunk. Led observability products serving Fortune 500s. Co-creator of OpenTelemetry.</div></div>
-      <div class="team-card"><div class="team-avatar">DM</div><div class="team-name">Dev Mehta</div><div class="team-role">CTO &amp; Co-founder</div><div class="team-bio">Previously Staff Engineer at Cloudflare. Built global edge infrastructure at scale. PhD in distributed systems.</div></div>
-      <div class="team-card"><div class="team-avatar">PL</div><div class="team-name">Priya Lin</div><div class="team-role">Head of AI Research</div><div class="team-bio">Former research lead at DeepMind. Specialised in multi-agent systems and production-scale reasoning.</div></div>
-      <div class="team-card"><div class="team-avatar">TK</div><div class="team-name">Tomas Kovac</div><div class="team-role">Head of Product</div><div class="team-bio">Led product at PagerDuty&rsquo;s AI initiative. 10+ years building developer tools and incident management platforms.</div></div>
-      <div class="team-card"><div class="team-avatar">SA</div><div class="team-name">Sara Andrade</div><div class="team-role">Head of Design</div><div class="team-bio">Previously at Linear and Vercel. Obsessed with making complex systems feel intuitive for engineers.</div></div>
-      <div class="team-card"><div class="team-avatar">JN</div><div class="team-name">James Nguyen</div><div class="team-role">Head of Growth</div><div class="team-bio">Former Head of Growth at incident.io. Helped scale them from 0 to 1,000+ engineering teams in 18 months.</div></div>
+    <div style="background:var(--plum-deeper);border-radius:16px;padding:48px;margin-bottom:56px">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-bottom:14px">Our mission</div>
+      <p style="font-family:var(--serif);font-size:22px;font-weight:300;color:#fff;line-height:1.55;font-style:italic">&ldquo;Help every engineer run software effortlessly so they can spend their time building what matters.&rdquo;</p>
     </div>
     <div style="text-align:center;margin-top:56px;padding:52px;background:var(--plum-cream);border-radius:16px;margin-bottom:72px">
       <h2 class="display-h3" style="margin-bottom:10px">Want to join us?</h2>
@@ -1757,7 +1776,11 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
       <div class="footer-social">
         <a class="social-btn" href="https://www.linkedin.com/company/redplumai" target="_blank" title="LinkedIn">in</a>
         <a class="social-btn" href="https://x.com/redplumai" target="_blank" title="X / Twitter">&#120143;</a>
-        <a class="social-btn" href="https://www.youtube.com/@redplumai" target="_blank" title="YouTube">&#9654;</a>
+        <a class="social-btn" href="https://www.youtube.com/@redplumai" target="_blank" title="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6a3 3 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+          </svg>
+        </a>
         <a class="social-btn" href="https://www.instagram.com/redplumai/" target="_blank" title="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
