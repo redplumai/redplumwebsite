@@ -319,13 +319,6 @@ em.plum{color:var(--plum);font-style:italic;font-family:var(--serif)}
 .calendly-placeholder h3{font-family:var(--serif);font-size:26px;color:var(--black);margin-bottom:8px}
 .calendly-placeholder p{font-size:15px;line-height:1.6;margin-bottom:24px}
 
-/* TRIAL */
-.trial-steps{display:flex;gap:0;margin-bottom:36px;border:var(--border);border-radius:10px;overflow:hidden}
-.trial-step{flex:1;padding:14px;text-align:center;font-size:13px;color:var(--gray);border-right:var(--border)}
-.trial-step:last-child{border-right:none}
-.trial-step.active{background:var(--plum-cream);color:var(--plum);font-weight:500}
-.trial-step.done{background:var(--page-bg);color:var(--black)}
-.trial-step-num{font-size:18px;font-weight:500;display:block;margin-bottom:3px;font-family:var(--serif)}
 
 /* FOOTER */
 footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
@@ -558,7 +551,6 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
   .doc-content pre{font-size:11px;padding:14px}
 
   /* TRIAL */
-  #page-trial .container{padding:36px 16px}
 
   /* PRICING page hero */
   #page-pricing .page-hero{padding:36px 0 20px}
@@ -854,7 +846,6 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
         <p class="lead" style="margin-bottom:36px">Redplum investigates incidents, fixes them with generated PRs and runbooks, and documents everything, so your engineers focus on what matters.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo &#8594;</a>
-          <a class="btn btn-ghost btn-lg" href="#" onclick="showPage('trial')">Try for free</a>
         </div>
         <div style="display:flex;gap:32px;margin-top:44px;padding-top:36px;border-top:var(--border)">
           <div><div class="stat-num">100%</div><div class="stat-label">Alerts investigated</div></div>
@@ -997,7 +988,6 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
       <p style="font-size:17px;color:#888;margin-bottom:32px;font-weight:300">Join engineering teams at ParityDeals, Kelviq, Hootz AI, and Gradeazy.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
         <a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a demo &#8594;</a>
-        <a class="btn btn-lg" href="#" onclick="showPage('trial')" style="background:transparent;color:#fff;border:1.5px solid #3D2060;border-radius:9px;padding:13px 28px;font-size:15px">Try free</a>
       </div>
     </div>
   </div>
@@ -1340,7 +1330,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
         <div><div class="plan-name">Starter</div><div class="plan-price">Free <span>forever</span></div></div>
         <div class="plan-desc">Perfect for small teams getting started with AI-powered incident response.</div>
         <div class="check-list"><div class="check-item">Up to 3 engineers</div><div class="check-item">100 alert investigations/mo</div><div class="check-item">3 integrations</div><div class="check-item">Slack notifications</div><div class="check-item">7-day incident history</div></div>
-        <a class="btn btn-ghost" href="#" onclick="showPage('trial')" style="text-align:center">Get started free</a>
+        <a class="btn btn-ghost" href="#" onclick="showPage('demo')" style="text-align:center">Talk to us</a>
       </div>
       <div class="pricing-card featured">
         <div class="feat-badge">Most popular</div>
@@ -1666,56 +1656,6 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:80px}
           <a class="btn btn-primary btn-lg" href="https://calendly.com/theredplumai/30min" target="_blank">Open Calendly &#8594;</a>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- TRIAL -->
-<div class="page" id="page-trial">
-  <div class="container" style="max-width:640px;padding:72px 48px">
-    <div class="section-tag" style="margin-bottom:18px"><span class="tag-dot"></span>Get started free</div>
-    <h1 class="display-h2" style="margin-bottom:8px">Start your free trial</h1>
-    <p style="font-size:15px;color:var(--gray);margin-bottom:32px;font-weight:300">No credit card required. Connect your stack in minutes.</p>
-    <div class="trial-steps">
-      <div class="trial-step active" id="ts1"><span class="trial-step-num">1</span>Account</div>
-      <div class="trial-step" id="ts2"><span class="trial-step-num">2</span>Connect</div>
-      <div class="trial-step" id="ts3"><span class="trial-step-num">3</span>Investigate</div>
-    </div>
-    <div id="trial-step-1" class="form-card">
-      <h3 style="font-size:18px;font-weight:500;margin-bottom:18px">Create your account</h3>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">First name <span class="req">*</span></label><input class="form-input" id="tr-fname" placeholder="Jane"/></div>
-        <div class="form-group"><label class="form-label">Last name <span class="req">*</span></label><input class="form-input" id="tr-lname" placeholder="Smith"/></div>
-      </div>
-      <div class="form-group"><label class="form-label">Work email <span class="req">*</span></label><input class="form-input" id="tr-email" type="email" placeholder="jane@company.com"/></div>
-      <div class="form-group"><label class="form-label">Password <span class="req">*</span></label><input class="form-input" id="tr-pass" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"/></div>
-      <div class="form-group"><label class="form-label">Company <span class="req">*</span></label><input class="form-input" id="tr-company" placeholder="Acme Corp"/></div>
-      <div class="form-group"><label class="form-label">Team size</label><select class="form-select" id="tr-size"><option>1-5 engineers</option><option>6-20 engineers</option><option>21-100 engineers</option><option>100+ engineers</option></select></div>
-      <div id="trial-err-1" class="flash error" style="display:none"></div>
-      <button class="btn btn-primary btn-lg" style="width:100%" onclick="trialNext()">Continue &#8594;</button>
-      <p style="font-size:12px;color:var(--gray);margin-top:12px;text-align:center">By continuing you agree to our <a href="#" onclick="showPage('terms')" style="color:var(--plum)">Terms</a> and <a href="#" onclick="showPage('privacy')" style="color:var(--plum)">Privacy Policy</a>.</p>
-    </div>
-    <div id="trial-step-2" class="form-card" style="display:none">
-      <h3 style="font-size:18px;font-weight:500;margin-bottom:7px">Connect your stack</h3>
-      <p style="font-size:13px;color:var(--gray);margin-bottom:18px">Choose your primary observability tool to get started.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px" id="trial-int-grid">
-        <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#128021;</div><div class="int-name">Datadog</div></div>
-        <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#128202;</div><div class="int-name">Grafana</div></div>
-        <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#128308;</div><div class="int-name">Prometheus</div></div>
-        <div class="int-card" onclick="selectIntegration(this)" style="padding:14px"><div class="int-logo">&#9729;&#65039;</div><div class="int-name">Splunk</div></div>
-      </div>
-      <div class="form-group"><label class="form-label">API Key / Token</label><input class="form-input" id="tr-apikey" type="password" placeholder="Enter your API key..."/></div>
-      <div id="trial-err-2" class="flash error" style="display:none"></div>
-      <div style="display:flex;gap:10px">
-        <button class="btn btn-ghost btn-lg" style="flex:0 0 auto" onclick="trialBack(1)">&#8592; Back</button>
-        <button class="btn btn-primary btn-lg" style="flex:1" onclick="trialConnect()">Connect and continue &#8594;</button>
-      </div>
-    </div>
-    <div id="trial-step-3" class="form-card" style="display:none;text-align:center;padding:44px">
-      <div style="font-size:52px;margin-bottom:14px">&#127881;</div>
-      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:8px">You&rsquo;re all set!</h3>
-      <p style="color:var(--gray);margin-bottom:22px;font-weight:300">Redplum is now connected to your stack. Your knowledge graph is building in the background.</p>
-      <a class="btn btn-primary btn-lg" href="https://app.redplum.ai" target="_blank">Open Redplum &#8594;</a>
     </div>
   </div>
 </div>
@@ -2132,43 +2072,6 @@ function contactSubmit(btn){
   f.className='flash success';f.textContent='Message received. Expect to hear from us within one business day at hello@redplum.ai';f.style.display='block';
 }
 
-// TRIAL FLOW
-function trialNext(){
-  var fname=document.getElementById('tr-fname').value.trim();
-  var lname=document.getElementById('tr-lname').value.trim();
-  var email=document.getElementById('tr-email').value.trim();
-  var pass=document.getElementById('tr-pass').value;
-  var company=document.getElementById('tr-company').value.trim();
-  var err=document.getElementById('trial-err-1');
-  if(!fname||!lname||!email||!pass||!company){
-    err.textContent='Please fill in all required fields before continuing.';err.style.display='block';return;
-  }
-  if(!email.includes('@')){err.textContent='Please enter a valid work email address.';err.style.display='block';return;}
-  if(pass.length<8){err.textContent='Password must be at least 8 characters.';err.style.display='block';return;}
-  err.style.display='none';
-  document.getElementById('trial-step-1').style.display='none';
-  document.getElementById('trial-step-2').style.display='block';
-  document.getElementById('ts1').classList.remove('active');document.getElementById('ts1').classList.add('done');
-  document.getElementById('ts2').classList.add('active');
-}
-function trialBack(step){
-  if(step===1){
-    document.getElementById('trial-step-2').style.display='none';
-    document.getElementById('trial-step-1').style.display='block';
-    document.getElementById('ts2').classList.remove('active');
-    document.getElementById('ts1').classList.remove('done');document.getElementById('ts1').classList.add('active');
-  }
-}
-function trialConnect(){
-  var sel=document.querySelector('#trial-int-grid .int-card[style*="var(--plum)"]');
-  var err=document.getElementById('trial-err-2');
-  if(!sel){err.textContent='Please select an observability tool to connect.';err.style.display='block';return;}
-  err.style.display='none';
-  document.getElementById('trial-step-2').style.display='none';
-  document.getElementById('trial-step-3').style.display='block';
-  document.getElementById('ts2').classList.remove('active');document.getElementById('ts2').classList.add('done');
-  document.getElementById('ts3').classList.add('active');
-}
 function selectIntegration(el){
   document.querySelectorAll('#trial-step-2 .int-card').forEach(function(c){c.style.borderColor='';});
   el.style.borderColor='var(--plum)';
