@@ -160,7 +160,7 @@ em.plum{color:var(--plum);font-style:italic;font-family:var(--serif)}
 .int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .int-card{background:var(--white);border:var(--border);border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;transition:all var(--ease);display:flex;flex-direction:column;align-items:center;gap:8px}
 .int-card:hover{border-color:var(--plum);box-shadow:0 4px 16px rgba(94,45,142,0.1)}
-.int-logo{width:40px;height:40px;border-radius:8px;background:var(--page-bg);display:flex;align-items:center;justify-content:center;font-size:18px}
+.int-logo{width:52px;height:52px;border-radius:10px;background:var(--white);border:var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;padding:6px}
 .int-name{font-size:12px;font-weight:500;color:var(--black)}
 .int-cat{font-size:11px;color:var(--gray)}
 
@@ -1581,7 +1581,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
 
 <!-- CONTACT -->
 <div class="page" id="page-contact">
-  <div class="container section-wrap">
+  <div class="container section-wrap" style="padding-top:120px">
     <div class="contact-grid">
       <div>
         <h2 class="display-h2" style="margin-bottom:14px">Let&rsquo;s talk<br><em class="plum">production</em></h2>
@@ -1610,7 +1610,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
 
 <!-- DEMO -->
 <div class="page" id="page-demo">
-  <div class="container section-wrap">
+  <div class="container section-wrap" style="padding-top:120px">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
       <div>
         <h1 class="display-h2" style="margin-bottom:14px">See Redplum handle<br>a real <em class="plum">incident</em></h1>
@@ -2075,21 +2075,35 @@ if(sreContainer){
 
 // INTEGRATIONS
 var integrations=[
-  {name:'Grafana',cat:'telemetry',icon:'&#128202;'},{name:'Datadog',cat:'telemetry',icon:'&#128021;'},
-  {name:'Prometheus',cat:'telemetry',icon:'&#128308;'},{name:'Splunk',cat:'telemetry',icon:'&#128269;'},
-  {name:'Chronosphere',cat:'telemetry',icon:'&#8987;'},{name:'Kloudfuse',cat:'telemetry',icon:'&#9729;&#65039;'},
-  {name:'New Relic',cat:'telemetry',icon:'&#128225;'},{name:'Kubernetes',cat:'infra',icon:'&#9881;&#65039;'},
-  {name:'AWS',cat:'infra',icon:'&#128247;'},{name:'GCP',cat:'infra',icon:'&#128260;'},
-  {name:'Azure',cat:'infra',icon:'&#128163;'},{name:'Terraform',cat:'infra',icon:'&#127959;'},
-  {name:'GitHub',cat:'code',icon:'&#128025;'},{name:'GitLab',cat:'code',icon:'&#129418;'},
-  {name:'Jenkins',cat:'code',icon:'&#127774;'},{name:'CircleCI',cat:'code',icon:'&#128260;'},
-  {name:'Slack',cat:'chat',icon:'&#128172;'},{name:'PagerDuty',cat:'chat',icon:'&#128223;'},
-  {name:'OpsGenie',cat:'chat',icon:'&#128276;'},{name:'Jira',cat:'pm',icon:'&#127919;'},
-  {name:'Linear',cat:'pm',icon:'&#128208;'},{name:'Shortcut',cat:'pm',icon:'&#128203;'},
-  {name:'Snyk',cat:'security',icon:'&#128737;&#65039;'},{name:'Wiz',cat:'security',icon:'&#129497;'},
-  {name:'Notion',cat:'knowledge',icon:'&#128211;'},{name:'Confluence',cat:'knowledge',icon:'&#128218;'},
-  {name:'Runbooks',cat:'knowledge',icon:'&#128218;'},
+  {name:'Grafana',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/grafana" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Datadog',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/datadog" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Prometheus',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/prometheus" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Splunk',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/splunk" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Chronosphere',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/chronosphere/6B3FA0" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Kloudfuse',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/cloudflare" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'New Relic',cat:'telemetry',icon:'<img src="https://cdn.simpleicons.org/newrelic" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Kubernetes',cat:'infra',icon:'<img src="https://cdn.simpleicons.org/kubernetes" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'AWS',cat:'infra',icon:'<img src="https://cdn.simpleicons.org/amazonaws" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'GCP',cat:'infra',icon:'<img src="https://cdn.simpleicons.org/googlecloud" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Azure',cat:'infra',icon:'<img src="https://cdn.simpleicons.org/microsoftazure" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Terraform',cat:'infra',icon:'<img src="https://cdn.simpleicons.org/terraform" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'GitHub',cat:'code',icon:'<img src="https://cdn.simpleicons.org/github/1A0A2E" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'GitLab',cat:'code',icon:'<img src="https://cdn.simpleicons.org/gitlab" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Jenkins',cat:'code',icon:'<img src="https://cdn.simpleicons.org/jenkins" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'CircleCI',cat:'code',icon:'<img src="https://cdn.simpleicons.org/circleci/1A0A2E" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Slack',cat:'chat',icon:'<img src="https://cdn.simpleicons.org/slack" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'PagerDuty',cat:'chat',icon:'<img src="https://cdn.simpleicons.org/pagerduty" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'OpsGenie',cat:'chat',icon:'<img src="https://cdn.simpleicons.org/atlassian" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Jira',cat:'pm',icon:'<img src="https://cdn.simpleicons.org/jira" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Linear',cat:'pm',icon:'<img src="https://cdn.simpleicons.org/linear/1A0A2E" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Shortcut',cat:'pm',icon:'<img src="https://cdn.simpleicons.org/shortcut" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Snyk',cat:'security',icon:'<img src="https://cdn.simpleicons.org/snyk" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Wiz',cat:'security',icon:'<img src="https://cdn.simpleicons.org/wiz" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Notion',cat:'knowledge',icon:'<img src="https://cdn.simpleicons.org/notion/1A0A2E" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Confluence',cat:'knowledge',icon:'<img src="https://cdn.simpleicons.org/confluence" style="width:36px;height:36px;object-fit:contain">'},
+  {name:'Runbooks',cat:'knowledge',icon:'<img src="https://cdn.simpleicons.org/readthedocs/5E2D8E" style="width:36px;height:36px;object-fit:contain">'}
 ];
+
 function renderIntegrations(filter){
   var grid=document.getElementById('int-grid');
   if(!grid)return;
