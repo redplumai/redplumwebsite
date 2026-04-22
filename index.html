@@ -520,7 +520,9 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
   #page-home .container>div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important}
 
   /* HOW IT WORKS stats */
-  #page-home .hero>div>div[style*="display:flex;gap:32px"]{gap:20px;flex-wrap:wrap}
+  #page-home .hero>div>div[style*="display:flex;gap:32px"]{gap:12px;flex-wrap:nowrap;justify-content:space-between}
+  #page-home .hero>div>div[style*="display:flex;gap:32px"] .stat-num{font-size:clamp(20px,5vw,32px)}
+  #page-home .hero>div>div[style*="display:flex;gap:32px"] .stat-label{font-size:11px}
 
   /* ABOUT mission block */
   #page-about div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
@@ -602,7 +604,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
   /* pricing page hero */
   #page-pricing .container{padding:0 20px!important}
   /* contact page */
-  #page-contact .container{padding:0 20px!important}
+  #page-contact .container{padding-left:20px!important;padding-right:20px!important}
 
 /* ── SMALL PHONES (≤420px) ── */
 @media(max-width:420px){
