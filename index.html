@@ -425,7 +425,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
   /* LAYOUT */
   .container{padding:0 20px}
   html,body{overflow-x:hidden;max-width:100%}
-  .section-wrap{padding:40px 0}
+  .section-wrap{padding:64px 0}
   .page-hero,.page-hero-left{padding-left:0;padding-right:0}
   .page-hero{padding:44px 0 32px}
   .page-hero-left{padding:44px 0 32px}
@@ -581,10 +581,22 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
   #page-home .container.section-wrap[style*="padding-top:0"]{padding-top:56px!important}
 
   /* Testimonials purple section - add top gap so it doesn't touch SRE table */
-  #page-home div[style*="background:var(--plum-cream)"][style*="padding:64px 0"]{margin-top:56px}
+  #page-home div[style*="background:var(--plum-cream)"][style*="padding:64px 0"]{margin-top:0;padding-top:48px;padding-bottom:48px}
+
+  /* Full-bleed dark SRE section mobile padding */
+  #page-home div[style*="background:var(--plum-deeper)"][style*="padding:72px 0"]{padding-top:48px!important;padding-bottom:48px!important}
+
+  /* 7-step workflow section - add top spacing to separate from dark section above */
+  #seven-step-section{padding-top:56px!important;margin-top:0}
+
+  /* Cream full-bleed sections mobile padding */
+  #page-home div[style*="background:var(--plum-cream)"][style*="padding:72px 0"]{padding-top:48px!important;padding-bottom:48px!important}
+
+  /* Add visual gap between SRE dark section and testimonials cream section */
+  #page-home div[style*="background:var(--plum-cream)"][style*="padding:64px 0"]{border-top:8px solid var(--page-bg)}
 
   /* See it handle / CTA section spacing */
-  #page-home .container.section-wrap[style*="text-align:center"]{padding-top:64px;padding-bottom:64px}
+  #page-home #cta-section{padding-top:64px!important;padding-bottom:64px!important}
 
   /* Customer logos section */
   #page-home div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
@@ -930,7 +942,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
     </div>
   </div>
 
-  <!-- CAPABILITIES -->
+  <div style="height:56px"></div><!-- CAPABILITIES -->
   <div class="container section-wrap">
     <div class="eyebrow">Capabilities</div>
     <h2 class="display-h2" style="margin-bottom:44px">Everything your <em class="plum">production</em> needs</h2>
@@ -970,7 +982,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
     </div>
   </div>
 
-  <!-- CUSTOMER LOGOS -->
+  <div style="height:56px"></div><!-- CUSTOMER LOGOS -->
   <div class="container section-wrap">
     <div class="eyebrow" style="text-align:center">Our customers</div>
     <h2 class="display-h2" style="text-align:center;margin-bottom:44px">Trusted by builders from<br>engineers to <em class="plum">CTOs</em></h2>
@@ -1057,7 +1069,9 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
       </div>
     </div>
   </div>
-  <div class="container section-wrap">
+
+  <div style="height:48px"></div>
+  <div class="container section-wrap" id="seven-step-section">
     <div class="eyebrow">The 7-step workflow</div>
     <h2 class="display-h2" style="margin-bottom:44px">How Redplum handles<br>every <em class="plum">incident</em></h2>
     <div style="display:flex;flex-direction:column;gap:0;border:var(--border);border-radius:12px;overflow:hidden">
@@ -1069,6 +1083,8 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
       <div id="sre-steps"></div>
     </div>
   </div>
+
+  <div style="height:56px"></div>
   <div style="background:var(--plum-cream);padding:64px 0">
     <div class="container">
       <div class="eyebrow" style="text-align:center">Engineers who use it daily</div>
@@ -1086,11 +1102,14 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
       </div>
     </div>
   </div>
-  <div class="container section-wrap" style="text-align:center">
+
+  <div style="height:56px"></div>
+  <div class="container section-wrap" id="cta-section" style="text-align:center;padding-top:88px;padding-bottom:120px">
     <h2 class="display-h2" style="margin-bottom:14px">See it handle a real incident</h2>
     <p class="lead" style="margin:0 auto 32px">Book a demo and we&rsquo;ll show Redplum investigating a sample incident in your stack.</p>
     <a class="btn btn-primary btn-lg" href="/book-a-demo" onclick="showPage('demo');return false;">Book a demo &#8594;</a>
   </div>
+  <div style="height:80px"></div>
 </div>
 
 <!-- DEBUGGING -->
