@@ -598,6 +598,10 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
   /* See it handle / CTA section spacing */
   #page-home #cta-section{padding-top:64px!important;padding-bottom:64px!important}
 
+  /* AI SRE stats - shrink numbers to fit 3 on one row */
+  #page-ai-sre div[style*="grid-template-columns:repeat(3,1fr)"] .stat-num{font-size:clamp(22px,6vw,36px)}
+  #page-ai-sre div[style*="grid-template-columns:repeat(3,1fr)"] .stat-label{font-size:11px}
+
   /* Customer logos section */
   #page-home div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
 
@@ -1062,7 +1066,7 @@ footer{background:var(--plum-deeper);color:#fff;margin-top:0}
     <div class="container">
       <h1 class="display-h1" style="color:#fff;margin-bottom:18px">The SRE that<br>never pages out</h1>
       <p class="lead" style="color:#888;margin-bottom:36px">Triages every alert. Investigates complex incidents. Finds root cause. All before your on-call engineer finishes their coffee.</p>
-      <div style="display:flex;gap:32px;flex-wrap:wrap">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
         <div><div class="stat-num" style="color:var(--plum-pale)">100%</div><div class="stat-label" style="color:#666">Alerts investigated</div></div>
         <div><div class="stat-num" style="color:var(--plum-pale)">&lt;5 min</div><div class="stat-label" style="color:#666">To root cause</div></div>
         <div><div class="stat-num" style="color:var(--plum-pale)">&gt;70%</div><div class="stat-label" style="color:#666">Faster MTTR</div></div>
